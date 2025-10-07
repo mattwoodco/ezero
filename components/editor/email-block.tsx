@@ -62,9 +62,9 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="icon-sm"
-                    className="rounded-full bg-background shadow-md hover:bg-primary hover:text-primary-foreground"
+                    className="rounded-full bg-background shadow-md border-primary hover:bg-primary hover:text-primary-foreground"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddAbove();
@@ -87,9 +87,9 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="icon-sm"
-                    className="rounded-full bg-background shadow-md hover:bg-primary hover:text-primary-foreground"
+                    className="rounded-full bg-background shadow-md border-primary hover:bg-primary hover:text-primary-foreground"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddBelow();
