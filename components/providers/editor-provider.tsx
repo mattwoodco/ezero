@@ -10,7 +10,8 @@ import {
   useHistory,
   useHistoryKeyboardShortcuts,
 } from "@/lib/hooks/use-history";
-import type { EditorContextValue, EmailBlock } from "@/lib/types/editor";
+import type { EmailBlock } from "@/types/email";
+import type { EditorContextValue } from "@/types/editor";
 
 /**
  * Editor context

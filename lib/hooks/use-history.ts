@@ -1,7 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { EmailBlock, HistoryState } from "@/lib/types/editor";
+import type { EmailBlock } from "@/types/email";
+
+export interface HistoryState<T> {
+  past: T[];
+  present: T;
+  future: T[];
+}
 
 /**
  * Maximum number of history states to keep

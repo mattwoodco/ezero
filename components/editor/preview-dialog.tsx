@@ -4,17 +4,8 @@ import { ArrowLeft, Monitor, Smartphone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BlockContent } from "@/components/email/block-renderer";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Dialog } from "@/components/ui/dialog";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { useEditor } from "@/contexts/editor-context";
 import { cn } from "@/lib/utils";
 
@@ -43,78 +34,71 @@ export function PreviewDialog() {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="max-w-full h-full p-0 gap-0">
-        <DialogTitle className="sr-only">Email Preview</DialogTitle>
-        <DialogDescription className="sr-only">
-          Preview your email in desktop or mobile view
-        </DialogDescription>
-        <div className="flex flex-col h-full bg-background">
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b">
-            <div className="flex items-center gap-4">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleClose}
-                    className="gap-2"
-                  >
-                    <ArrowLeft className="size-4" />
-                    Back
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Close preview</TooltipContent>
-              </Tooltip>
+      <DialogPrimitive.Portal>
+        <DialogPrimitive.Content className="fixed inset-0 z-50 bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+          <DialogPrimitive.Title className="sr-only">
+            Email Preview
+          </DialogPrimitive.Title>
+          <DialogPrimitive.Description className="sr-only">
+            Preview your email in desktop or mobile view
+          </DialogPrimitive.Description>
+          <div className="flex h-full w-full flex-col">
+            {/* Header */}
+            <div className="flex items-center gap-8 p-6">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleClose}
+                className="gap-2 text-foreground"
+              >
+                <ArrowLeft className="size-4" />
+                Back to editing
+              </Button>
 
               <div className="flex gap-2">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => handleModeChange("desktop")}
-                      className={cn(activeMode === "desktop" && "text-primary")}
-                    >
-                      <Monitor className="size-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Desktop preview</TooltipContent>
-                </Tooltip>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => handleModeChange("desktop")}
+                  className={cn(
+                    "size-8",
+                    activeMode === "desktop" && "bg-accent"
+                  )}
+                >
+                  <Monitor className="size-4" />
+                </Button>
 
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => handleModeChange("mobile")}
-                      className={cn(activeMode === "mobile" && "text-primary")}
-                    >
-                      <Smartphone className="size-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Mobile preview</TooltipContent>
-                </Tooltip>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => handleModeChange("mobile")}
+                  className={cn(
+                    "size-8",
+                    activeMode === "mobile" && "bg-accent"
+                  )}
+                >
+                  <Smartphone className="size-4" />
+                </Button>
               </div>
             </div>
-          </div>
 
-          {/* Preview Content */}
-          <div className="flex-1 overflow-auto p-8 flex items-start justify-center bg-muted/30">
-            {activeMode === "desktop" ? (
-              <div className="w-full max-w-[600px] bg-white shadow-lg">
-                <EmailPreview blocks={blocks} />
-              </div>
-            ) : (
-              <div className="p-2.5 bg-black rounded-[2.5rem] border-8 border-black shadow-2xl hover:shadow-3xl transition-shadow">
-                <div className="w-[375px] h-[667px] bg-white rounded-[2rem] overflow-auto">
+            {/* Preview Content */}
+            <div className="flex flex-1 items-start justify-center overflow-auto bg-background px-8 pb-8">
+              {activeMode === "desktop" ? (
+                <div className="w-full max-w-[600px] bg-white">
                   <EmailPreview blocks={blocks} />
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="rounded-[2.5rem] border-8 border-black bg-black p-2.5 shadow-2xl">
+                  <div className="h-[667px] w-[375px] overflow-auto rounded-[2rem] bg-white">
+                    <EmailPreview blocks={blocks} />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </DialogContent>
+        </DialogPrimitive.Content>
+      </DialogPrimitive.Portal>
     </Dialog>
   );
 }

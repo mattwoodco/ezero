@@ -2,7 +2,7 @@
 
 import { parseAsJson, parseAsString, useQueryState } from "nuqs";
 import { useCallback } from "react";
-import type { EmailBlock } from "@/lib/types/editor";
+import type { EmailBlock } from "@/types/email";
 
 /**
  * Hook to manage the selected block ID in the URL
