@@ -2,6 +2,7 @@
 
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { BlockContent } from "@/components/email/block-renderer";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -11,7 +12,6 @@ import {
 import type { EmailBlock as EmailBlockType } from "@/contexts/editor-context";
 import { useEditor } from "@/contexts/editor-context";
 import { cn } from "@/lib/utils";
-import { BlockContent } from "./block-content";
 
 interface EmailBlockProps {
   block: EmailBlockType;

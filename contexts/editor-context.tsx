@@ -2,13 +2,9 @@
 
 import { parseAsString, useQueryState } from "nuqs";
 import { createContext, useCallback, useContext, useState } from "react";
+import type { EmailBlock } from "@/types/email";
 
-export interface EmailBlock {
-  id: string;
-  type: "text" | "heading" | "image" | "button" | "divider" | "spacer";
-  content?: string;
-  settings?: Record<string, unknown>;
-}
+export type { EmailBlock };
 
 interface HistoryState {
   blocks: EmailBlock[];

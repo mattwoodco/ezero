@@ -2,6 +2,7 @@
 
 import { ArrowLeft, Monitor, Smartphone } from "lucide-react";
 import { useEffect, useState } from "react";
+import { BlockContent } from "@/components/email/block-renderer";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,7 +17,6 @@ import {
 } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
 import { cn } from "@/lib/utils";
-import { BlockContent } from "./block-content";
 
 export function PreviewDialog() {
   const { previewMode, setPreviewMode, blocks } = useEditor();
