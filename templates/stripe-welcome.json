@@ -4,6 +4,7 @@
     "name": "Stripe Welcome",
     "description": "Imported from React Email template: stripe-welcome",
     "category": "imported",
+    "tags": ["Welcome", "Transactional"],
     "createdAt": "2025-10-07T21:00:18.365Z",
     "updatedAt": "2025-10-07T21:00:18.365Z"
   },

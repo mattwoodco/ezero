@@ -4,6 +4,7 @@
     "name": "Vercel Invite User",
     "description": "Imported from React Email template: vercel-invite-user",
     "category": "imported",
+    "tags": ["Transactional", "Invitation"],
     "createdAt": "2025-10-07T21:00:18.366Z",
     "updatedAt": "2025-10-07T21:00:18.366Z"
   },

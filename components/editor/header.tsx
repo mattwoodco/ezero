@@ -31,7 +31,7 @@ const handleExport = (format: "jsx" | "html" | "json") => {
 
 export function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 h-14 bg-background border-b flex items-center justify-between px-7 z-40 border-b">
+    <header className="fixed top-0 left-0 right-0 h-14 bg-background border-b flex items-center justify-between px-7 z-40">
       <Link href="/templates">
         <h1 className="font-mono text-xl font-semibold cursor-pointer hover:opacity-70 transition-opacity">
           e0

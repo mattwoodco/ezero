@@ -1,15 +1,17 @@
 "use client";
 
-import { Header } from "@/components/editor/header";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+
+import { TemplatesSidebar } from "@/components/templates-sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { TemplateMetadata } from "@/lib/email-templates";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export default function TemplatesPage() {
   const [templates, setTemplates] = useState<TemplateMetadata[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   useEffect(() => {
     async function loadTemplates() {
@@ -34,13 +36,47 @@ export default function TemplatesPage() {
     loadTemplates();
   }, []);
 
+  const handleTagToggle = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
+  };
+
+  const handleClearTags = () => {
+    setSelectedTags([]);
+  };
+
+  const filteredTemplates = useMemo(() => {
+    if (selectedTags.length === 0) {
+      return templates;
+    }
+
+    return templates.filter((template) => {
+      if (!template.tags || template.tags.length === 0) {
+        return false;
+      }
+
+      // Normalize tags to lowercase for case-insensitive comparison
+      const normalizedTemplateTags = template.tags.map((t) => t.toLowerCase());
+      const normalizedSelectedTags = selectedTags.map((t) => t.toLowerCase());
+
+      // Template matches if it has ANY of the selected tags
+      return normalizedSelectedTags.some((selectedTag) =>
+        normalizedTemplateTags.includes(selectedTag),
+      );
+    });
+  }, [templates, selectedTags]);
+
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-background">
-        <Header />
+      <div className="h-[100dvh] bg-background flex">
+        <TemplatesSidebar
+          selectedTags={selectedTags}
+          onTagToggle={handleTagToggle}
+          onClearTags={handleClearTags}
+        />
 
-        <main className="pt-20 px-6 pb-12 max-w-7xl mx-auto">
-
+        <main className="flex-1 ml-[360px] py-28 overflow-y-auto h-full">
           {loading && (
             <div className="text-center py-12">
               <p className="text-muted-foreground">Loading templates...</p>
@@ -61,13 +97,25 @@ export default function TemplatesPage() {
             </div>
           )}
 
-          {!loading && !error && templates.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-16">
-              {templates.map((template) => (
+          {!loading &&
+            !error &&
+            filteredTemplates.length === 0 &&
+            templates.length > 0 && (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">
+                  No templates match the selected filters. Try adjusting your
+                  filter selection.
+                </p>
+              </div>
+            )}
+
+          {!loading && !error && filteredTemplates.length > 0 && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-[960px] px-20">
+              {filteredTemplates.map((template) => (
                 <Link key={template.id} href={`/${template.id}`}>
-                  <div className="group relative bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                  <div className="group relative bg-white overflow-hidden cursor-pointer">
                     {/* 3:4 aspect ratio container */}
-                    <div className="aspect-[3/4] bg-gray-50 flex items-center justify-center border-b">
+                    <div className="aspect-[3/4] bg-gray-50 flex items-center justify-center rounded-lg overflow-hidden">
                       <div className="text-center p-6">
                         <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-primary/10 flex items-center justify-center">
                           <svg
@@ -76,6 +124,7 @@ export default function TemplatesPage() {
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
+                            <title>Template</title>
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -91,20 +140,21 @@ export default function TemplatesPage() {
                     </div>
 
                     {/* Template info */}
-                    <div className="p-4">
-                      <h3 className="font-semibold text-lg mb-1 group-hover:text-primary transition-colors">
+                    <div className="pt-3">
+                      {template.category && (
+                        <span className="uppercase mb-2 mr-2 text-xs text-muted-foreground font-light tracking-wider">
+                          {template.category}
+                        </span>
+                      )}
+                      <h3 className="font-semibold text-lg group-hover:text-primary tran  sition-colors">
                         {template.name}
                       </h3>
-                      {template.description && (
+                      {/* {template.description && (
                         <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
                           {template.description}
                         </p>
                       )}
-                      {template.category && (
-                        <span className="inline-block px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-700">
-                          {template.category}
-                        </span>
-                      )}
+                      */}
                     </div>
                   </div>
                 </Link>
