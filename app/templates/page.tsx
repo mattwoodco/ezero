@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { TemplatesSidebar } from "@/components/templates-sidebar";
+import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { TemplateMetadata } from "@/lib/email-templates";
 
@@ -112,10 +113,10 @@ export default function TemplatesPage() {
           {!loading && !error && filteredTemplates.length > 0 && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-[960px] px-20">
               {filteredTemplates.map((template) => (
-                <Link key={template.id} href={`/${template.id}`}>
+                <Link key={template.id} href={`/template/${template.id}`}>
                   <div className="group relative bg-white overflow-hidden cursor-pointer">
                     {/* 3:4 aspect ratio container */}
-                    <div className="aspect-[3/4] bg-gray-50 flex items-center justify-center rounded-lg overflow-hidden">
+                    <div className="relative aspect-[3/4] bg-gray-50 flex items-center justify-center rounded-lg overflow-hidden">
                       <div className="text-center p-6">
                         <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-primary/10 flex items-center justify-center">
                           <svg
@@ -136,6 +137,11 @@ export default function TemplatesPage() {
                         <p className="text-sm text-muted-foreground font-mono">
                           Email Template
                         </p>
+                      </div>
+
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                        <Button variant="secondary">View Details</Button>
                       </div>
                     </div>
 
