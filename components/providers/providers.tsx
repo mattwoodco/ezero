@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
@@ -9,19 +10,21 @@ import { EditorProvider } from "@/contexts/editor-context";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <NuqsAdapter>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <EditorProvider>
-          {children}
-          <Analytics />
-          <CommandDialog />
-        </EditorProvider>
-      </ThemeProvider>
-    </NuqsAdapter>
+    <Suspense>
+      <NuqsAdapter>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <EditorProvider>
+            {children}
+            <Analytics />
+            <CommandDialog />
+          </EditorProvider>
+        </ThemeProvider>
+      </NuqsAdapter>
+    </Suspense>
   );
 }
