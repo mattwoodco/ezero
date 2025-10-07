@@ -2,6 +2,7 @@
 
 import { parseAsString, useQueryState } from "nuqs";
 import { createContext, useCallback, useContext, useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 import type { EmailBlock } from "@/types/email";
 
 export type { EmailBlock };
@@ -24,6 +25,7 @@ interface EditorContextType {
   deleteBlock: (id: string) => void;
   updateBlock: (id: string, updates: Partial<EmailBlock>) => void;
   setPreviewMode: (mode: "desktop" | "mobile" | null) => void;
+  setBlocks: (blocks: EmailBlock[]) => void;
   undo: () => void;
   redo: () => void;
 }
@@ -164,6 +166,14 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     [blocks, selectedBlockId, saveToHistory],
   );
 
+  const setBlocksWithHistory = useCallback(
+    (newBlocks: EmailBlock[]) => {
+      setBlocks(newBlocks);
+      saveToHistory(newBlocks, null);
+    },
+    [saveToHistory],
+  );
+
   const undo = useCallback(() => {
     if (canUndo) {
       const newIndex = historyIndex - 1;
@@ -184,6 +194,13 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     }
   }, [canRedo, history, historyIndex, setSelectedBlockId]);
 
+  // ESC to deselect block
+  useHotkeys("esc", () => {
+    if (selectedBlockId) {
+      setSelectedBlockId(null);
+    }
+  }, [selectedBlockId, setSelectedBlockId]);
+
   return (
     <EditorContext.Provider
       value={{
@@ -199,6 +216,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         deleteBlock,
         updateBlock,
         setPreviewMode,
+        setBlocks: setBlocksWithHistory,
         undo,
         redo,
       }}

@@ -59,17 +59,22 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
           {/* Add button above */}
           {isHovered && (
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                className="rounded-full bg-background shadow-md hover:bg-primary hover:text-primary-foreground"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleAddAbove();
-                }}
-              >
-                <Plus className="size-4" />
-              </Button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    className="rounded-full bg-background shadow-md hover:bg-primary hover:text-primary-foreground"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddAbove();
+                    }}
+                  >
+                    <Plus className="size-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="right">Add block above</TooltipContent>
+              </Tooltip>
             </div>
           )}
 
@@ -79,22 +84,27 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
           {/* Add button below */}
           {isHovered && (
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-10">
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                className="rounded-full bg-background shadow-md hover:bg-primary hover:text-primary-foreground"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleAddBelow();
-                }}
-              >
-                <Plus className="size-4" />
-              </Button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    className="rounded-full bg-background shadow-md hover:bg-primary hover:text-primary-foreground"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddBelow();
+                    }}
+                  >
+                    <Plus className="size-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="right">Add block below</TooltipContent>
+              </Tooltip>
             </div>
           )}
         </div>
       </TooltipTrigger>
-      <TooltipContent>{blockTypeLabel} settings</TooltipContent>
+      <TooltipContent side="right">{blockTypeLabel} settings</TooltipContent>
     </Tooltip>
   );
 }

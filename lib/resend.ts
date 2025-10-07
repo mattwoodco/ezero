@@ -27,7 +27,7 @@ export async function sendEmail({
   to,
   subject,
   blocks,
-  from = "onboarding@resend.dev", // Default from address
+  from = process.env.FROM_EMAIL || "onboarding@resend.dev", // Use FROM_EMAIL from environment or fallback
 }: SendEmailParams): Promise<SendEmailResponse> {
   try {
     // Render blocks to HTML and plain text

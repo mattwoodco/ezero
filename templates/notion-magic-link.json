@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "id": "notion-magic-link",
+    "name": "Notion Magic Link",
+    "description": "Imported from React Email template: notion-magic-link",
+    "category": "imported",
+    "createdAt": "2025-10-07T21:00:18.364Z",
+    "updatedAt": "2025-10-07T21:00:18.364Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Login",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "If you didn&apos;t try to login, you can safely ignore this email.",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "text",
+      "content": "Hint: You can set a permanent password in Settings & members → My\n          account.",
+      "settings": {}
+    }
+  ]
+}

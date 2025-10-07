@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "id": "plaid-verify-identity",
+    "name": "Plaid Verify Identity",
+    "description": "Imported from React Email template: plaid-verify-identity",
+    "category": "imported",
+    "createdAt": "2025-10-07T21:00:18.367Z",
+    "updatedAt": "2025-10-07T21:00:18.367Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Enter the following code to finish linking Venmo.",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Verify Your Identity",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "text",
+      "content": "{validationCode}",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "text",
+      "content": "Not expecting this email?",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "text",
+      "content": "Securely powered by Plaid.",
+      "settings": {}
+    }
+  ]
+}

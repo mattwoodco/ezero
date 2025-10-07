@@ -1,6 +1,5 @@
 "use client";
 
-import { Monitor, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -8,12 +7,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
+import { Monitor, Smartphone } from "lucide-react";
 
 export function ToolbarRight() {
   const { setPreviewMode } = useEditor();
 
   return (
-    <div className="fixed top-20 right-20 flex gap-2 z-30">
+    <div className="fixed top-20 right-7 flex z-30">
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
@@ -24,7 +24,7 @@ export function ToolbarRight() {
             <Monitor className="size-4" />
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="left">Desktop preview</TooltipContent>
+        <TooltipContent side="top">Desktop preview</TooltipContent>
       </Tooltip>
 
       <Tooltip>
@@ -37,7 +37,7 @@ export function ToolbarRight() {
             <Smartphone className="size-4" />
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="left">Mobile preview</TooltipContent>
+        <TooltipContent side="top">Mobile preview</TooltipContent>
       </Tooltip>
     </div>
   );

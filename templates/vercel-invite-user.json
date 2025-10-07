@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "id": "vercel-invite-user",
+    "name": "Vercel Invite User",
+    "description": "Imported from React Email template: vercel-invite-user",
+    "category": "imported",
+    "createdAt": "2025-10-07T21:00:18.366Z",
+    "updatedAt": "2025-10-07T21:00:18.366Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Join {teamName} on Vercel",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "{previewText}\n      \n        \n          \n            \n              \n            \n            \n              Join {teamName} on Vercel\n            \n            \n              Hello {username},",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "text",
+      "content": "This invitation was intended for{\" \"}\n              {username}. This invite was\n              sent from {inviteFromIp}{\" \"}\n              located in{\" \"}\n              {inviteFromLocation}. If you\n              were not expecting this invitation, you can ignore this email. If\n              you are concerned about your account's safety, please reply to\n              this email to get in touch with us.",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "divider",
+      "settings": {}
+    }
+  ]
+}

@@ -1,6 +1,5 @@
 "use client";
 
-import { Redo, Undo } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -9,6 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
+import { Redo, Undo } from "lucide-react";
 
 export function SettingsPanel() {
   const { selectedBlockId, blocks, canUndo, canRedo, undo, redo } = useEditor();
@@ -20,16 +20,31 @@ export function SettingsPanel() {
   return (
     <div className="fixed right-0 top-14 bottom-0 w-[360px] bg-background border-l flex flex-col z-30">
       <Tabs defaultValue="block" className="flex-1 flex flex-col">
-        <div className="border-b p-4">
-          <TabsList className="w-full">
-            <TabsTrigger value="block" className="flex-1">
-              Block
-            </TabsTrigger>
-            <TabsTrigger value="font" className="flex-1">
+        <div className="border-b">
+          <TabsList className="w-full bg-transparent p-0 h-auto rounded-none justify-start gap-8 px-6 pt-4">
+            <TabsTrigger
+              value="font"
+              className="!bg-transparent !shadow-none text-muted-foreground data-[state=active]:text-foreground rounded-none border-b-2 border-transparent data-[state=active]:border-foreground px-0 pb-3 w-auto data-[state=active]:!bg-transparent data-[state=active]:!shadow-none !border-transparent !border-x-0 !border-t-0 cursor-pointer"
+            >
               Font
             </TabsTrigger>
-            <TabsTrigger value="link" className="flex-1">
+            <TabsTrigger
+              value="block"
+              className="!bg-transparent !shadow-none text-muted-foreground data-[state=active]:text-foreground rounded-none border-b-2 border-transparent data-[state=active]:border-foreground px-0 pb-3 w-auto data-[state=active]:!bg-transparent data-[state=active]:!shadow-none !border-transparent !border-x-0 !border-t-0 cursor-pointer"
+            >
+              Layout
+            </TabsTrigger>
+            <TabsTrigger
+              value="link"
+              className="!bg-transparent !shadow-none text-muted-foreground data-[state=active]:text-foreground rounded-none border-b-2 border-transparent data-[state=active]:border-foreground px-0 pb-3 w-auto data-[state=active]:!bg-transparent data-[state=active]:!shadow-none !border-transparent !border-x-0 !border-t-0 cursor-pointer"
+            >
               Link
+            </TabsTrigger>
+            <TabsTrigger
+              value="blockSettings"
+              className="!bg-transparent !shadow-none text-muted-foreground data-[state=active]:text-foreground rounded-none border-b-2 border-transparent data-[state=active]:border-foreground px-0 pb-3 w-auto data-[state=active]:!bg-transparent data-[state=active]:!shadow-none !border-transparent !border-x-0 !border-t-0 cursor-pointer"
+            >
+              Block
             </TabsTrigger>
           </TabsList>
         </div>
@@ -72,9 +87,17 @@ export function SettingsPanel() {
               </p>
             </div>
           </TabsContent>
+
+          <TabsContent value="blockSettings">
+            <div className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                Block settings coming soon...
+              </p>
+            </div>
+          </TabsContent>
         </div>
 
-        <div className="border-t p-4 flex items-center justify-between">
+        <div className="border-t px-4 py-4 flex items-center justify-between">
           <div className="flex gap-2">
             <Tooltip>
               <TooltipTrigger asChild>
