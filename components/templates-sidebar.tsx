@@ -13,36 +13,32 @@ interface TemplatesSidebarProps {
 
 const AVAILABLE_TAGS = [
   {
-    id: "newsletter",
-    label: "Newsletter",
+    id: "launch",
+    label: "Launch",
   },
   {
-    id: "marketing",
-    label: "Marketing",
+    id: "promotion",
+    label: "Promotion",
   },
   {
-    id: "transactional",
-    label: "Transactional",
+    id: "deal",
+    label: "Deal",
   },
   {
-    id: "welcome",
-    label: "Welcome",
+    id: "event",
+    label: "Event",
   },
   {
-    id: "notification",
-    label: "Notification",
+    id: "announcement",
+    label: "Announcement",
   },
   {
-    id: "receipt",
-    label: "Receipt",
+    id: "update",
+    label: "Update",
   },
   {
-    id: "invitation",
-    label: "Invitation",
-  },
-  {
-    id: "imported",
-    label: "Imported",
+    id: "feedback",
+    label: "Feedback",
   },
 ];
 

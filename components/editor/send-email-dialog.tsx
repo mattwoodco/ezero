@@ -1,6 +1,6 @@
 "use client";
 
-import { Send } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -164,7 +164,7 @@ export function SendEmailDialog({ open, onOpenChange }: SendEmailDialogProps) {
           >
             {isLoading ? (
               <>
-                <span className="animate-spin mr-2">⏳</span>
+                <Loader2 className="size-4 mr-2 animate-spin" />
                 Sending...
               </>
             ) : (
