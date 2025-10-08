@@ -16,7 +16,7 @@ export function ToolbarLeft() {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 z-30 flex flex-row gap-2 justify-around p-2 bg-background border-t @lg/editor:flex-col @lg/editor:top-20 @lg/editor:left-5 @lg/editor:bottom-auto @lg/editor:right-auto @lg/editor:border-t-0 @lg/editor:border-r @lg/editor:gap-0 @lg/editor:p-0">
+      <div className="fixed bottom-0 left-0 right-0 z-30 flex flex-row gap-2 justify-around p-2 bg-background border-t @lg/editor:flex-col @lg/editor:top-20 @lg/editor:left-5 @lg/editor:bottom-auto @lg/editor:right-auto @lg/editor:border-t-0 @lg/editor:gap-0 @lg/editor:p-0">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button

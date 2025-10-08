@@ -120,7 +120,7 @@ export default function Home() {
             )}
 
           {!loading && !error && filteredTemplates.length > 0 && (
-            <div className="grid grid-cols-1 @sm/content:grid-cols-2 @lg/content:grid-cols-2 @xl/content:grid-cols-3 gap-8 @md/app:gap-16 max-w-[960px] @xl/content:max-w-none">
+            <div className="grid grid-cols-1 @sm/content:grid-cols-2 @lg/content:grid-cols-2 @xl/content:grid-cols-3 gap-8 @md/app:gap-16 max-w-[960px]">
               {filteredTemplates.map((template) => (
                 <Link key={template.id} href={`/template/${template.id}`}>
                   <div className="group relative bg-card overflow-hidden cursor-pointer">
