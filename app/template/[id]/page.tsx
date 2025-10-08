@@ -91,7 +91,7 @@ export default function TemplatePage({
 
   return (
     <TooltipProvider>
-      <div className="h-[100dvh] bg-background overflow-y-auto @container/editor">
+      <div className="h-[100dvh] bg-background overflow-y-auto @container/editor overscroll-none">
         {/* Header */}
         <Header />
 

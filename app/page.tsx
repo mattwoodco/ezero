@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-
 import { MobileSidebarToggle } from "@/components/mobile-sidebar-toggle";
 import { TemplatesSidebar } from "@/components/templates-sidebar";
 import { Button } from "@/components/ui/button";
