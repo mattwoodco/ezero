@@ -9,7 +9,6 @@ import { PreviewDialog } from "@/components/editor/preview-dialog";
 import { SettingsPanel } from "@/components/editor/settings-panel";
 import { ToolbarLeft } from "@/components/editor/toolbar-left";
 import { ToolbarRight } from "@/components/editor/toolbar-right";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
 import type { EmailTemplate } from "@/types/email";
 
@@ -112,44 +111,39 @@ export default function TemplatePage({
 
   if (loading) {
     return (
-      <TooltipProvider>
-        <div className="h-[100dvh] bg-background overflow-y-auto">
-          <Header />
-          <main className="pt-14 min-h-screen flex items-center justify-center">
-            <p className="text-muted-foreground">Loading template...</p>
-          </main>
-        </div>
-      </TooltipProvider>
+      <div className="h-[100dvh] bg-background overflow-y-auto">
+        <Header />
+        <main className="pt-14 min-h-screen flex items-center justify-center">
+          <p className="text-muted-foreground">Loading template...</p>
+        </main>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <TooltipProvider>
-        <div className="h-[100dvh] bg-background overflow-y-auto">
-          <Header />
-          <main className="pt-14 min-h-screen flex items-center justify-center">
-            <p className="text-red-500">{error}</p>
-          </main>
-        </div>
-      </TooltipProvider>
+      <div className="h-[100dvh] bg-background overflow-y-auto">
+        <Header />
+        <main className="pt-14 min-h-screen flex items-center justify-center">
+          <p className="text-red-500">{error}</p>
+        </main>
+      </div>
     );
   }
 
   return (
-    <TooltipProvider>
-      <div className="h-[100dvh] bg-background overflow-y-auto @container/editor overscroll-none">
-        {/* Header */}
-        <Header />
+    <div className="h-[100dvh] bg-background overflow-y-auto @container/editor overscroll-none">
+      {/* Header */}
+      <Header />
 
-        {/* Left Toolbar */}
-        <ToolbarLeft />
+      {/* Left Toolbar */}
+      <ToolbarLeft />
 
-        {/* Right Toolbar */}
-        <ToolbarRight />
+      {/* Right Toolbar */}
+      <ToolbarRight />
 
-        {/* Desktop: Traditional layout with fixed sidebar */}
-        <div className="hidden @lg/editor:block">
+      {/* Desktop: Traditional layout with fixed sidebar */}
+      <div className="hidden @lg/editor:block">
           <main
             className={`
               pt-14 min-h-screen flex items-start justify-center
@@ -178,12 +172,12 @@ export default function TemplatePage({
             </div>
           </main>
 
-          {/* Settings Panel - Desktop sidebar */}
-          <SettingsPanel saveStatus={saveStatus} />
-        </div>
+        {/* Settings Panel - Desktop sidebar */}
+        <SettingsPanel saveStatus={saveStatus} />
+      </div>
 
-        {/* Mobile: Horizontal scroll-snap container */}
-        <div className="@lg/editor:hidden h-[calc(100dvh-56px)] mt-14">
+      {/* Mobile: Horizontal scroll-snap container */}
+      <div className="@lg/editor:hidden h-[calc(100dvh-56px)] mt-14">
           <div
             ref={scrollContainerRef}
             data-scroll-container
@@ -229,15 +223,14 @@ export default function TemplatePage({
             )}
           </div>
 
-          {/* Scroll indicators */}
-          {selectedBlockId && (
-            <MobilePanelIndicator containerRef={scrollContainerRef} />
-          )}
-        </div>
-
-        {/* Preview Dialog */}
-        <PreviewDialog />
+        {/* Scroll indicators */}
+        {selectedBlockId && (
+          <MobilePanelIndicator containerRef={scrollContainerRef} />
+        )}
       </div>
-    </TooltipProvider>
+
+      {/* Preview Dialog */}
+      <PreviewDialog />
+    </div>
   );
 }
