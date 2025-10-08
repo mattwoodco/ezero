@@ -185,166 +185,16 @@ export async function listReactEmailTemplates(): Promise<string[]> {
 }
 
 /**
- * Parses a React Email template file and converts it to EmailBlock[]
- * This is a simplified parser that extracts basic structure from common React Email patterns
- *
- * @param templateName - Name of the template file (without extension)
- * @returns Array of EmailBlock objects
- */
-export async function importReactEmailTemplate(
-  templateName: string,
-): Promise<EmailBlock[] | null> {
-  try {
-    const filePath = join(REACT_EMAIL_DIR, `${templateName}.tsx`);
-    if (!existsSync(filePath)) {
-      return null;
-    }
-
-    const content = await readFile(filePath, "utf-8");
-    const blocks: EmailBlock[] = [];
-    let blockIndex = 0;
-
-    // Extract heading patterns: <Heading>, <h1>, etc.
-    const headingRegex =
-      /<(?:Heading|h[1-6])[^>]*>([\s\S]*?)<\/(?:Heading|h[1-6])>/gi;
-    const headingMatches = content.matchAll(headingRegex);
-
-    for (const match of headingMatches) {
-      const rawContent = match[1];
-      // Strip any nested tags and clean up
-      const cleanContent = rawContent.replace(/<[^>]+>/g, "").trim();
-      if (cleanContent) {
-        blocks.push({
-          id: `block-${blockIndex++}`,
-          type: "heading",
-          content: cleanContent,
-          settings: {},
-        });
-      }
-    }
-
-    // Extract text patterns: <Text>, <p>
-    const textRegex = /<(?:Text|p)[^>]*>([\s\S]*?)<\/(?:Text|p)>/gi;
-    const textMatches = content.matchAll(textRegex);
-
-    for (const match of textMatches) {
-      const rawContent = match[1];
-      // Skip if it contains nested complex components (Link, Button, etc.)
-      if (rawContent.includes("<Link") || rawContent.includes("<Button")) {
-        continue;
-      }
-      const cleanContent = rawContent.replace(/<[^>]+>/g, "").trim();
-      if (cleanContent && cleanContent.length > 10) {
-        blocks.push({
-          id: `block-${blockIndex++}`,
-          type: "text",
-          content: cleanContent,
-          settings: {},
-        });
-      }
-    }
-
-    // Extract button patterns: <Button>
-    const buttonRegex =
-      /<Button[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/Button>/gi;
-    const buttonMatches = content.matchAll(buttonRegex);
-
-    for (const match of buttonMatches) {
-      const url = match[1];
-      const rawContent = match[2];
-      const cleanContent = rawContent.replace(/<[^>]+>/g, "").trim();
-      if (cleanContent) {
-        blocks.push({
-          id: `block-${blockIndex++}`,
-          type: "button",
-          content: cleanContent,
-          settings: { url },
-        });
-      }
-    }
-
-    // Extract Link patterns that act as buttons
-    const linkButtonRegex =
-      /<Link[^>]*href=["']([^"']+)["'][^>]*style=\{[^}]*button[^}]*\}[^>]*>([\s\S]*?)<\/Link>/gi;
-    const linkButtonMatches = content.matchAll(linkButtonRegex);
-
-    for (const match of linkButtonMatches) {
-      const url = match[1];
-      const rawContent = match[2];
-      const cleanContent = rawContent.replace(/<[^>]+>/g, "").trim();
-      if (
-        cleanContent &&
-        !blocks.some((b) => b.content === cleanContent && b.type === "button")
-      ) {
-        blocks.push({
-          id: `block-${blockIndex++}`,
-          type: "button",
-          content: cleanContent,
-          settings: { url },
-        });
-      }
-    }
-
-    // Extract image patterns: <Img>
-    const imgRegex =
-      /<Img[^>]*src=["']([^"']+)["'][^>]*alt=["']([^"']*)["'][^>]*\/>/gi;
-    const imgMatches = content.matchAll(imgRegex);
-
-    for (const match of imgMatches) {
-      const src = match[1];
-      const alt = match[2];
-      blocks.push({
-        id: `block-${blockIndex++}`,
-        type: "image",
-        content: alt || "Image",
-        settings: { src, alt },
-      });
-    }
-
-    // Extract Hr/divider patterns
-    const hrRegex = /<(?:Hr|hr)[^>]*\/>/gi;
-    const hrMatches = content.matchAll(hrRegex);
-
-    for (const _match of hrMatches) {
-      blocks.push({
-        id: `block-${blockIndex++}`,
-        type: "divider",
-        settings: {},
-      });
-    }
-
-    return blocks.length > 0 ? blocks : null;
-  } catch (error) {
-    console.error(
-      `Error importing React Email template ${templateName}:`,
-      error,
-    );
-    return null;
-  }
-}
-
-/**
  * Imports a React Email template and saves it as a custom template
  * @param templateName - Name of the React Email template
  * @param customName - Custom name for the saved template
  * @returns Saved template
  */
 export async function importAndSaveReactEmailTemplate(
-  templateName: string,
-  customName?: string,
+  _templateName: string,
+  _customName?: string,
 ): Promise<EmailTemplate | null> {
-  const blocks = await importReactEmailTemplate(templateName);
-  if (!blocks) {
-    return null;
-  }
-
-  const name =
-    customName ||
-    templateName.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
-  return await saveTemplate(name, blocks, {
-    description: `Imported from React Email template: ${templateName}`,
-    category: "imported",
-  });
+  return null;
 }
 
 /**

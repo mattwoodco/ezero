@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { sendEmail } from "@/lib/resend";
 import type { EmailBlock } from "@/types/email";
 
-export interface SendEmailRequestBody {
+interface SendEmailRequestBody {
   to: string | string[];
   subject: string;
   blocks: EmailBlock[];

@@ -1,8 +1,13 @@
 "use client";
 
 import { parseAsString, useQueryState } from "nuqs";
-import { createContext, useCallback, useContext, useState } from "react";
-import { useHotkeys } from "react-hotkeys-hook";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import type { EmailBlock } from "@/types/email";
 
 export type { EmailBlock };
@@ -55,7 +60,10 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
   const [blocks, setBlocks] = useState<EmailBlock[]>(defaultBlocks);
   const [selectedBlockId, setSelectedBlockId] = useQueryState(
     "block",
-    parseAsString,
+    parseAsString.withOptions({
+      shallow: true,
+      throttleMs: 50,
+    }),
   );
   const [previewMode, setPreviewMode] = useState<"desktop" | "mobile" | null>(
     null,
@@ -77,20 +85,22 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         blocks: newBlocks,
         selectedBlockId: newSelectedBlockId,
       };
-      const newHistory = history.slice(0, historyIndex + 1);
-      newHistory.push(newState);
-      setHistory(newHistory);
-      setHistoryIndex(newHistory.length - 1);
+      setHistoryIndex((prevIndex) => {
+        setHistory((prevHistory) => {
+          const newHistory = prevHistory.slice(0, prevIndex + 1);
+          newHistory.push(newState);
+          return newHistory;
+        });
+        return prevIndex + 1;
+      });
     },
-    [history, historyIndex],
+    [],
   );
 
   const selectBlock = useCallback(
     (id: string | null) => {
-      // Toggle behavior: if clicking the same block, deselect it
+      // Guard clause: if clicking the same block, do nothing (prevent redundant updates)
       if (id === selectedBlockId) {
-        setSelectedBlockId(null);
-        setOpenMenuId(null);
         return;
       }
 
@@ -230,33 +240,51 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     }
   }, [canRedo, history, historyIndex, setSelectedBlockId]);
 
+  const value = useMemo(
+    () => ({
+      blocks,
+      selectedBlockId,
+      previewMode,
+      canUndo,
+      canRedo,
+      openMenuId,
+      selectBlock,
+      addBlock,
+      moveBlock,
+      duplicateBlock,
+      deleteBlock,
+      updateBlock,
+      updateBlockType,
+      updateBlockSettings,
+      setPreviewMode,
+      setBlocks: setBlocksWithHistory,
+      setOpenMenuId,
+      undo,
+      redo,
+    }),
+    [
+      blocks,
+      selectedBlockId,
+      previewMode,
+      canUndo,
+      canRedo,
+      openMenuId,
+      selectBlock,
+      addBlock,
+      moveBlock,
+      duplicateBlock,
+      deleteBlock,
+      updateBlock,
+      updateBlockType,
+      updateBlockSettings,
+      setBlocksWithHistory,
+      undo,
+      redo,
+    ],
+  );
 
   return (
-    <EditorContext.Provider
-      value={{
-        blocks,
-        selectedBlockId,
-        previewMode,
-        canUndo,
-        canRedo,
-        openMenuId,
-        selectBlock,
-        addBlock,
-        moveBlock,
-        duplicateBlock,
-        deleteBlock,
-        updateBlock,
-        updateBlockType,
-        updateBlockSettings,
-        setPreviewMode,
-        setBlocks: setBlocksWithHistory,
-        setOpenMenuId,
-        undo,
-        redo,
-      }}
-    >
-      {children}
-    </EditorContext.Provider>
+    <EditorContext.Provider value={value}>{children}</EditorContext.Provider>
   );
 }
 

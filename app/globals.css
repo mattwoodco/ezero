@@ -137,80 +137,80 @@
   /* Container query breakpoints for editor (1024px = lg) */
   @container editor (min-width: 1024px) {
     [class~="@lg/editor:top-14"] {
-      top: 3.5rem !important;
+      top: 3.5rem;
     }
     [class~="@lg/editor:bottom-0"] {
-      bottom: 0 !important;
+      bottom: 0;
     }
     [class~="@lg/editor:left-auto"] {
-      left: auto !important;
+      left: auto;
     }
     [class~="@lg/editor:right-0"] {
-      right: 0 !important;
+      right: 0;
     }
     [class~="@lg/editor:w-[360px]"] {
-      width: 360px !important;
+      width: 360px;
     }
     [class~="@lg/editor:max-h-none"] {
-      max-height: none !important;
+      max-height: none;
     }
     [class~="@lg/editor:rounded-none"] {
-      border-radius: 0 !important;
+      border-radius: 0;
     }
     [class~="@lg/editor:border-t-0"] {
-      border-top-width: 0 !important;
+      border-top-width: 0;
     }
     [class~="@lg/editor:border-l"] {
-      border-left-width: 1px !important;
+      border-left-width: 1px;
     }
     [class~="@lg/editor:animate-none"] {
-      animation: none !important;
+      animation: none;
     }
     [class~="@lg/editor:hidden"] {
-      display: none !important;
+      display: none;
     }
     [class~="@lg/editor:flex-col"] {
-      flex-direction: column !important;
+      flex-direction: column;
     }
     [class~="@lg/editor:gap-0"] {
-      gap: 0 !important;
+      gap: 0;
     }
     [class~="@lg/editor:gap-8"] {
-      gap: 2rem !important;
+      gap: 2rem;
     }
     [class~="@lg/editor:p-0"] {
-      padding: 0 !important;
+      padding: 0;
     }
     [class~="@lg/editor:px-6"] {
-      padding-left: 1.5rem !important;
-      padding-right: 1.5rem !important;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
     [class~="@lg/editor:overflow-x-visible"] {
-      overflow-x: visible !important;
+      overflow-x: visible;
     }
     [class~="@lg/editor:h-9"] {
-      height: 2.25rem !important;
+      height: 2.25rem;
     }
     [class~="@lg/editor:w-9"] {
-      width: 2.25rem !important;
+      width: 2.25rem;
     }
     [class~="@lg/editor:mr-[360px]"] {
-      margin-right: 360px !important;
+      margin-right: 360px;
     }
     [class~="@lg/editor:right-[360px]"] {
-      right: 360px !important;
+      right: 360px;
     }
     [class~="@lg/editor:bg-transparent"] {
-      background-color: transparent !important;
+      background-color: transparent;
     }
     [class~="@lg/editor:backdrop-blur-none"] {
-      backdrop-filter: none !important;
+      backdrop-filter: none;
     }
     [class~="@lg/editor:border-b-0"] {
-      border-bottom-width: 0 !important;
+      border-bottom-width: 0;
     }
     [class~="@lg/editor:bg-background"] {
-      background-color: var(--color-background) !important;
+      background-color: var(--color-background);
     }
   }
 

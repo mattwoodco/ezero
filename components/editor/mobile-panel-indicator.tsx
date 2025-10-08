@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface MobilePanelIndicatorProps {
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export function MobilePanelIndicator({ containerRef }: MobilePanelIndicatorProps) {
+export function MobilePanelIndicator({
+  containerRef,
+}: MobilePanelIndicatorProps) {
   const [activePanel, setActivePanel] = useState(0);
 
   useEffect(() => {
@@ -30,13 +32,13 @@ export function MobilePanelIndicator({ containerRef }: MobilePanelIndicatorProps
       <div
         className={cn(
           "w-2 h-2 rounded-full transition-colors",
-          activePanel === 0 ? "bg-primary" : "bg-border"
+          activePanel === 0 ? "bg-primary" : "bg-border",
         )}
       />
       <div
         className={cn(
           "w-2 h-2 rounded-full transition-colors",
-          activePanel === 1 ? "bg-primary" : "bg-border"
+          activePanel === 1 ? "bg-primary" : "bg-border",
         )}
       />
     </div>

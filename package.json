@@ -7,10 +7,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write",
-    "build:email": "email build",
-    "dev:email": "email dev --port 3010",
-    "export:email": "email export"
+    "format": "biome format --write"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

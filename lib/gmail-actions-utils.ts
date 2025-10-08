@@ -1,6 +1,6 @@
 import type { GmailActionConfig } from "@/types/email";
 
-export interface ValidationResult {
+interface ValidationResult {
   valid: boolean;
   errors: string[];
   warnings: string[];
@@ -242,13 +242,6 @@ export function generateJsonLd(action: GmailActionConfig): string {
 }
 
 /**
- * Generates multiple JSON-LD scripts for an array of actions
- */
-export function generateMultipleJsonLd(actions: GmailActionConfig[]): string[] {
-  return actions.map((action) => generateJsonLd(action));
-}
-
-/**
  * Validates a URL
  */
 function isValidUrl(url: string): boolean {
@@ -300,18 +293,4 @@ export function getActionTypeDescription(
       "Provide package tracking functionality with delivery information.",
   };
   return descriptions[type] || "";
-}
-
-/**
- * Helper to get required fields for an action type
- */
-export function getRequiredFields(type: GmailActionConfig["type"]): string[] {
-  const requirements: Record<GmailActionConfig["type"], string[]> = {
-    ViewAction: ["name", "target"],
-    ConfirmAction: ["name", "handler.url"],
-    SaveAction: ["name", "handler.url"],
-    RsvpAction: ["name", "event.name", "event.startDate", "event.location"],
-    TrackAction: ["name", "target or parcel"],
-  };
-  return requirements[type] || [];
 }

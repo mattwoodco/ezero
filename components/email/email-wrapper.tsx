@@ -749,7 +749,7 @@ function renderBlock(block: EmailBlock) {
 
                   return (
                     <td
-                      key={index}
+                      key={`${action.type}-${action.name}-${index}`}
                       style={{
                         padding: "0 6px",
                         textAlign: "center",
@@ -849,6 +849,7 @@ export function EmailWrapper({
               <script
                 key={`${block.id}-${index}`}
                 type="application/ld+json"
+                // biome-ignore lint/security/noDangerouslySetInnerHtml: Safe use of JSON-LD structured data for Gmail Actions
                 dangerouslySetInnerHTML={{ __html: jsonLd }}
               />
             );

@@ -86,7 +86,10 @@ export function GmailActionsSettingsPanel({
             const validation = validateGmailAction(action);
 
             return (
-              <AccordionItem key={index} value={`action-${index}`}>
+              <AccordionItem
+                key={`${action.type}-${index}`}
+                value={`action-${index}`}
+              >
                 <AccordionTrigger>
                   <div className="flex items-center gap-2 flex-1">
                     <span className="text-sm">
@@ -101,6 +104,7 @@ export function GmailActionsSettingsPanel({
                   <div className="space-y-4 pt-2">
                     <ActionFields
                       action={action}
+                      actionIndex={index}
                       onChange={(updates) => updateAction(index, updates)}
                     />
 
@@ -111,8 +115,8 @@ export function GmailActionsSettingsPanel({
                           Errors:
                         </p>
                         <ul className="list-disc list-inside text-xs text-destructive/80 space-y-0.5">
-                          {validation.errors.map((error, i) => (
-                            <li key={i}>{error}</li>
+                          {validation.errors.map((error) => (
+                            <li key={error}>{error}</li>
                           ))}
                         </ul>
                       </div>
@@ -125,8 +129,8 @@ export function GmailActionsSettingsPanel({
                           Warnings:
                         </p>
                         <ul className="list-disc list-inside text-xs text-yellow-700/80 dark:text-yellow-500/80 space-y-0.5">
-                          {validation.warnings.map((warning, i) => (
-                            <li key={i}>{warning}</li>
+                          {validation.warnings.map((warning) => (
+                            <li key={warning}>{warning}</li>
                           ))}
                         </ul>
                       </div>
@@ -202,9 +206,11 @@ export function GmailActionsSettingsPanel({
 
 function ActionFields({
   action,
+  actionIndex,
   onChange,
 }: {
   action: GmailActionConfig;
+  actionIndex: number;
   onChange: (updates: Partial<GmailActionConfig>) => void;
 }) {
   return (
@@ -217,10 +223,14 @@ function ActionFields({
 
       {/* Common Fields */}
       <div>
-        <label className="text-xs font-medium block mb-1.5">
+        <label
+          htmlFor={`gmail-action-${actionIndex}-name`}
+          className="text-xs font-medium block mb-1.5"
+        >
           Action Name *
         </label>
         <Input
+          id={`gmail-action-${actionIndex}-name`}
           placeholder="e.g. View Order"
           value={action.name}
           onChange={(e) => onChange({ name: e.target.value })}
@@ -229,8 +239,14 @@ function ActionFields({
       </div>
 
       <div>
-        <label className="text-xs font-medium block mb-1.5">Description</label>
+        <label
+          htmlFor={`gmail-action-${actionIndex}-description`}
+          className="text-xs font-medium block mb-1.5"
+        >
+          Description
+        </label>
         <Input
+          id={`gmail-action-${actionIndex}-description`}
           placeholder="Optional description"
           value={action.description || ""}
           onChange={(e) => onChange({ description: e.target.value })}
@@ -241,10 +257,14 @@ function ActionFields({
       {/* Type-specific fields */}
       {action.type === "ViewAction" && (
         <div>
-          <label className="text-xs font-medium block mb-1.5">
+          <label
+            htmlFor={`gmail-action-${actionIndex}-target`}
+            className="text-xs font-medium block mb-1.5"
+          >
             Target URL *
           </label>
           <Input
+            id={`gmail-action-${actionIndex}-target`}
             placeholder="https://example.com/action"
             value={action.target || ""}
             onChange={(e) => onChange({ target: e.target.value })}
@@ -256,10 +276,14 @@ function ActionFields({
       {(action.type === "ConfirmAction" || action.type === "SaveAction") && (
         <>
           <div>
-            <label className="text-xs font-medium block mb-1.5">
+            <label
+              htmlFor={`gmail-action-${actionIndex}-handler-url`}
+              className="text-xs font-medium block mb-1.5"
+            >
               Handler URL * (HTTPS required)
             </label>
             <Input
+              id={`gmail-action-${actionIndex}-handler-url`}
               placeholder="https://example.com/api/confirm"
               value={action.handler?.url || ""}
               onChange={(e) =>
@@ -271,10 +295,14 @@ function ActionFields({
             />
           </div>
           <div>
-            <label className="text-xs font-medium block mb-1.5">
+            <label
+              htmlFor={`gmail-action-${actionIndex}-handler-method`}
+              className="text-xs font-medium block mb-1.5"
+            >
               HTTP Method
             </label>
             <select
+              id={`gmail-action-${actionIndex}-handler-method`}
               className="w-full text-sm border rounded-md px-3 py-2 bg-background"
               value={action.handler?.method || "POST"}
               onChange={(e) =>
@@ -297,17 +325,25 @@ function ActionFields({
       {action.type === "RsvpAction" && (
         <>
           <div>
-            <label className="text-xs font-medium block mb-1.5">
+            <label
+              htmlFor={`gmail-action-${actionIndex}-event-name`}
+              className="text-xs font-medium block mb-1.5"
+            >
               Event Name *
             </label>
             <Input
+              id={`gmail-action-${actionIndex}-event-name`}
               placeholder="e.g. Product Launch Webinar"
               value={action.event?.name || ""}
               onChange={(e) =>
                 onChange({
                   event: {
-                    ...(action.event || { name: '', startDate: '', location: { name: '' } }),
-                    name: e.target.value
+                    ...(action.event || {
+                      name: "",
+                      startDate: "",
+                      location: { name: "" },
+                    }),
+                    name: e.target.value,
                   },
                 })
               }
@@ -315,17 +351,25 @@ function ActionFields({
             />
           </div>
           <div>
-            <label className="text-xs font-medium block mb-1.5">
+            <label
+              htmlFor={`gmail-action-${actionIndex}-event-start`}
+              className="text-xs font-medium block mb-1.5"
+            >
               Start Date * (ISO 8601)
             </label>
             <Input
+              id={`gmail-action-${actionIndex}-event-start`}
               placeholder="2025-11-15T14:00:00-08:00"
               value={action.event?.startDate || ""}
               onChange={(e) =>
                 onChange({
                   event: {
-                    ...(action.event || { name: '', startDate: '', location: { name: '' } }),
-                    startDate: e.target.value
+                    ...(action.event || {
+                      name: "",
+                      startDate: "",
+                      location: { name: "" },
+                    }),
+                    startDate: e.target.value,
                   },
                 })
               }
@@ -333,17 +377,25 @@ function ActionFields({
             />
           </div>
           <div>
-            <label className="text-xs font-medium block mb-1.5">
+            <label
+              htmlFor={`gmail-action-${actionIndex}-event-end`}
+              className="text-xs font-medium block mb-1.5"
+            >
               End Date (ISO 8601)
             </label>
             <Input
+              id={`gmail-action-${actionIndex}-event-end`}
               placeholder="2025-11-15T15:00:00-08:00"
               value={action.event?.endDate || ""}
               onChange={(e) =>
                 onChange({
                   event: {
-                    ...(action.event || { name: '', startDate: '', location: { name: '' } }),
-                    endDate: e.target.value
+                    ...(action.event || {
+                      name: "",
+                      startDate: "",
+                      location: { name: "" },
+                    }),
+                    endDate: e.target.value,
                   },
                 })
               }
@@ -351,18 +403,26 @@ function ActionFields({
             />
           </div>
           <div>
-            <label className="text-xs font-medium block mb-1.5">
+            <label
+              htmlFor={`gmail-action-${actionIndex}-event-location`}
+              className="text-xs font-medium block mb-1.5"
+            >
               Location Name *
             </label>
             <Input
+              id={`gmail-action-${actionIndex}-event-location`}
               placeholder="e.g. Virtual Event or 123 Main St"
               value={action.event?.location?.name || ""}
               onChange={(e) =>
                 onChange({
                   event: {
-                    ...(action.event || { name: '', startDate: '', location: { name: '' } }),
+                    ...(action.event || {
+                      name: "",
+                      startDate: "",
+                      location: { name: "" },
+                    }),
                     location: {
-                      ...(action.event?.location || { name: '' }),
+                      ...(action.event?.location || { name: "" }),
                       name: e.target.value,
                     },
                   },
@@ -377,10 +437,14 @@ function ActionFields({
       {action.type === "TrackAction" && (
         <>
           <div>
-            <label className="text-xs font-medium block mb-1.5">
+            <label
+              htmlFor={`gmail-action-${actionIndex}-tracking-url`}
+              className="text-xs font-medium block mb-1.5"
+            >
               Tracking URL *
             </label>
             <Input
+              id={`gmail-action-${actionIndex}-tracking-url`}
               placeholder="https://fedex.com/track?number=123456"
               value={action.parcel?.trackingUrl || action.target || ""}
               onChange={(e) =>
@@ -392,10 +456,14 @@ function ActionFields({
             />
           </div>
           <div>
-            <label className="text-xs font-medium block mb-1.5">
+            <label
+              htmlFor={`gmail-action-${actionIndex}-tracking-number`}
+              className="text-xs font-medium block mb-1.5"
+            >
               Tracking Number
             </label>
             <Input
+              id={`gmail-action-${actionIndex}-tracking-number`}
               placeholder="123456789"
               value={action.parcel?.trackingNumber || ""}
               onChange={(e) =>
@@ -407,8 +475,14 @@ function ActionFields({
             />
           </div>
           <div>
-            <label className="text-xs font-medium block mb-1.5">Carrier</label>
+            <label
+              htmlFor={`gmail-action-${actionIndex}-carrier`}
+              className="text-xs font-medium block mb-1.5"
+            >
+              Carrier
+            </label>
             <Input
+              id={`gmail-action-${actionIndex}-carrier`}
               placeholder="e.g. FedEx, UPS, USPS"
               value={action.parcel?.carrier || ""}
               onChange={(e) =>

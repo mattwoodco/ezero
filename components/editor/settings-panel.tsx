@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { ChevronDown, Redo, Undo, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -10,8 +12,6 @@ import {
 } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
 import type { GmailActionsSettings } from "@/types/email";
-import * as Dialog from "@radix-ui/react-dialog";
-import { ChevronDown, Redo, Undo, X } from "lucide-react";
 import { BlockTypeMenu } from "./block-type-menu";
 import { GmailActionsSettingsPanel } from "./gmail-actions-settings";
 
@@ -19,7 +19,9 @@ interface SettingsPanelProps {
   isMobileScrollSnap?: boolean;
 }
 
-export function SettingsPanel({ isMobileScrollSnap = false }: SettingsPanelProps) {
+export function SettingsPanel({
+  isMobileScrollSnap = false,
+}: SettingsPanelProps) {
   const {
     selectedBlockId,
     blocks,
@@ -36,20 +38,20 @@ export function SettingsPanel({ isMobileScrollSnap = false }: SettingsPanelProps
 
   // Debounced open/close state to prevent flashing
   const [isOpen, setIsOpen] = useState(false);
-  const closeTimeoutRef = useRef<NodeJS.Timeout>();
+  const closeTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
+    // Clear any pending close timeout immediately
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = undefined;
+    }
+
     if (selectedBlockId !== null) {
-      // Clear any pending close
-      if (closeTimeoutRef.current) {
-        clearTimeout(closeTimeoutRef.current);
-      }
       setIsOpen(true);
     } else {
-      // Delay close to ignore rapid flicker
-      closeTimeoutRef.current = setTimeout(() => {
-        setIsOpen(false);
-      }, 50);
+      // Immediate close - no delay
+      setIsOpen(false);
     }
 
     return () => {
@@ -64,11 +66,17 @@ export function SettingsPanel({ isMobileScrollSnap = false }: SettingsPanelProps
   };
 
   // Shared content component
-  const panelContent = (
+  const panelContent = (showTitle: boolean = false) => (
     <Tabs defaultValue="block" className="flex-1 flex flex-col">
       {/* Header with Close Button */}
       <div className="flex items-center justify-between px-4 py-3">
-        <h2 className="text-sm font-medium">Block Settings</h2>
+        {showTitle ? (
+          <Dialog.Title asChild>
+            <h2 className="text-sm font-medium">Block Settings</h2>
+          </Dialog.Title>
+        ) : (
+          <h2 className="text-sm font-medium">Block Settings</h2>
+        )}
         <Button
           variant="ghost"
           size="icon-sm"
@@ -154,16 +162,14 @@ export function SettingsPanel({ isMobileScrollSnap = false }: SettingsPanelProps
               <h3 className="text-sm font-medium mb-2">Block Type</h3>
               <BlockTypeMenu
                 onSelect={(type) =>
-                  updateBlockType(selectedBlockId, type)
+                  selectedBlockId && updateBlockType(selectedBlockId, type)
                 }
               >
                 <Button
                   variant="outline"
                   className="w-full justify-between font-normal"
                 >
-                  <span className="capitalize">
-                    {selectedBlock?.type}
-                  </span>
+                  <span className="capitalize">{selectedBlock?.type}</span>
                   <ChevronDown className="h-4 w-4 opacity-50" />
                 </Button>
               </BlockTypeMenu>
@@ -210,6 +216,7 @@ export function SettingsPanel({ isMobileScrollSnap = false }: SettingsPanelProps
                   }
                 }
                 onChange={(newSettings) =>
+                  selectedBlockId &&
                   updateBlockSettings(
                     selectedBlockId,
                     newSettings as unknown as Record<string, unknown>,
@@ -268,7 +275,7 @@ export function SettingsPanel({ isMobileScrollSnap = false }: SettingsPanelProps
   if (isMobileScrollSnap) {
     return (
       <div className="h-full w-full bg-background flex flex-col">
-        {panelContent}
+        {panelContent(false)}
       </div>
     );
   }
@@ -297,12 +304,25 @@ export function SettingsPanel({ isMobileScrollSnap = false }: SettingsPanelProps
             flex flex-col z-30
             shadow-xl
             transition-transform duration-200
-            ${selectedBlockId ? 'translate-x-0' : 'translate-x-full'}
+            ${selectedBlockId ? "translate-x-0" : "translate-x-full"}
           `}
           aria-label="Block settings panel"
           aria-describedby="settings-panel-description"
           onOpenAutoFocus={(e) => e.preventDefault()}
           onCloseAutoFocus={(e) => e.preventDefault()}
+          onInteractOutside={(e) => {
+            // Check if the click target is within an email block
+            const target = e.target as HTMLElement;
+            const isClickOnBlock = target.closest(
+              '[role="button"][tabindex="0"]',
+            );
+
+            // Prevent dialog from closing when clicking on blocks
+            // The block's click handler will manage selection
+            if (isClickOnBlock) {
+              e.preventDefault();
+            }
+          }}
           forceMount
         >
           <div id="settings-panel-description" className="sr-only">
@@ -310,7 +330,7 @@ export function SettingsPanel({ isMobileScrollSnap = false }: SettingsPanelProps
             links, and block-specific options.
           </div>
 
-          {panelContent}
+          {panelContent(true)}
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

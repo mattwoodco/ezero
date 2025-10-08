@@ -714,34 +714,28 @@ export function BlockContent({ block }: BlockContentProps) {
               {actions.map((action, index) => {
                 let buttonHref = "#";
                 const buttonText = action.name;
-                let _buttonDescription = "";
 
                 switch (action.type) {
                   case "ViewAction":
                     buttonHref = action.target || "#";
-                    _buttonDescription = "View";
                     break;
                   case "ConfirmAction":
                     buttonHref = action.handler?.url || "#";
-                    _buttonDescription = "Confirm";
                     break;
                   case "SaveAction":
                     buttonHref = action.handler?.url || "#";
-                    _buttonDescription = "Save";
                     break;
                   case "RsvpAction":
-                    _buttonDescription = "RSVP";
                     break;
                   case "TrackAction":
                     buttonHref =
                       action.target || action.parcel?.trackingUrl || "#";
-                    _buttonDescription = "Track";
                     break;
                 }
 
                 return (
                   <div
-                    key={index}
+                    key={`${action.type}-${action.name}-${index}`}
                     style={{
                       textAlign: "center",
                     }}

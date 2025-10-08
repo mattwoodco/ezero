@@ -1,18 +1,13 @@
 import type { EmailBlock } from "./email";
 
 /**
- * Preview mode options
- */
-export type PreviewMode = "desktop" | "mobile" | null;
-
-/**
  * Editor context value type
  */
 export interface EditorContextValue {
   // State
   blocks: EmailBlock[];
   selectedBlockId: string | null;
-  previewMode: PreviewMode;
+  previewMode: "desktop" | "mobile" | null;
 
   // Block operations
   addBlock: (block: EmailBlock, position?: number) => void;
@@ -26,7 +21,7 @@ export interface EditorContextValue {
   setSelectedBlockId: (blockId: string | null) => void;
 
   // Preview
-  setPreviewMode: (mode: PreviewMode) => void;
+  setPreviewMode: (mode: "desktop" | "mobile" | null) => void;
 
   // History
   undo: () => void;

@@ -1,6 +1,6 @@
 "use client";
 
-import { X, XIcon } from "lucide-react";
+import { X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
@@ -77,7 +77,7 @@ export function TemplatesSidebar({
               className="text-muted-foreground hover:text-foreground"
               aria-label="Close sidebar"
             >
-              <XIcon className="size-4" />
+              <X className="size-4" />
             </Button>
           )}
         </div>

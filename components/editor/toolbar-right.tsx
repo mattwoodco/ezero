@@ -1,5 +1,6 @@
 "use client";
 
+import { Monitor, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -7,7 +8,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
-import { Monitor, Smartphone } from "lucide-react";
 
 export function ToolbarRight() {
   const { setPreviewMode, selectedBlockId } = useEditor();

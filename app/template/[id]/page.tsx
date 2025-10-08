@@ -22,8 +22,14 @@ export default function TemplatePage({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const loadedTemplateIdRef = useRef<string | null>(null);
 
   useEffect(() => {
+    // Prevent duplicate loads for the same template
+    if (loadedTemplateIdRef.current === templateId) {
+      return;
+    }
+
     async function loadTemplateData() {
       try {
         setLoading(true);
@@ -32,6 +38,7 @@ export default function TemplatePage({
 
         if (data.success && data.template) {
           setBlocks(data.template.blocks);
+          loadedTemplateIdRef.current = templateId;
         } else {
           setError(data.error || "Template not found");
         }
@@ -44,8 +51,7 @@ export default function TemplatePage({
     }
 
     loadTemplateData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [templateId]);
+  }, [templateId, setBlocks]);
 
   // Scroll back to template view when block is deselected (mobile only)
   useEffect(() => {
@@ -102,10 +108,11 @@ export default function TemplatePage({
               pt-14 min-h-screen flex items-start justify-center
               transition-all duration-200
               @container/workspace
-              ${selectedBlockId ? "mr-[360px]" : ""}
+              ml-16 pl-4
+              ${selectedBlockId ? "mr-[360px] pr-16" : "mr-4 pr-4"}
             `}
           >
-            <div className="w-full max-w-[600px] py-20">
+            <div className="w-full max-w-[600px] py-20 flex-shrink-0">
               <div className="email-template bg-card rounded-lg">
                 {blocks.map((block, index) => (
                   <div
@@ -173,7 +180,9 @@ export default function TemplatePage({
           </div>
 
           {/* Scroll indicators */}
-          {selectedBlockId && <MobilePanelIndicator containerRef={scrollContainerRef} />}
+          {selectedBlockId && (
+            <MobilePanelIndicator containerRef={scrollContainerRef} />
+          )}
         </div>
 
         {/* Preview Dialog */}

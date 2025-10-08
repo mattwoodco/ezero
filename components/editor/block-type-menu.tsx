@@ -1,13 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
-import type { EmailBlockType } from "@/types/email";
 import {
   ArrowRight,
   CalendarCheck,
@@ -35,6 +27,14 @@ import {
   Zap,
 } from "lucide-react";
 import NextImage from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import type { EmailBlockType } from "@/types/email";
 
 interface BlockTypeMenuProps {
   onSelect: (type: EmailBlockType) => void;
