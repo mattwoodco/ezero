@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "id": "abandoned-cart-recovery",
+    "name": "Abandoned Cart Recovery",
+    "description": "Re-engage customers who left items in their cart. Gentle reminder with trust signals to encourage purchase completion.",
+    "category": "promotional",
+    "tags": ["promotion", "deal"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "You Left Something Behind...",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Hi {customerName},\n\nWe noticed you left some items in your cart. They're still available and waiting for you!",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "heading",
+      "content": "Your Cart",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "text",
+      "content": "{productName1}\nSize: {size1} | Color: {color1}\nQuantity: {qty1}\nPrice: ${price1}",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "text",
+      "content": "{productName2}\nSize: {size2}\nQuantity: {qty2}\nPrice: ${price2}",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "Subtotal: ${cartTotal}",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "button",
+      "content": "Complete Your Purchase",
+      "settings": {
+        "url": "https://example.com/cart"
+      }
+    },
+    {
+      "id": "block-9",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-10",
+      "type": "text",
+      "content": "✓ Free Shipping on Orders $50+\n✓ 30-Day Money-Back Guarantee\n✓ Secure Checkout 🔒",
+      "settings": {}
+    },
+    {
+      "id": "block-11",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-12",
+      "type": "text",
+      "content": "Need help deciding?\nOur customer support team is here to answer any questions.\n\nContact us: support@example.com | 1-800-XXX-XXXX",
+      "settings": {}
+    }
+  ]
+}

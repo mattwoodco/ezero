@@ -229,4 +229,43 @@
   .-webkit-overflow-scrolling-touch {
     -webkit-overflow-scrolling: touch;
   }
+
+  /* Scroll snap utilities for mobile settings panel */
+  /* Horizontal scroll snap container */
+  .scroll-snap-x-mandatory {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  .scroll-snap-x-mandatory::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  /* Proximity variant for less aggressive snapping */
+  .scroll-snap-x-proximity {
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scroll-snap-x-proximity::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Snap alignment */
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+
+  .scroll-snap-center {
+    scroll-snap-align: center;
+  }
+
+  /* Prevent scroll propagation to parent */
+  .overscroll-none {
+    overscroll-behavior: none;
+  }
 }

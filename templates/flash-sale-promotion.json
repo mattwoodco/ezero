@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "id": "flash-sale-promotion",
+    "name": "Flash Sale Promotion",
+    "description": "Time-sensitive promotional email to drive immediate purchases through urgency. Perfect for limited-time offers and special deals.",
+    "category": "promotional",
+    "tags": ["promotion", "deal"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "🔥 FLASH SALE 🔥",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "heading",
+      "content": "{discountPercent}% OFF EVERYTHING",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "text",
+      "content": "Ends Tonight at Midnight!\n⏰ {hoursLeft} Hours Left",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "button",
+      "content": "Shop Now",
+      "settings": {
+        "url": "https://example.com/sale"
+      }
+    },
+    {
+      "id": "block-4",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "heading",
+      "content": "Featured Deals",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "{productName1}\nWas: ${originalPrice1} | Now: ${salePrice1}\nSave {savingsPercent1}%",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "button",
+      "content": "Shop This Deal",
+      "settings": {
+        "url": "https://example.com/product1"
+      }
+    },
+    {
+      "id": "block-8",
+      "type": "text",
+      "content": "{productName2}\nWas: ${originalPrice2} | Now: ${salePrice2}\nSave {savingsPercent2}%",
+      "settings": {}
+    },
+    {
+      "id": "block-9",
+      "type": "button",
+      "content": "Shop This Deal",
+      "settings": {
+        "url": "https://example.com/product2"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-11",
+      "type": "button",
+      "content": "Browse All Deals",
+      "settings": {
+        "url": "https://example.com/sale"
+      }
+    },
+    {
+      "id": "block-12",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-13",
+      "type": "text",
+      "content": "Use code: {discountCode} at checkout\nValid until {endDate} at {endTime}\n\nFree shipping on orders over $50!",
+      "settings": {}
+    }
+  ]
+}

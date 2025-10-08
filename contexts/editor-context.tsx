@@ -87,10 +87,18 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
 
   const selectBlock = useCallback(
     (id: string | null) => {
+      // Toggle behavior: if clicking the same block, deselect it
+      if (id === selectedBlockId) {
+        setSelectedBlockId(null);
+        setOpenMenuId(null);
+        return;
+      }
+
+      // Only update if actually changing to a different value
       setSelectedBlockId(id);
       setOpenMenuId(null);
     },
-    [setSelectedBlockId],
+    [setSelectedBlockId, selectedBlockId],
   );
 
   const addBlock = useCallback(

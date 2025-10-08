@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "id": "product-announcement",
+    "name": "Product Announcement",
+    "description": "Announce new products or features to your customers. Creates excitement and drives early adoption with clear value propositions.",
+    "category": "announcement",
+    "tags": ["launch", "announcement", "update"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Introducing {productName}",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "You're the first to know! We're excited to announce {productName}, available now.",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "text",
+      "content": "What is {productName}?\n\n{productName} is {productDescription}. We built it to help you {problemSolved}.",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "heading",
+      "content": "Key Features",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "✨ {feature1}\nBenefit description here\n\n⚡ {feature2}\nBenefit description here\n\n🎯 {feature3}\nBenefit description here",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "text",
+      "content": "Special Launch Pricing\nGet 20% off for the first week!\n\nStarting at ${price}",
+      "settings": {}
+    },
+    {
+      "id": "block-9",
+      "type": "button",
+      "content": "Try It Now",
+      "settings": {
+        "url": "https://example.com/product"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "button",
+      "content": "Watch Demo Video",
+      "settings": {
+        "url": "https://example.com/demo"
+      }
+    },
+    {
+      "id": "block-11",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-12",
+      "type": "text",
+      "content": "Questions? We're here to help!\nReply to this email or visit our help center.\n\nBest regards,\nThe {companyName} Team",
+      "settings": {}
+    }
+  ]
+}

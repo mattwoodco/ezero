@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "id": "welcome-new-subscriber",
+    "name": "New Subscriber Welcome",
+    "description": "Welcome new email subscribers and introduce your brand with this warm, relationship-building template. Perfect for building long-term customer relationships.",
+    "category": "welcome",
+    "tags": ["announcement", "launch"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Welcome to {companyName}!",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Hi {customerName},\n\nWe're thrilled to have you join our community! Thank you for subscribing to our newsletter.",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "text",
+      "content": "Here's what you can expect from us:\n\n• Weekly tips and insights\n• Exclusive subscriber-only deals\n• Early access to new products\n• Helpful resources and guides",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "button",
+      "content": "Explore Our Products",
+      "settings": {
+        "url": "https://example.com"
+      }
+    },
+    {
+      "id": "block-5",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "We'd love to stay connected! Follow us on social media for tips, updates, and special offers.",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "text",
+      "content": "Have questions? Just reply to this email—we'd love to hear from you!\n\nWith gratitude,\nThe {companyName} Team",
+      "settings": {}
+    }
+  ]
+}

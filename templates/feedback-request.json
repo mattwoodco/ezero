@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "id": "feedback-request",
+    "name": "Feedback Request",
+    "description": "Collect customer reviews and feedback 24-48 hours after purchase or delivery. Builds social proof and improves service quality.",
+    "category": "feedback",
+    "tags": ["feedback"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "How Did We Do?",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Hi {customerName},\n\nThank you for your recent purchase of {productName}. We hope you're enjoying it!",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "text",
+      "content": "Could you take 30 seconds to share your experience? Your feedback helps us improve and helps other customers make informed decisions.",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "text",
+      "content": "How was your experience?\n\n⭐⭐⭐⭐⭐ Excellent\n⭐⭐⭐⭐ Good\n⭐⭐⭐ Average\n⭐⭐ Fair\n⭐ Poor",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "button",
+      "content": "Write a Review",
+      "settings": {
+        "url": "https://example.com/review/{orderNumber}"
+      }
+    },
+    {
+      "id": "block-6",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "text",
+      "content": "Your honest review helps small businesses like ours thrive. Thank you for your support!",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-9",
+      "type": "text",
+      "content": "Having an issue with your order?\nContact our support team directly at support@example.com\n\nWe're here to help make things right.\n\nWith gratitude,\nThe {companyName} Team",
+      "settings": {}
+    }
+  ]
+}

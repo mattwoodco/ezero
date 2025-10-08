@@ -19,7 +19,8 @@ export function ToolbarRight() {
         flex gap-0 p-0
         bg-background
         transition-all duration-200
-        ${selectedBlockId ? "right-[380px]" : "right-8"}
+        @max-lg/editor:right-8
+        ${selectedBlockId ? "@lg/editor:right-[380px]" : "@lg/editor:right-8"}
       `}
     >
       <Tooltip>
@@ -33,7 +34,7 @@ export function ToolbarRight() {
             <Monitor className="size-4" />
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="left">Desktop preview</TooltipContent>
+        <TooltipContent side="top">Desktop preview</TooltipContent>
       </Tooltip>
 
       <Tooltip>
@@ -47,7 +48,7 @@ export function ToolbarRight() {
             <Smartphone className="size-4" />
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="left">Mobile preview</TooltipContent>
+        <TooltipContent side="top">Mobile preview</TooltipContent>
       </Tooltip>
     </div>
   );

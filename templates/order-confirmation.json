@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "id": "order-confirmation",
+    "name": "Order Confirmation",
+    "description": "Immediate confirmation after purchase with order details. Critical trust-building email with all necessary transaction information.",
+    "category": "transactional",
+    "tags": ["update"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Thank You for Your Order!",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Hi {customerName},\n\nThank you for your purchase. Your order has been confirmed and is being processed.",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "text",
+      "content": "Order #{orderNumber}\nOrder Date: {orderDate}\nOrder Total: ${orderTotal}\nStatus: Processing",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "text",
+      "content": "Items in your order:\n\n• {productName1} - Qty: {qty1} - ${itemPrice1}\n• {productName2} - Qty: {qty2} - ${itemPrice2}\n\nSubtotal: ${subtotal}\nShipping: ${shipping}\nTax: ${tax}\nTotal: ${orderTotal}",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "text",
+      "content": "Shipping Address:\n{shippingName}\n{shippingAddress}\n{shippingCity}, {shippingState} {shippingZip}",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "text",
+      "content": "Expected Timeline:\n✓ Order confirmed\n• Processing (1-2 business days)\n• Shipped (you'll receive tracking)\n• Delivered (5-7 business days)",
+      "settings": {}
+    },
+    {
+      "id": "block-9",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-10",
+      "type": "button",
+      "content": "View Order Details",
+      "settings": {
+        "url": "https://example.com/orders/{orderNumber}"
+      }
+    },
+    {
+      "id": "block-11",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-12",
+      "type": "text",
+      "content": "Questions about your order?\nContact us at support@example.com or call 1-800-XXX-XXXX\n\nWe're here to help!\n\n{companyName}",
+      "settings": {}
+    }
+  ]
+}

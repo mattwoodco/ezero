@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "id": "event-invitation",
+    "name": "Event Invitation",
+    "description": "Invite customers to events, webinars, or product launches. Drives registrations with clear event details and compelling benefits.",
+    "category": "event",
+    "tags": ["event", "announcement"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "You're Invited! 🎉",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Hi {customerName},\n\nYou're invited to our exclusive {eventType}!",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "heading",
+      "content": "{eventName}",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "text",
+      "content": "{eventDescription}\n\nJoin us for an evening of networking, learning, and exclusive previews. You'll have the opportunity to {eventBenefit}.",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "📅 Date: {eventDate}\n🕐 Time: {eventTime} {timezone}\n📍 Location: {eventLocation}\n🎫 Cost: {eventCost}",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "text",
+      "content": "What to expect:\n\n• {agendaItem1}\n• {agendaItem2}\n• {agendaItem3}\n• {agendaItem4}",
+      "settings": {}
+    },
+    {
+      "id": "block-9",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-10",
+      "type": "button",
+      "content": "RSVP Now",
+      "settings": {
+        "url": "https://example.com/events/{eventId}/rsvp"
+      }
+    },
+    {
+      "id": "block-11",
+      "type": "text",
+      "content": "⏰ Limited spots available! RSVP by {rsvpDeadline}",
+      "settings": {}
+    },
+    {
+      "id": "block-12",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-13",
+      "type": "text",
+      "content": "Can't make it?\nLet us know—we'll send you the recording.\n\nQuestions? Reply to this email or contact events@example.com\n\nWe hope to see you there!\nThe {companyName} Team",
+      "settings": {}
+    }
+  ]
+}

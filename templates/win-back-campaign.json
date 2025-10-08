@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "id": "win-back-campaign",
+    "name": "Win-Back Campaign",
+    "description": "Re-engage dormant customers with a special offer. Perfect for reactivating subscribers who haven't engaged in 30-180 days.",
+    "category": "promotional",
+    "tags": ["promotion", "deal"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "We Miss You, {customerName}!",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "It's been a while since we've seen you, and we wanted to personally reach out.\n\nWe'd love to have you back!",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "heading",
+      "content": "Here's What You've Been Missing",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "text",
+      "content": "🆕 New Products\nWe've launched {newProductCount} new items in your favorite category\n\n⭐ Customer Favorites\nSee what's trending with our community\n\n📚 Helpful Content\nNew guides and tips just for you",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "button",
+      "content": "See What's New",
+      "settings": {
+        "url": "https://example.com/whats-new"
+      }
+    },
+    {
+      "id": "block-6",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "heading",
+      "content": "🎁 Your Exclusive Comeback Offer",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "text",
+      "content": "Welcome back with {discountPercent}% off your next order!\n\nUse code: {discountCode}\nValid for 7 days",
+      "settings": {}
+    },
+    {
+      "id": "block-9",
+      "type": "button",
+      "content": "Claim Your Discount",
+      "settings": {
+        "url": "https://example.com/welcome-back"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-11",
+      "type": "text",
+      "content": "⭐⭐⭐⭐⭐\n\n\"Love this brand! Best quality and customer service.\"\n- {testimonialName}",
+      "settings": {}
+    },
+    {
+      "id": "block-12",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-13",
+      "type": "text",
+      "content": "We'd love your feedback!\nIs there anything we could do better? Reply to let us know.\n\nThank you for being part of our community.\n\nWith gratitude,\nThe {companyName} Team",
+      "settings": {}
+    }
+  ]
+}

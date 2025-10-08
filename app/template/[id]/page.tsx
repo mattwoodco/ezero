@@ -1,9 +1,10 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import { BlockToolbar } from "@/components/editor/block-toolbar";
 import { EmailBlock } from "@/components/editor/email-block";
 import { Header } from "@/components/editor/header";
+import { MobilePanelIndicator } from "@/components/editor/mobile-panel-indicator";
 import { PreviewDialog } from "@/components/editor/preview-dialog";
 import { SettingsPanel } from "@/components/editor/settings-panel";
 import { ToolbarLeft } from "@/components/editor/toolbar-left";
@@ -20,6 +21,7 @@ export default function TemplatePage({
   const { blocks, selectedBlockId, setBlocks } = useEditor();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     async function loadTemplateData() {
@@ -44,6 +46,16 @@ export default function TemplatePage({
     loadTemplateData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [templateId]);
+
+  // Scroll back to template view when block is deselected (mobile only)
+  useEffect(() => {
+    if (!selectedBlockId && scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [selectedBlockId]);
 
   if (loading) {
     return (
@@ -83,36 +95,86 @@ export default function TemplatePage({
         {/* Right Toolbar */}
         <ToolbarRight />
 
-        {/* Main Canvas */}
-        <main
-          className={`
-            pt-14 min-h-screen flex items-start justify-center
-            transition-all duration-200
-            @container/workspace
-            ${selectedBlockId ? "@lg/editor:mr-[360px]" : ""}
-          `}
-        >
-          <div className="w-full max-w-[600px] py-20">
-            <div className="email-template bg-card rounded-lg">
-              {blocks.map((block, index) => (
-                <div
-                  key={block.id}
-                  data-block-id={block.id}
-                  className="relative"
-                >
-                  <EmailBlock block={block} index={index} />
-                  {/* Block Toolbar (appears when block is selected) */}
-                  {selectedBlockId === block.id && (
-                    <BlockToolbar blockId={selectedBlockId} />
-                  )}
-                </div>
-              ))}
+        {/* Desktop: Traditional layout with fixed sidebar */}
+        <div className="hidden @lg/editor:block">
+          <main
+            className={`
+              pt-14 min-h-screen flex items-start justify-center
+              transition-all duration-200
+              @container/workspace
+              ${selectedBlockId ? "mr-[360px]" : ""}
+            `}
+          >
+            <div className="w-full max-w-[600px] py-20">
+              <div className="email-template bg-card rounded-lg">
+                {blocks.map((block, index) => (
+                  <div
+                    key={block.id}
+                    data-block-id={block.id}
+                    className="relative"
+                  >
+                    <EmailBlock block={block} index={index} />
+                    {/* Block Toolbar (appears when block is selected) */}
+                    {selectedBlockId === block.id && (
+                      <BlockToolbar blockId={selectedBlockId} />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </main>
+          </main>
 
-        {/* Settings Panel (appears when block is selected) */}
-        <SettingsPanel />
+          {/* Settings Panel - Desktop sidebar */}
+          <SettingsPanel />
+        </div>
+
+        {/* Mobile: Horizontal scroll-snap container */}
+        <div className="@lg/editor:hidden h-[calc(100dvh-56px)] mt-14">
+          <div
+            ref={scrollContainerRef}
+            data-scroll-container
+            className={`
+              flex h-full w-full
+              overflow-y-hidden
+              scroll-snap-x-mandatory
+              overscroll-none
+              ${selectedBlockId ? "overflow-x-auto" : "overflow-x-hidden"}
+            `}
+          >
+            {/* Panel 1: Template View */}
+            <div className="flex-shrink-0 w-full h-full scroll-snap-start overflow-y-auto">
+              <main className="min-h-screen">
+                <div className="w-full max-w-[600px] mx-auto py-20">
+                  <div className="email-template bg-card rounded-lg">
+                    {blocks.map((block, index) => (
+                      <div
+                        key={block.id}
+                        data-block-id={block.id}
+                        className="relative"
+                      >
+                        <EmailBlock block={block} index={index} />
+                        {/* Block Toolbar (appears when block is selected) */}
+                        {selectedBlockId === block.id && (
+                          <BlockToolbar blockId={selectedBlockId} />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </main>
+            </div>
+
+            {/* Panel 2: Settings Panel */}
+            {selectedBlockId && (
+              <div className="flex-shrink-0 w-full h-full scroll-snap-start overflow-y-auto">
+                <SettingsPanel isMobileScrollSnap={true} />
+              </div>
+            )}
+          </div>
+
+          {/* Scroll indicators */}
+          {selectedBlockId && <MobilePanelIndicator containerRef={scrollContainerRef} />}
+        </div>
 
         {/* Preview Dialog */}
         <PreviewDialog />

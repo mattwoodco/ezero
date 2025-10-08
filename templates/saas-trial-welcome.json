@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "id": "saas-trial-welcome",
+    "name": "SaaS Trial Welcome",
+    "description": "Welcome new trial users and guide them through getting started. Drives activation and feature adoption with a clear 3-step onboarding process.",
+    "category": "welcome",
+    "tags": ["launch", "announcement"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Welcome to {productName}!",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Hi {customerName},\n\nYour 14-day free trial is now active. Let's get you started!",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "heading",
+      "content": "Get Started in 3 Easy Steps",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "text",
+      "content": "☐ Step 1: Complete Your Profile (2 min)\nAdd your details to personalize your experience",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "button",
+      "content": "Complete Profile",
+      "settings": {
+        "url": "https://example.com/profile"
+      }
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "☐ Step 2: Connect Your First Integration (5 min)\nLink your favorite tools to get started faster",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "button",
+      "content": "Connect Integration",
+      "settings": {
+        "url": "https://example.com/integrations"
+      }
+    },
+    {
+      "id": "block-8",
+      "type": "text",
+      "content": "☐ Step 3: Create Your First Project (10 min)\nJump right in and see the power of {productName}",
+      "settings": {}
+    },
+    {
+      "id": "block-9",
+      "type": "button",
+      "content": "Start Creating",
+      "settings": {
+        "url": "https://example.com/new-project"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-11",
+      "type": "text",
+      "content": "Need Help?\n\n• Watch our video tutorials\n• Browse the help center\n• Contact support: support@example.com\n\nYour trial ends in 14 days. Make the most of it!\n\nThe {companyName} Team",
+      "settings": {}
+    }
+  ]
+}

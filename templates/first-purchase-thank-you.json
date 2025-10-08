@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "id": "first-purchase-thank-you",
+    "name": "First Purchase Thank You",
+    "description": "Thank first-time customers and incentivize their next purchase with an exclusive discount. Builds loyalty and drives repeat business.",
+    "category": "transactional",
+    "tags": ["promotion", "deal"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Thank You for Your Order!",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Hi {customerName},\n\nThank you for your purchase! Your order #{orderNumber} has been confirmed and is being processed.",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "text",
+      "content": "Order Total: ${orderAmount}\nEstimated Delivery: {deliveryDate}",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "heading",
+      "content": "Your Exclusive Thank You Gift 🎁",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "text",
+      "content": "As a thank you for being our customer, here's 20% off your next order!\n\nUse code: {discountCode}\nValid for 14 days",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "button",
+      "content": "Shop Again & Save",
+      "settings": {
+        "url": "https://example.com/shop"
+      }
+    },
+    {
+      "id": "block-7",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "text",
+      "content": "Need help with your order?\nContact us at support@example.com or call 1-800-XXX-XXXX\n\nThank you for being part of our journey!\n\nWith gratitude,\n{companyName}",
+      "settings": {}
+    }
+  ]
+}

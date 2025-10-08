@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "id": "product-recommendations",
+    "name": "Product Recommendations",
+    "description": "Personalized product suggestions based on customer behavior. Drives additional purchases with curated recommendations.",
+    "category": "promotional",
+    "tags": ["promotion"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Picked Just for You",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Hi {customerName},\n\nBased on your recent purchase of {previousProduct}, we thought you'd love these...",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "heading",
+      "content": "Featured Pick",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "text",
+      "content": "{featuredProductName}\n⭐⭐⭐⭐⭐ ({reviewCount} reviews)\n\n{productDescription}\n\nPrice: ${productPrice}",
+      "settings": {}
+    },
+    {
+      "id": "block-5",
+      "type": "button",
+      "content": "Shop Now",
+      "settings": {
+        "url": "https://example.com/featured"
+      }
+    },
+    {
+      "id": "block-6",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "heading",
+      "content": "You Might Also Love",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "text",
+      "content": "{productName2}\n⭐⭐⭐⭐ ({reviews2} reviews)\n${price2}",
+      "settings": {}
+    },
+    {
+      "id": "block-9",
+      "type": "button",
+      "content": "View Product",
+      "settings": {
+        "url": "https://example.com/product2"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "text",
+      "content": "{productName3}\n⭐⭐⭐⭐⭐ ({reviews3} reviews)\n${price3}",
+      "settings": {}
+    },
+    {
+      "id": "block-11",
+      "type": "button",
+      "content": "View Product",
+      "settings": {
+        "url": "https://example.com/product3"
+      }
+    },
+    {
+      "id": "block-12",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-13",
+      "type": "heading",
+      "content": "Complete the Look",
+      "settings": {}
+    },
+    {
+      "id": "block-14",
+      "type": "text",
+      "content": "{accessory1} - ${accessoryPrice1}\n{accessory2} - ${accessoryPrice2}",
+      "settings": {}
+    },
+    {
+      "id": "block-15",
+      "type": "button",
+      "content": "Browse All Recommendations",
+      "settings": {
+        "url": "https://example.com/recommendations"
+      }
+    }
+  ]
+}

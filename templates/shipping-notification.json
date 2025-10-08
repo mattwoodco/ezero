@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "id": "shipping-notification",
+    "name": "Shipping Notification",
+    "description": "Notify customers when their order ships with tracking information. Reduces customer service inquiries and builds anticipation.",
+    "category": "transactional",
+    "tags": ["update"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Your Order Has Shipped! 📦",
+      "settings": {}
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Great news, {customerName}!\n\nYour order #{orderNumber} has been shipped and is on its way to you.",
+      "settings": {}
+    },
+    {
+      "id": "block-2",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-3",
+      "type": "text",
+      "content": "Tracking Number: {trackingNumber}\nCarrier: {carrierName}\nShipping Method: {shippingMethod}\n\nEstimated Delivery: {deliveryDate}",
+      "settings": {}
+    },
+    {
+      "id": "block-4",
+      "type": "button",
+      "content": "Track Your Package",
+      "settings": {
+        "url": "https://example.com/track/{trackingNumber}"
+      }
+    },
+    {
+      "id": "block-5",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "Shipping to:\n{shippingName}\n{shippingAddress}\n{shippingCity}, {shippingState} {shippingZip}",
+      "settings": {}
+    },
+    {
+      "id": "block-7",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "text",
+      "content": "What's in your package:\n• {productName1}\n• {productName2}",
+      "settings": {}
+    },
+    {
+      "id": "block-9",
+      "type": "button",
+      "content": "View Full Order Details",
+      "settings": {
+        "url": "https://example.com/orders/{orderNumber}"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-11",
+      "type": "text",
+      "content": "What to expect:\n• Your package is in transit\n• Check tracking for real-time updates\n• Signature may be required for delivery\n• Contact us if you have any concerns",
+      "settings": {}
+    },
+    {
+      "id": "block-12",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-13",
+      "type": "text",
+      "content": "Need help?\nReply to this email or contact support@example.com\n\nThank you for your order!\n{companyName}",
+      "settings": {}
+    }
+  ]
+}
