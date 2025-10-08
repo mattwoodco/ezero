@@ -31,7 +31,9 @@ export function validateGmailAction(
       warnings.push("Action name should not be all caps");
     }
     if (action.name.length > 20) {
-      warnings.push("Action name should be under 20 characters for best display");
+      warnings.push(
+        "Action name should be under 20 characters for best display",
+      );
     }
   }
 
@@ -262,8 +264,7 @@ function isValidUrl(url: string): boolean {
  * Validates ISO 8601 date format
  */
 function isValidISODate(dateString: string): boolean {
-  const isoRegex =
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([+-]\d{2}:\d{2}|Z)$/;
+  const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([+-]\d{2}:\d{2}|Z)$/;
   return isoRegex.test(dateString);
 }
 
@@ -294,8 +295,7 @@ export function getActionTypeDescription(
       "One-click button for approvals or confirmations. Can only be clicked once.",
     SaveAction:
       "Save items like coupons or offers to user's account. Can only be clicked once.",
-    RsvpAction:
-      "Allow users to RSVP to events with Yes/No/Maybe responses.",
+    RsvpAction: "Allow users to RSVP to events with Yes/No/Maybe responses.",
     TrackAction:
       "Provide package tracking functionality with delivery information.",
   };
@@ -305,9 +305,7 @@ export function getActionTypeDescription(
 /**
  * Helper to get required fields for an action type
  */
-export function getRequiredFields(
-  type: GmailActionConfig["type"],
-): string[] {
+export function getRequiredFields(type: GmailActionConfig["type"]): string[] {
   const requirements: Record<GmailActionConfig["type"], string[]> = {
     ViewAction: ["name", "target"],
     ConfirmAction: ["name", "handler.url"],

@@ -1,13 +1,14 @@
 "use client";
 
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { ArrowLeft, Monitor, Smartphone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BlockContent } from "@/components/email/block-renderer";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { useEditor } from "@/contexts/editor-context";
 import { cn } from "@/lib/utils";
+import type { EmailBlock } from "@/types/email";
 
 export function PreviewDialog() {
   const { previewMode, setPreviewMode, blocks } = useEditor();
@@ -35,7 +36,7 @@ export function PreviewDialog() {
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Content className="fixed inset-0 z-50 bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+        <DialogPrimitive.Content className="fixed inset-0 z-50 bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 @container/preview">
           <DialogPrimitive.Title className="sr-only">
             Email Preview
           </DialogPrimitive.Title>
@@ -44,12 +45,12 @@ export function PreviewDialog() {
           </DialogPrimitive.Description>
           <div className="flex h-full w-full flex-col">
             {/* Header */}
-            <div className="flex items-center gap-8 p-6">
+            <div className="flex flex-col gap-4 p-4 @sm/preview:flex-row @sm/preview:items-center @sm/preview:gap-8 @sm/preview:p-6">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleClose}
-                className="gap-2 text-foreground"
+                className="gap-2 text-foreground min-h-[44px]"
               >
                 <ArrowLeft className="size-4" />
                 Back to editing
@@ -61,8 +62,8 @@ export function PreviewDialog() {
                   size="icon"
                   onClick={() => handleModeChange("desktop")}
                   className={cn(
-                    "size-8",
-                    activeMode === "desktop" && "bg-accent"
+                    "size-10 min-h-[44px] min-w-[44px]",
+                    activeMode === "desktop" && "bg-accent",
                   )}
                 >
                   <Monitor className="size-4" />
@@ -73,8 +74,8 @@ export function PreviewDialog() {
                   size="icon"
                   onClick={() => handleModeChange("mobile")}
                   className={cn(
-                    "size-8",
-                    activeMode === "mobile" && "bg-accent"
+                    "size-10 min-h-[44px] min-w-[44px]",
+                    activeMode === "mobile" && "bg-accent",
                   )}
                 >
                   <Smartphone className="size-4" />
@@ -83,13 +84,13 @@ export function PreviewDialog() {
             </div>
 
             {/* Preview Content */}
-            <div className="flex flex-1 items-start justify-center overflow-auto bg-background px-8 pb-8">
+            <div className="flex flex-1 items-start justify-center overflow-auto bg-background px-4 pb-4 @sm/preview:px-8 @sm/preview:pb-8">
               {activeMode === "desktop" ? (
                 <div className="w-full max-w-[600px] bg-card">
                   <EmailPreview blocks={blocks} />
                 </div>
               ) : (
-                <div className="rounded-[2.5rem] border-8 border-primary bg-primary p-2.5 shadow-2xl">
+                <div className="scale-75 transition-transform duration-200 @sm/preview:scale-90 @md/preview:scale-100 rounded-[2.5rem] border-8 border-primary bg-primary p-2.5 shadow-2xl">
                   <div className="h-[667px] w-[375px] overflow-auto rounded-[2rem] bg-card">
                     <EmailPreview blocks={blocks} />
                   </div>
@@ -104,16 +105,7 @@ export function PreviewDialog() {
 }
 
 // Email preview component using React Email components
-function EmailPreview({
-  blocks,
-}: {
-  blocks: Array<{
-    id: string;
-    type: "text" | "heading" | "image" | "button" | "divider" | "spacer" | "footer" | "address" | "social" | "rating" | "feedback" | "subscribe" | "track" | "order" | "viewDetails" | "favorite" | "pay" | "rsvp" | "confirm" | "goto" | "promocode" | "qr";
-    content?: string;
-    settings?: Record<string, unknown>;
-  }>;
-}) {
+function EmailPreview({ blocks }: { blocks: EmailBlock[] }) {
   return (
     <div className="email-template">
       {blocks.map((block) => (

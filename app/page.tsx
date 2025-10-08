@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+import { MobileSidebarToggle } from "@/components/mobile-sidebar-toggle";
 import { TemplatesSidebar } from "@/components/templates-sidebar";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,6 +14,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     async function loadTemplates() {
@@ -70,14 +72,21 @@ export default function Home() {
 
   return (
     <TooltipProvider>
-      <div className="h-[100dvh] bg-background flex">
+      <div className="@container/app h-[100dvh] bg-background flex flex-col @md/app:flex-row">
         <TemplatesSidebar
           selectedTags={selectedTags}
           onTagToggle={handleTagToggle}
           onClearTags={handleClearTags}
+          isOpen={isSidebarOpen}
+          onOpenChange={setIsSidebarOpen}
         />
 
-        <main className="flex-1 ml-[360px] py-28 overflow-y-auto h-full">
+        <main className="@container/content flex-1 overflow-y-auto py-8 px-4 @md/app:px-6 @md/app:py-12 @lg/app:px-20 @lg/app:py-28">
+          {/* Mobile header with hamburger menu */}
+          <div className="@md/app:hidden mb-6">
+            <MobileSidebarToggle onClick={() => setIsSidebarOpen(true)} />
+          </div>
+
           {loading && (
             <div className="text-center py-12">
               <p className="text-muted-foreground">Loading templates...</p>
@@ -111,7 +120,7 @@ export default function Home() {
             )}
 
           {!loading && !error && filteredTemplates.length > 0 && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-[960px] px-20">
+            <div className="grid grid-cols-1 @sm/content:grid-cols-2 @lg/content:grid-cols-2 @xl/content:grid-cols-3 gap-8 @md/app:gap-16 max-w-[960px] @xl/content:max-w-none">
               {filteredTemplates.map((template) => (
                 <Link key={template.id} href={`/template/${template.id}`}>
                   <div className="group relative bg-card overflow-hidden cursor-pointer">

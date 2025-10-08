@@ -1,6 +1,6 @@
 "use client";
 
-import { Send, Loader2 } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -155,12 +155,18 @@ export function SendEmailDialog({ open, onOpenChange }: SendEmailDialogProps) {
         </div>
 
         <DialogFooter>
-          <Button variant="outline" onClick={handleClose} disabled={isLoading}>
+          <Button
+            variant="outline"
+            onClick={handleClose}
+            disabled={isLoading}
+            className="min-h-[44px]"
+          >
             Cancel
           </Button>
           <Button
             onClick={handleSend}
             disabled={isLoading || blocks.length === 0}
+            className="min-h-[44px]"
           >
             {isLoading ? (
               <>

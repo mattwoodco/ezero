@@ -1,7 +1,7 @@
 "use client";
 
+import { AlertCircle, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
-import { Plus, Trash2, AlertCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -10,16 +10,16 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  getActionTypeDescription,
+  getActionTypeLabel,
+  validateGmailAction,
+} from "@/lib/gmail-actions-utils";
 import type {
   GmailActionConfig,
-  GmailActionType,
   GmailActionsSettings,
+  GmailActionType,
 } from "@/types/email";
-import {
-  validateGmailAction,
-  getActionTypeLabel,
-  getActionTypeDescription,
-} from "@/lib/gmail-actions-utils";
 
 interface GmailActionsSettingsPanelProps {
   settings: GmailActionsSettings;
@@ -217,7 +217,9 @@ function ActionFields({
 
       {/* Common Fields */}
       <div>
-        <label className="text-xs font-medium block mb-1.5">Action Name *</label>
+        <label className="text-xs font-medium block mb-1.5">
+          Action Name *
+        </label>
         <Input
           placeholder="e.g. View Order"
           value={action.name}
@@ -239,7 +241,9 @@ function ActionFields({
       {/* Type-specific fields */}
       {action.type === "ViewAction" && (
         <div>
-          <label className="text-xs font-medium block mb-1.5">Target URL *</label>
+          <label className="text-xs font-medium block mb-1.5">
+            Target URL *
+          </label>
           <Input
             placeholder="https://example.com/action"
             value={action.target || ""}
@@ -267,7 +271,9 @@ function ActionFields({
             />
           </div>
           <div>
-            <label className="text-xs font-medium block mb-1.5">HTTP Method</label>
+            <label className="text-xs font-medium block mb-1.5">
+              HTTP Method
+            </label>
             <select
               className="w-full text-sm border rounded-md px-3 py-2 bg-background"
               value={action.handler?.method || "POST"}
@@ -291,13 +297,18 @@ function ActionFields({
       {action.type === "RsvpAction" && (
         <>
           <div>
-            <label className="text-xs font-medium block mb-1.5">Event Name *</label>
+            <label className="text-xs font-medium block mb-1.5">
+              Event Name *
+            </label>
             <Input
               placeholder="e.g. Product Launch Webinar"
               value={action.event?.name || ""}
               onChange={(e) =>
                 onChange({
-                  event: { ...action.event!, name: e.target.value },
+                  event: {
+                    ...(action.event || { name: '', startDate: '', location: { name: '' } }),
+                    name: e.target.value
+                  },
                 })
               }
               className="text-sm"
@@ -312,7 +323,10 @@ function ActionFields({
               value={action.event?.startDate || ""}
               onChange={(e) =>
                 onChange({
-                  event: { ...action.event!, startDate: e.target.value },
+                  event: {
+                    ...(action.event || { name: '', startDate: '', location: { name: '' } }),
+                    startDate: e.target.value
+                  },
                 })
               }
               className="text-sm"
@@ -327,7 +341,10 @@ function ActionFields({
               value={action.event?.endDate || ""}
               onChange={(e) =>
                 onChange({
-                  event: { ...action.event!, endDate: e.target.value },
+                  event: {
+                    ...(action.event || { name: '', startDate: '', location: { name: '' } }),
+                    endDate: e.target.value
+                  },
                 })
               }
               className="text-sm"
@@ -343,8 +360,11 @@ function ActionFields({
               onChange={(e) =>
                 onChange({
                   event: {
-                    ...action.event!,
-                    location: { ...action.event?.location!, name: e.target.value },
+                    ...(action.event || { name: '', startDate: '', location: { name: '' } }),
+                    location: {
+                      ...(action.event?.location || { name: '' }),
+                      name: e.target.value,
+                    },
                   },
                 })
               }

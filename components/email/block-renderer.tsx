@@ -9,8 +9,8 @@ import {
   Text,
 } from "@react-email/components";
 import type { EmailBlock } from "@/contexts/editor-context";
-import type { GmailActionsSettings } from "@/types/email";
 import { getActionTypeLabel } from "@/lib/gmail-actions-utils";
+import type { GmailActionsSettings } from "@/types/email";
 
 interface BlockContentProps {
   block: EmailBlock;
@@ -174,7 +174,8 @@ export function BlockContent({ block }: BlockContentProps) {
               }}
               {...settings}
             >
-              {content || "© 2025 Company Name. All rights reserved.\nUnsubscribe | Privacy Policy"}
+              {content ||
+                "© 2025 Company Name. All rights reserved.\nUnsubscribe | Privacy Policy"}
             </Text>
           </Section>
         </div>
@@ -207,22 +208,34 @@ export function BlockContent({ block }: BlockContentProps) {
               <tbody>
                 <tr>
                   <td style={{ padding: "0 8px" }}>
-                    <a href={(settings.facebook as string) || "#"} style={{ textDecoration: "none" }}>
+                    <a
+                      href={(settings.facebook as string) || "#"}
+                      style={{ textDecoration: "none" }}
+                    >
                       <span style={{ fontSize: "24px" }}>📘</span>
                     </a>
                   </td>
                   <td style={{ padding: "0 8px" }}>
-                    <a href={(settings.twitter as string) || "#"} style={{ textDecoration: "none" }}>
+                    <a
+                      href={(settings.twitter as string) || "#"}
+                      style={{ textDecoration: "none" }}
+                    >
                       <span style={{ fontSize: "24px" }}>🐦</span>
                     </a>
                   </td>
                   <td style={{ padding: "0 8px" }}>
-                    <a href={(settings.instagram as string) || "#"} style={{ textDecoration: "none" }}>
+                    <a
+                      href={(settings.instagram as string) || "#"}
+                      style={{ textDecoration: "none" }}
+                    >
                       <span style={{ fontSize: "24px" }}>📷</span>
                     </a>
                   </td>
                   <td style={{ padding: "0 8px" }}>
-                    <a href={(settings.linkedin as string) || "#"} style={{ textDecoration: "none" }}>
+                    <a
+                      href={(settings.linkedin as string) || "#"}
+                      style={{ textDecoration: "none" }}
+                    >
                       <span style={{ fontSize: "24px" }}>💼</span>
                     </a>
                   </td>
@@ -271,19 +284,44 @@ export function BlockContent({ block }: BlockContentProps) {
               <tbody>
                 <tr>
                   <td style={{ padding: "0 4px" }}>
-                    <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>😞</a>
+                    <a
+                      href={(settings.ratingUrl as string) || "#"}
+                      style={{ textDecoration: "none", fontSize: "24px" }}
+                    >
+                      😞
+                    </a>
                   </td>
                   <td style={{ padding: "0 4px" }}>
-                    <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>😐</a>
+                    <a
+                      href={(settings.ratingUrl as string) || "#"}
+                      style={{ textDecoration: "none", fontSize: "24px" }}
+                    >
+                      😐
+                    </a>
                   </td>
                   <td style={{ padding: "0 4px" }}>
-                    <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>🙂</a>
+                    <a
+                      href={(settings.ratingUrl as string) || "#"}
+                      style={{ textDecoration: "none", fontSize: "24px" }}
+                    >
+                      🙂
+                    </a>
                   </td>
                   <td style={{ padding: "0 4px" }}>
-                    <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>😊</a>
+                    <a
+                      href={(settings.ratingUrl as string) || "#"}
+                      style={{ textDecoration: "none", fontSize: "24px" }}
+                    >
+                      😊
+                    </a>
                   </td>
                   <td style={{ padding: "0 4px" }}>
-                    <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>😍</a>
+                    <a
+                      href={(settings.ratingUrl as string) || "#"}
+                      style={{ textDecoration: "none", fontSize: "24px" }}
+                    >
+                      😍
+                    </a>
                   </td>
                 </tr>
               </tbody>
@@ -332,7 +370,10 @@ export function BlockContent({ block }: BlockContentProps) {
                 margin: "0 0 8px 0",
               }}
             >
-              Tracking Number: <strong>{(settings.trackingNumber as string) || "1234567890"}</strong>
+              Tracking Number:{" "}
+              <strong>
+                {(settings.trackingNumber as string) || "1234567890"}
+              </strong>
             </Text>
             <Button
               className="rounded bg-primary px-4 py-2 text-center text-[12px] text-primary-foreground no-underline"
@@ -608,7 +649,6 @@ export function BlockContent({ block }: BlockContentProps) {
                 style={{
                   width: "200px",
                   height: "200px",
-                  display: "inline-block",
                   backgroundColor: "hsl(var(--muted))",
                   border: "2px dashed hsl(var(--border))",
                   borderRadius: "8px",
@@ -625,8 +665,8 @@ export function BlockContent({ block }: BlockContentProps) {
         </div>
       );
 
-    case "gmailActions":
-      const gmailSettings = settings as GmailActionsSettings;
+    case "gmailActions": {
+      const gmailSettings = settings as unknown as GmailActionsSettings;
       const actions = gmailSettings.actions || [];
 
       if (actions.length === 0) {
@@ -673,29 +713,29 @@ export function BlockContent({ block }: BlockContentProps) {
             >
               {actions.map((action, index) => {
                 let buttonHref = "#";
-                let buttonText = action.name;
-                let buttonDescription = "";
+                const buttonText = action.name;
+                let _buttonDescription = "";
 
                 switch (action.type) {
                   case "ViewAction":
                     buttonHref = action.target || "#";
-                    buttonDescription = "View";
+                    _buttonDescription = "View";
                     break;
                   case "ConfirmAction":
                     buttonHref = action.handler?.url || "#";
-                    buttonDescription = "Confirm";
+                    _buttonDescription = "Confirm";
                     break;
                   case "SaveAction":
                     buttonHref = action.handler?.url || "#";
-                    buttonDescription = "Save";
+                    _buttonDescription = "Save";
                     break;
                   case "RsvpAction":
-                    buttonDescription = "RSVP";
+                    _buttonDescription = "RSVP";
                     break;
                   case "TrackAction":
                     buttonHref =
                       action.target || action.parcel?.trackingUrl || "#";
-                    buttonDescription = "Track";
+                    _buttonDescription = "Track";
                     break;
                 }
 
@@ -741,6 +781,7 @@ export function BlockContent({ block }: BlockContentProps) {
           </Section>
         </div>
       );
+    }
 
     default:
       return (

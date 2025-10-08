@@ -12,9 +12,8 @@ import {
   Text,
 } from "@react-email/components";
 import type * as React from "react";
-import type { EmailBlock } from "@/types/email";
-import type { GmailActionsSettings } from "@/types/email";
 import { generateJsonLd } from "@/lib/gmail-actions-utils";
+import type { EmailBlock, GmailActionsSettings } from "@/types/email";
 
 interface EmailWrapperProps {
   blocks: EmailBlock[];
@@ -176,7 +175,8 @@ function renderBlock(block: EmailBlock) {
             }}
             {...settings}
           >
-            {content || "© 2025 Company Name. All rights reserved.\nUnsubscribe | Privacy Policy"}
+            {content ||
+              "© 2025 Company Name. All rights reserved.\nUnsubscribe | Privacy Policy"}
           </Text>
         </Section>
       );
@@ -202,27 +202,42 @@ function renderBlock(block: EmailBlock) {
 
     case "social":
       return (
-        <Section key={block.id} style={{ margin: "16px 0", textAlign: "center" }}>
+        <Section
+          key={block.id}
+          style={{ margin: "16px 0", textAlign: "center" }}
+        >
           <table style={{ margin: "0 auto", borderCollapse: "collapse" }}>
             <tbody>
               <tr>
                 <td style={{ padding: "0 8px" }}>
-                  <a href={(settings.facebook as string) || "#"} style={{ textDecoration: "none" }}>
+                  <a
+                    href={(settings.facebook as string) || "#"}
+                    style={{ textDecoration: "none" }}
+                  >
                     <span style={{ fontSize: "24px" }}>📘</span>
                   </a>
                 </td>
                 <td style={{ padding: "0 8px" }}>
-                  <a href={(settings.twitter as string) || "#"} style={{ textDecoration: "none" }}>
+                  <a
+                    href={(settings.twitter as string) || "#"}
+                    style={{ textDecoration: "none" }}
+                  >
                     <span style={{ fontSize: "24px" }}>🐦</span>
                   </a>
                 </td>
                 <td style={{ padding: "0 8px" }}>
-                  <a href={(settings.instagram as string) || "#"} style={{ textDecoration: "none" }}>
+                  <a
+                    href={(settings.instagram as string) || "#"}
+                    style={{ textDecoration: "none" }}
+                  >
                     <span style={{ fontSize: "24px" }}>📷</span>
                   </a>
                 </td>
                 <td style={{ padding: "0 8px" }}>
-                  <a href={(settings.linkedin as string) || "#"} style={{ textDecoration: "none" }}>
+                  <a
+                    href={(settings.linkedin as string) || "#"}
+                    style={{ textDecoration: "none" }}
+                  >
                     <span style={{ fontSize: "24px" }}>💼</span>
                   </a>
                 </td>
@@ -234,7 +249,10 @@ function renderBlock(block: EmailBlock) {
 
     case "rating":
       return (
-        <Section key={block.id} style={{ margin: "16px 0", textAlign: "center" }}>
+        <Section
+          key={block.id}
+          style={{ margin: "16px 0", textAlign: "center" }}
+        >
           <Text
             style={{
               fontSize: "20px",
@@ -252,7 +270,10 @@ function renderBlock(block: EmailBlock) {
 
     case "feedback":
       return (
-        <Section key={block.id} style={{ margin: "16px 0", textAlign: "center" }}>
+        <Section
+          key={block.id}
+          style={{ margin: "16px 0", textAlign: "center" }}
+        >
           <Text
             style={{
               fontSize: "14px",
@@ -269,19 +290,44 @@ function renderBlock(block: EmailBlock) {
             <tbody>
               <tr>
                 <td style={{ padding: "0 4px" }}>
-                  <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>😞</a>
+                  <a
+                    href={(settings.ratingUrl as string) || "#"}
+                    style={{ textDecoration: "none", fontSize: "24px" }}
+                  >
+                    😞
+                  </a>
                 </td>
                 <td style={{ padding: "0 4px" }}>
-                  <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>😐</a>
+                  <a
+                    href={(settings.ratingUrl as string) || "#"}
+                    style={{ textDecoration: "none", fontSize: "24px" }}
+                  >
+                    😐
+                  </a>
                 </td>
                 <td style={{ padding: "0 4px" }}>
-                  <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>🙂</a>
+                  <a
+                    href={(settings.ratingUrl as string) || "#"}
+                    style={{ textDecoration: "none", fontSize: "24px" }}
+                  >
+                    🙂
+                  </a>
                 </td>
                 <td style={{ padding: "0 4px" }}>
-                  <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>😊</a>
+                  <a
+                    href={(settings.ratingUrl as string) || "#"}
+                    style={{ textDecoration: "none", fontSize: "24px" }}
+                  >
+                    😊
+                  </a>
                 </td>
                 <td style={{ padding: "0 4px" }}>
-                  <a href={(settings.ratingUrl as string) || "#"} style={{ textDecoration: "none", fontSize: "24px" }}>😍</a>
+                  <a
+                    href={(settings.ratingUrl as string) || "#"}
+                    style={{ textDecoration: "none", fontSize: "24px" }}
+                  >
+                    😍
+                  </a>
                 </td>
               </tr>
             </tbody>
@@ -331,7 +377,10 @@ function renderBlock(block: EmailBlock) {
                 "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
             }}
           >
-            Tracking Number: <strong>{(settings.trackingNumber as string) || "1234567890"}</strong>
+            Tracking Number:{" "}
+            <strong>
+              {(settings.trackingNumber as string) || "1234567890"}
+            </strong>
           </Text>
           <Button
             style={{
@@ -559,7 +608,10 @@ function renderBlock(block: EmailBlock) {
 
     case "promocode":
       return (
-        <Section key={block.id} style={{ margin: "16px 0", textAlign: "center" }}>
+        <Section
+          key={block.id}
+          style={{ margin: "16px 0", textAlign: "center" }}
+        >
           <div
             style={{
               display: "inline-block",
@@ -599,7 +651,10 @@ function renderBlock(block: EmailBlock) {
 
     case "qr":
       return (
-        <Section key={block.id} style={{ margin: "16px 0", textAlign: "center" }}>
+        <Section
+          key={block.id}
+          style={{ margin: "16px 0", textAlign: "center" }}
+        >
           {settings.src ? (
             <Img
               src={settings.src as string}
@@ -631,8 +686,8 @@ function renderBlock(block: EmailBlock) {
         </Section>
       );
 
-    case "gmailActions":
-      const gmailSettings = settings as GmailActionsSettings;
+    case "gmailActions": {
+      const gmailSettings = settings as unknown as GmailActionsSettings;
       const actions = gmailSettings.actions || [];
 
       if (actions.length === 0) {
@@ -673,7 +728,7 @@ function renderBlock(block: EmailBlock) {
               <tr>
                 {actions.map((action, index) => {
                   let buttonHref = "#";
-                  let buttonText = action.name;
+                  const buttonText = action.name;
 
                   switch (action.type) {
                     case "ViewAction":
@@ -728,6 +783,7 @@ function renderBlock(block: EmailBlock) {
           </table>
         </Section>
       );
+    }
 
     default:
       return (
@@ -784,7 +840,7 @@ export function EmailWrapper({
         />
         {/* Inject JSON-LD for Gmail Actions */}
         {gmailActionsBlocks.map((block) => {
-          const settings = block.settings as GmailActionsSettings;
+          const settings = block.settings as unknown as GmailActionsSettings;
           const actions = settings?.actions || [];
 
           return actions.map((action, index) => {

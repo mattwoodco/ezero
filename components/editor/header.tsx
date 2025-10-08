@@ -42,7 +42,11 @@ export function Header() {
         <Tooltip>
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="min-h-[44px] min-w-[44px]"
+              >
                 <Download className="size-4" />
               </Button>
             </DropdownMenuTrigger>

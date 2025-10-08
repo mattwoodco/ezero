@@ -1,5 +1,6 @@
 "use client";
 
+import { use, useEffect, useState } from "react";
 import { BlockToolbar } from "@/components/editor/block-toolbar";
 import { EmailBlock } from "@/components/editor/email-block";
 import { Header } from "@/components/editor/header";
@@ -9,7 +10,6 @@ import { ToolbarLeft } from "@/components/editor/toolbar-left";
 import { ToolbarRight } from "@/components/editor/toolbar-right";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
-import { use, useEffect, useState } from "react";
 
 export default function TemplatePage({
   params,
@@ -73,7 +73,7 @@ export default function TemplatePage({
 
   return (
     <TooltipProvider>
-      <div className="h-[100dvh] bg-background overflow-y-auto ">
+      <div className="h-[100dvh] bg-background overflow-y-auto @container/editor">
         {/* Header */}
         <Header />
 
@@ -85,24 +85,31 @@ export default function TemplatePage({
 
         {/* Main Canvas */}
         <main
-          className="pt-14 min-h-screen flex items-start justify-center transition-all duration-200"
-          style={{
-            marginRight: selectedBlockId ? "360px" : "0",
-          }}
+          className={`
+            pt-14 min-h-screen flex items-start justify-center
+            transition-all duration-200
+            @container/workspace
+            ${selectedBlockId ? "@lg/editor:mr-[360px]" : ""}
+          `}
         >
           <div className="w-full max-w-[600px] py-20">
             <div className="email-template bg-card rounded-lg">
               {blocks.map((block, index) => (
-                <div key={block.id} data-block-id={block.id}>
+                <div
+                  key={block.id}
+                  data-block-id={block.id}
+                  className="relative"
+                >
                   <EmailBlock block={block} index={index} />
+                  {/* Block Toolbar (appears when block is selected) */}
+                  {selectedBlockId === block.id && (
+                    <BlockToolbar blockId={selectedBlockId} />
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </main>
-
-        {/* Block Toolbar (appears when block is selected) */}
-        {selectedBlockId && <BlockToolbar blockId={selectedBlockId} />}
 
         {/* Settings Panel (appears when block is selected) */}
         <SettingsPanel />

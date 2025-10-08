@@ -12,8 +12,8 @@ import {
 import type { EmailBlock as EmailBlockType } from "@/contexts/editor-context";
 import { useEditor } from "@/contexts/editor-context";
 import { cn } from "@/lib/utils";
-import { BlockTypeMenu } from "./block-type-menu";
 import type { EmailBlockType as BlockType } from "@/types/email";
+import { BlockTypeMenu } from "./block-type-menu";
 
 interface EmailBlockProps {
   block: EmailBlockType;
@@ -45,7 +45,10 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
       {/* Inline menu above */}
       {showMenuAbove && (
         <div onClick={(e) => e.stopPropagation()}>
-          <BlockTypeMenu onSelect={handleAddAbove} onClose={() => setShowMenuAbove(false)} />
+          <BlockTypeMenu
+            onSelect={handleAddAbove}
+            onClose={() => setShowMenuAbove(false)}
+          />
         </div>
       )}
 
@@ -59,6 +62,7 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
               "relative w-full text-left cursor-pointer",
               index > 0 && "-mt-px",
               "transition-all duration-150",
+              "min-h-[44px]", // Minimum touch target height for mobile
               isHovered && "outline outline-2 outline-primary shadow-xl z-10",
               isSelected && !isHovered && "outline outline-1 outline-border",
             )}
@@ -81,7 +85,7 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
                 <Button
                   variant="outline"
                   size="icon-sm"
-                  className="rounded-full !bg-background shadow-md !border-2 !border-primary text-muted-foreground hover:!bg-primary hover:!text-primary-foreground cursor-pointer"
+                  className="rounded-full !bg-background shadow-md !border-2 !border-primary text-muted-foreground hover:!bg-primary hover:!text-primary-foreground cursor-pointer min-h-[44px] min-w-[44px]"
                   onClick={() => setShowMenuAbove(true)}
                 >
                   <Plus className="size-4" />
@@ -101,7 +105,7 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
                 <Button
                   variant="outline"
                   size="icon-sm"
-                  className="rounded-full !bg-background shadow-md !border-2 !border-primary text-muted-foreground hover:!bg-primary hover:!text-primary-foreground cursor-pointer"
+                  className="rounded-full !bg-background shadow-md !border-2 !border-primary text-muted-foreground hover:!bg-primary hover:!text-primary-foreground cursor-pointer min-h-[44px] min-w-[44px]"
                   onClick={() => setShowMenuBelow(true)}
                 >
                   <Plus className="size-4" />
@@ -116,7 +120,10 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
       {/* Inline menu below */}
       {showMenuBelow && (
         <div onClick={(e) => e.stopPropagation()}>
-          <BlockTypeMenu onSelect={handleAddBelow} onClose={() => setShowMenuBelow(false)} />
+          <BlockTypeMenu
+            onSelect={handleAddBelow}
+            onClose={() => setShowMenuBelow(false)}
+          />
         </div>
       )}
     </>

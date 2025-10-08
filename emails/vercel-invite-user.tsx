@@ -124,12 +124,12 @@ export const VercelInviteUserEmail = ({
             <Hr className="mx-0 my-[26px] w-full border border-border border-solid" />
             <Text className="text-muted-foreground text-[12px] leading-[24px]">
               This invitation was intended for{" "}
-              <span className="text-foreground">{username}</span>. This invite was
-              sent from <span className="text-foreground">{inviteFromIp}</span>{" "}
-              located in{" "}
-              <span className="text-foreground">{inviteFromLocation}</span>. If you
-              were not expecting this invitation, you can ignore this email. If
-              you are concerned about your account's safety, please reply to
+              <span className="text-foreground">{username}</span>. This invite
+              was sent from{" "}
+              <span className="text-foreground">{inviteFromIp}</span> located in{" "}
+              <span className="text-foreground">{inviteFromLocation}</span>. If
+              you were not expecting this invitation, you can ignore this email.
+              If you are concerned about your account's safety, please reply to
               this email to get in touch with us.
             </Text>
           </Container>
