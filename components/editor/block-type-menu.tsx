@@ -1,5 +1,13 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import type { EmailBlockType } from "@/types/email";
 import {
   ArrowRight,
   CalendarCheck,
@@ -27,14 +35,6 @@ import {
   Zap,
 } from "lucide-react";
 import NextImage from "next/image";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
-import type { EmailBlockType } from "@/types/email";
 
 interface BlockTypeMenuProps {
   onSelect: (type: EmailBlockType) => void;
@@ -237,7 +237,7 @@ export function BlockTypeMenu({
 
       <div className="grid grid-cols-[140px_1fr] gap-x-4 gap-y-4 items-start">
         {/* Gmail Actions Row */}
-        <div className="text-sm font-semibold pt-1.5 inline-flex items-center gap-2 justify-end text-right">
+        <div className="text-sm pt-3 inline-flex items-center gap-2 justify-end text-right pr-3">
           <NextImage
             src="/images/google.svg"
             alt="Google"
@@ -245,7 +245,7 @@ export function BlockTypeMenu({
             height={16}
             className="inline-block"
           />
-          Gmail Actions
+          Google
         </div>
         <div className="flex flex-wrap gap-2">
           {gmailBlocks
@@ -259,7 +259,7 @@ export function BlockTypeMenu({
                     className={cn(
                       "px-3 py-0.5 rounded-full border-2 border-border bg-background",
                       "hover:border-primary hover:bg-primary/5 transition-all cursor-pointer",
-                      "text-sm font-medium inline-flex items-center gap-1.5",
+                      "text-sm inline-flex items-center gap-1.5",
                       "min-h-[44px]", // Minimum touch target for mobile
                     )}
                   >
@@ -283,9 +283,7 @@ export function BlockTypeMenu({
         </div>
 
         {/* Basic Row */}
-        <div className="text-sm font-semibold pt-1.5 text-right">
-          Basic
-        </div>
+        <div className="text-sm pt-3 text-right pr-3">Basics</div>
         <div className="flex flex-wrap gap-2">
           {basicBlocks.map(({ type, label, icon }) => (
             <button
@@ -295,7 +293,7 @@ export function BlockTypeMenu({
               className={cn(
                 "px-3 py-0.5 rounded-full border-2 border-border bg-background",
                 "hover:border-primary hover:bg-primary/5 transition-all cursor-pointer",
-                "text-sm font-medium inline-flex items-center gap-1.5",
+                "text-sm inline-flex items-center gap-1.5",
                 "min-h-[44px]", // Minimum touch target for mobile
               )}
             >
@@ -306,9 +304,7 @@ export function BlockTypeMenu({
         </div>
 
         {/* Interactive Row */}
-        <div className="text-sm font-semibold pt-1.5 text-right">
-          Interactive
-        </div>
+        <div className="text-sm pt-3 text-right pr-3">Interactives</div>
         <div className="flex flex-wrap gap-2">
           {interactiveBlocks.map(({ type, label, icon }) => (
             <Tooltip key={type}>
@@ -319,7 +315,7 @@ export function BlockTypeMenu({
                   className={cn(
                     "px-3 py-0.5 rounded-full border-2 border-border bg-background",
                     "hover:border-primary hover:bg-primary/5 transition-all cursor-pointer",
-                    "text-sm font-medium inline-flex items-center gap-1.5",
+                    "text-sm inline-flex items-center gap-1.5",
                     "min-h-[44px]", // Minimum touch target for mobile
                   )}
                 >

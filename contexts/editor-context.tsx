@@ -222,12 +222,6 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     }
   }, [canRedo, history, historyIndex, setSelectedBlockId]);
 
-  // ESC to deselect block
-  useHotkeys("esc", () => {
-    if (selectedBlockId) {
-      setSelectedBlockId(null);
-    }
-  }, [selectedBlockId, setSelectedBlockId]);
 
   return (
     <EditorContext.Provider

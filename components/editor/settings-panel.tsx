@@ -52,17 +52,19 @@ export function SettingsPanel() {
 
         {/* Panel Content - Sidebar for all breakpoints */}
         <Dialog.Content
-          key={selectedBlockId || "settings-panel"}
-          className="
+          className={`
             fixed top-0 bottom-0 right-0
             w-[360px] h-screen bg-background
             flex flex-col z-30
             shadow-xl
-          "
+            transition-transform duration-200
+            ${selectedBlockId ? 'translate-x-0' : 'translate-x-full'}
+          `}
           aria-label="Block settings panel"
           aria-describedby="settings-panel-description"
           onOpenAutoFocus={(e) => e.preventDefault()}
           onCloseAutoFocus={(e) => e.preventDefault()}
+          forceMount
         >
           <div id="settings-panel-description" className="sr-only">
             Configure settings for the selected block including layout, fonts,
