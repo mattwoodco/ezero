@@ -51,7 +51,7 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
           </TooltipTrigger>
-          <TooltipContent>Export</TooltipContent>
+          <TooltipContent side="bottom">Export</TooltipContent>
         </Tooltip>
         <DropdownMenuContent align="end">
           <DropdownMenuItem onClick={() => handleExport("jsx")}>
