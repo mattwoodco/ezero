@@ -91,7 +91,7 @@ export default function TemplatePage({
           }}
         >
           <div className="w-full max-w-[600px] py-20">
-            <div className="email-template bg-card">
+            <div className="email-template bg-card rounded-lg">
               {blocks.map((block, index) => (
                 <div key={block.id} data-block-id={block.id}>
                   <EmailBlock block={block} index={index} />

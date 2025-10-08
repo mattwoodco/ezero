@@ -24,6 +24,8 @@ interface EditorContextType {
   duplicateBlock: (id: string) => void;
   deleteBlock: (id: string) => void;
   updateBlock: (id: string, updates: Partial<EmailBlock>) => void;
+  updateBlockType: (id: string, type: EmailBlock["type"]) => void;
+  updateBlockSettings: (id: string, settings: EmailBlock["settings"]) => void;
   setPreviewMode: (mode: "desktop" | "mobile" | null) => void;
   setBlocks: (blocks: EmailBlock[]) => void;
   undo: () => void;
@@ -166,6 +168,28 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     [blocks, selectedBlockId, saveToHistory],
   );
 
+  const updateBlockType = useCallback(
+    (id: string, type: EmailBlock["type"]) => {
+      const newBlocks = blocks.map((b) =>
+        b.id === id ? { ...b, type, settings: {} } : b,
+      );
+      setBlocks(newBlocks);
+      saveToHistory(newBlocks, selectedBlockId);
+    },
+    [blocks, selectedBlockId, saveToHistory],
+  );
+
+  const updateBlockSettings = useCallback(
+    (id: string, settings: EmailBlock["settings"]) => {
+      const newBlocks = blocks.map((b) =>
+        b.id === id ? { ...b, settings } : b,
+      );
+      setBlocks(newBlocks);
+      saveToHistory(newBlocks, selectedBlockId);
+    },
+    [blocks, selectedBlockId, saveToHistory],
+  );
+
   const setBlocksWithHistory = useCallback(
     (newBlocks: EmailBlock[]) => {
       setBlocks(newBlocks);
@@ -215,6 +239,8 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         duplicateBlock,
         deleteBlock,
         updateBlock,
+        updateBlockType,
+        updateBlockSettings,
         setPreviewMode,
         setBlocks: setBlocksWithHistory,
         undo,

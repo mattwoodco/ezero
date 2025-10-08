@@ -109,7 +109,7 @@ function EmailPreview({
 }: {
   blocks: Array<{
     id: string;
-    type: "text" | "heading" | "image" | "button" | "divider" | "spacer";
+    type: "text" | "heading" | "image" | "button" | "divider" | "spacer" | "footer" | "address" | "social" | "rating" | "feedback" | "subscribe" | "track" | "order" | "viewDetails" | "favorite" | "pay" | "rsvp" | "confirm" | "goto" | "promocode" | "qr";
     content?: string;
     settings?: Record<string, unknown>;
   }>;

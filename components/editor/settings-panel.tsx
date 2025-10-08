@@ -8,10 +8,22 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
-import { Redo, Undo } from "lucide-react";
+import { Redo, Undo, ChevronDown } from "lucide-react";
+import { GmailActionsSettingsPanel } from "./gmail-actions-settings";
+import { BlockTypeMenu } from "./block-type-menu";
+import type { GmailActionsSettings } from "@/types/email";
 
 export function SettingsPanel() {
-  const { selectedBlockId, blocks, canUndo, canRedo, undo, redo } = useEditor();
+  const {
+    selectedBlockId,
+    blocks,
+    canUndo,
+    canRedo,
+    undo,
+    redo,
+    updateBlockSettings,
+    updateBlockType,
+  } = useEditor();
 
   if (!selectedBlockId) return null;
 
@@ -54,9 +66,17 @@ export function SettingsPanel() {
             <div className="space-y-4">
               <div>
                 <h3 className="text-sm font-medium mb-2">Block Type</h3>
-                <p className="text-sm text-muted-foreground">
-                  {selectedBlock?.type}
-                </p>
+                <BlockTypeMenu
+                  onSelect={(type) => updateBlockType(selectedBlockId, type)}
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full justify-between font-normal"
+                  >
+                    <span className="capitalize">{selectedBlock?.type}</span>
+                    <ChevronDown className="h-4 w-4 opacity-50" />
+                  </Button>
+                </BlockTypeMenu>
               </div>
               <div>
                 <h3 className="text-sm font-medium mb-2">Content</h3>
@@ -90,9 +110,22 @@ export function SettingsPanel() {
 
           <TabsContent value="blockSettings">
             <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">
-                Block settings coming soon...
-              </p>
+              {selectedBlock?.type === "gmailActions" ? (
+                <GmailActionsSettingsPanel
+                  settings={
+                    (selectedBlock.settings as GmailActionsSettings) || {
+                      actions: [],
+                    }
+                  }
+                  onChange={(newSettings) =>
+                    updateBlockSettings(selectedBlockId, newSettings)
+                  }
+                />
+              ) : (
+                <p className="text-sm text-muted-foreground">
+                  Block settings coming soon...
+                </p>
+              )}
             </div>
           </TabsContent>
         </div>
