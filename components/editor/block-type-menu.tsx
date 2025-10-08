@@ -235,9 +235,9 @@ export function BlockTypeMenu({
         </Button>
       )}
 
-      {/* Gmail Actions */}
-      <div className="mb-6">
-        <h3 className="text-sm font-semibold mb-3 inline-flex items-center gap-2">
+      <div className="grid grid-cols-[140px_1fr] gap-x-4 gap-y-4 items-start">
+        {/* Gmail Actions Row */}
+        <div className="text-sm font-semibold pt-1.5 inline-flex items-center gap-2 justify-end text-right">
           <NextImage
             src="/images/google.svg"
             alt="Google"
@@ -246,7 +246,7 @@ export function BlockTypeMenu({
             className="inline-block"
           />
           Gmail Actions
-        </h3>
+        </div>
         <div className="flex flex-wrap gap-2">
           {gmailBlocks
             .filter(({ type }) => type !== "gmailActions")
@@ -257,9 +257,9 @@ export function BlockTypeMenu({
                     type="button"
                     onClick={() => onSelect(type)}
                     className={cn(
-                      "px-3 py-1.5 rounded-full border-2 border-border bg-background",
+                      "px-3 py-0.5 rounded-full border-2 border-border bg-background",
                       "hover:border-primary hover:bg-primary/5 transition-all cursor-pointer",
-                      "text-xs font-medium inline-flex items-center gap-1.5",
+                      "text-sm font-medium inline-flex items-center gap-1.5",
                       "min-h-[44px]", // Minimum touch target for mobile
                     )}
                   >
@@ -281,11 +281,11 @@ export function BlockTypeMenu({
               </Tooltip>
             ))}
         </div>
-      </div>
 
-      {/* Basic Blocks */}
-      <div className="mb-6">
-        <h3 className="text-sm font-semibold mb-3">Basic Blocks</h3>
+        {/* Basic Row */}
+        <div className="text-sm font-semibold pt-1.5 text-right">
+          Basic
+        </div>
         <div className="flex flex-wrap gap-2">
           {basicBlocks.map(({ type, label, icon }) => (
             <button
@@ -293,9 +293,9 @@ export function BlockTypeMenu({
               key={type}
               onClick={() => onSelect(type)}
               className={cn(
-                "px-3 py-1.5 rounded-full border-2 border-border bg-background",
+                "px-3 py-0.5 rounded-full border-2 border-border bg-background",
                 "hover:border-primary hover:bg-primary/5 transition-all cursor-pointer",
-                "text-xs font-medium inline-flex items-center gap-1.5",
+                "text-sm font-medium inline-flex items-center gap-1.5",
                 "min-h-[44px]", // Minimum touch target for mobile
               )}
             >
@@ -304,11 +304,11 @@ export function BlockTypeMenu({
             </button>
           ))}
         </div>
-      </div>
 
-      {/* Interactive Blocks */}
-      <div>
-        <h3 className="text-sm font-semibold mb-3">Interactive Blocks</h3>
+        {/* Interactive Row */}
+        <div className="text-sm font-semibold pt-1.5 text-right">
+          Interactive
+        </div>
         <div className="flex flex-wrap gap-2">
           {interactiveBlocks.map(({ type, label, icon }) => (
             <Tooltip key={type}>
@@ -317,9 +317,9 @@ export function BlockTypeMenu({
                   type="button"
                   onClick={() => onSelect(type)}
                   className={cn(
-                    "px-3 py-1.5 rounded-full border-2 border-border bg-background",
+                    "px-3 py-0.5 rounded-full border-2 border-border bg-background",
                     "hover:border-primary hover:bg-primary/5 transition-all cursor-pointer",
-                    "text-xs font-medium inline-flex items-center gap-1.5",
+                    "text-sm font-medium inline-flex items-center gap-1.5",
                     "min-h-[44px]", // Minimum touch target for mobile
                   )}
                 >

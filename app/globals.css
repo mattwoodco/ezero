@@ -123,6 +123,97 @@
 }
 
 @layer utilities {
+  /* Container queries */
+  .\@container\/editor {
+    container-name: editor;
+    container-type: inline-size;
+  }
+
+  .\@container\/workspace {
+    container-name: workspace;
+    container-type: inline-size;
+  }
+
+  /* Container query breakpoints for editor (1024px = lg) */
+  @container editor (min-width: 1024px) {
+    [class~="@lg/editor:top-14"] {
+      top: 3.5rem !important;
+    }
+    [class~="@lg/editor:bottom-0"] {
+      bottom: 0 !important;
+    }
+    [class~="@lg/editor:left-auto"] {
+      left: auto !important;
+    }
+    [class~="@lg/editor:right-0"] {
+      right: 0 !important;
+    }
+    [class~="@lg/editor:w-[360px]"] {
+      width: 360px !important;
+    }
+    [class~="@lg/editor:max-h-none"] {
+      max-height: none !important;
+    }
+    [class~="@lg/editor:rounded-none"] {
+      border-radius: 0 !important;
+    }
+    [class~="@lg/editor:border-t-0"] {
+      border-top-width: 0 !important;
+    }
+    [class~="@lg/editor:border-l"] {
+      border-left-width: 1px !important;
+    }
+    [class~="@lg/editor:animate-none"] {
+      animation: none !important;
+    }
+    [class~="@lg/editor:hidden"] {
+      display: none !important;
+    }
+    [class~="@lg/editor:flex-col"] {
+      flex-direction: column !important;
+    }
+    [class~="@lg/editor:gap-0"] {
+      gap: 0 !important;
+    }
+    [class~="@lg/editor:gap-8"] {
+      gap: 2rem !important;
+    }
+    [class~="@lg/editor:p-0"] {
+      padding: 0 !important;
+    }
+    [class~="@lg/editor:px-6"] {
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+    }
+    [class~="@lg/editor:overflow-x-visible"] {
+      overflow-x: visible !important;
+    }
+    [class~="@lg/editor:h-9"] {
+      height: 2.25rem !important;
+    }
+    [class~="@lg/editor:w-9"] {
+      width: 2.25rem !important;
+    }
+    [class~="@lg/editor:mr-[360px]"] {
+      margin-right: 360px !important;
+    }
+    [class~="@lg/editor:right-[360px]"] {
+      right: 360px !important;
+    }
+    [class~="@lg/editor:bg-transparent"] {
+      background-color: transparent !important;
+    }
+    [class~="@lg/editor:backdrop-blur-none"] {
+      backdrop-filter: none !important;
+    }
+    [class~="@lg/editor:border-b-0"] {
+      border-bottom-width: 0 !important;
+    }
+    [class~="@lg/editor:bg-background"] {
+      background-color: var(--color-background) !important;
+    }
+  }
+
   /* Hide scrollbar for Chrome, Safari and Opera */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;

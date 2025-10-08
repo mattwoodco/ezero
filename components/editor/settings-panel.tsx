@@ -1,7 +1,5 @@
 "use client";
 
-import * as Dialog from "@radix-ui/react-dialog";
-import { ChevronDown, Redo, Undo, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -11,6 +9,8 @@ import {
 } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
 import type { GmailActionsSettings } from "@/types/email";
+import * as Dialog from "@radix-ui/react-dialog";
+import { ChevronDown, Redo, Undo, X } from "lucide-react";
 import { BlockTypeMenu } from "./block-type-menu";
 import { GmailActionsSettingsPanel } from "./gmail-actions-settings";
 
@@ -41,30 +41,28 @@ export function SettingsPanel() {
       onOpenChange={(open) => {
         if (!open) handleClose();
       }}
+      modal={false}
     >
       <Dialog.Portal>
-        {/* Mobile: Overlay */}
-        <Dialog.Overlay
-          className="@lg/editor:hidden fixed inset-0 bg-black/50 z-30 animate-in fade-in duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out"
+        {/* Overlay - hidden for now */}
+        {/* <Dialog.Overlay
+          className="fixed inset-0 bg-black/50 z-30 animate-in fade-in duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out"
           aria-label="Settings panel overlay"
-        />
+        /> */}
 
-        {/* Panel Content - Mobile: Bottom Sheet, Desktop: Right Panel */}
+        {/* Panel Content - Sidebar for all breakpoints */}
         <Dialog.Content
+          key="settings-panel"
           className="
-            fixed bottom-0 left-0 right-0
-            max-h-[80vh] bg-background
-            rounded-t-xl border-t
+            fixed top-0 bottom-0 right-0
+            w-[360px] h-screen bg-background
             flex flex-col z-30
-            animate-in slide-in-from-bottom duration-300
-            data-[state=closed]:animate-out data-[state=closed]:slide-out-to-bottom data-[state=closed]:duration-200
-            @lg/editor:top-14 @lg/editor:bottom-0 @lg/editor:left-auto
-            @lg/editor:right-0 @lg/editor:w-[360px] @lg/editor:max-h-none
-            @lg/editor:rounded-none @lg/editor:border-t-0 @lg/editor:border-l
-            @lg/editor:animate-none
+            shadow-xl
           "
           aria-label="Block settings panel"
           aria-describedby="settings-panel-description"
+          onOpenAutoFocus={(e) => e.preventDefault()}
+          onCloseAutoFocus={(e) => e.preventDefault()}
         >
           <div id="settings-panel-description" className="sr-only">
             Configure settings for the selected block including layout, fonts,
@@ -72,8 +70,8 @@ export function SettingsPanel() {
           </div>
 
           <Tabs defaultValue="block" className="flex-1 flex flex-col">
-            {/* Header with Close Button (Mobile Only) */}
-            <div className="border-b @lg/editor:hidden flex items-center justify-between px-4 py-3">
+            {/* Header with Close Button */}
+            <div className="flex items-center justify-between px-4 py-3">
               <Dialog.Title className="text-sm font-medium">
                 Block Settings
               </Dialog.Title>
@@ -90,14 +88,12 @@ export function SettingsPanel() {
             </div>
 
             {/* Tabs Navigation */}
-            <div className="border-b">
+            <div>
               <TabsList
                 className="
                 w-full bg-transparent p-0 h-auto rounded-none
                 justify-start gap-4 px-4 pt-4
                 overflow-x-auto overflow-y-hidden
-                @lg/editor:gap-8 @lg/editor:px-6
-                @lg/editor:overflow-x-visible
                 scrollbar-hide
                 -webkit-overflow-scrolling-touch
               "
@@ -237,7 +233,7 @@ export function SettingsPanel() {
             </div>
 
             {/* Footer - Undo/Redo */}
-            <div className="border-t px-4 py-4 flex items-center justify-between">
+            <div className="px-4 py-4 flex items-center justify-between">
               <div className="flex gap-2">
                 <Tooltip>
                   <TooltipTrigger asChild>

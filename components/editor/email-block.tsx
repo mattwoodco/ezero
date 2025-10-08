@@ -21,20 +21,23 @@ interface EmailBlockProps {
 }
 
 export function EmailBlock({ block, index }: EmailBlockProps) {
-  const { selectedBlockId, selectBlock, addBlock } = useEditor();
+  const { selectedBlockId, selectBlock, addBlock, openMenuId, setOpenMenuId } = useEditor();
   const [isHovered, setIsHovered] = useState(false);
-  const [showMenuAbove, setShowMenuAbove] = useState(false);
-  const [showMenuBelow, setShowMenuBelow] = useState(false);
   const isSelected = selectedBlockId === block.id;
+
+  const menuAboveId = `${block.id}-above`;
+  const menuBelowId = `${block.id}-below`;
+  const showMenuAbove = openMenuId === menuAboveId;
+  const showMenuBelow = openMenuId === menuBelowId;
 
   const handleAddAbove = (type: BlockType) => {
     addBlock(index, type);
-    setShowMenuAbove(false);
+    setOpenMenuId(null);
   };
 
   const handleAddBelow = (type: BlockType) => {
     addBlock(index + 1, type);
-    setShowMenuBelow(false);
+    setOpenMenuId(null);
   };
 
   const blockTypeLabel =
@@ -47,7 +50,7 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
         <div onClick={(e) => e.stopPropagation()}>
           <BlockTypeMenu
             onSelect={handleAddAbove}
-            onClose={() => setShowMenuAbove(false)}
+            onClose={() => setOpenMenuId(null)}
           />
         </div>
       )}
@@ -61,9 +64,8 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
             className={cn(
               "relative w-full text-left cursor-pointer",
               index > 0 && "-mt-px",
-              "transition-all duration-150",
               "min-h-[44px]", // Minimum touch target height for mobile
-              isHovered && "outline outline-2 outline-primary shadow-xl z-10",
+              isHovered && "outline outline-1 outline-primary shadow-xl z-10",
               isSelected && !isHovered && "outline outline-1 outline-border",
             )}
             onMouseEnter={() => setIsHovered(true)}
@@ -79,16 +81,16 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
             {/* Add button above */}
             {isHovered && !showMenuBelow && (
               <div
-                className="absolute -top-4 left-1/2 -translate-x-1/2 z-10"
+                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 cursor-pointer"
                 onClick={(e) => e.stopPropagation()}
               >
                 <Button
                   variant="outline"
                   size="icon-sm"
-                  className="rounded-full !bg-background shadow-md !border-2 !border-primary text-muted-foreground hover:!bg-primary hover:!text-primary-foreground cursor-pointer min-h-[44px] min-w-[44px]"
-                  onClick={() => setShowMenuAbove(true)}
+                  className="rounded-full !bg-background shadow-md !border !border-primary text-muted-foreground hover:!bg-primary hover:!text-primary-foreground cursor-pointer h-6 w-6 p-0"
+                  onClick={() => setOpenMenuId(menuAboveId)}
                 >
-                  <Plus className="size-4" />
+                  <Plus className="size-3" />
                 </Button>
               </div>
             )}
@@ -99,16 +101,16 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
             {/* Add button below */}
             {isHovered && !showMenuAbove && (
               <div
-                className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-10"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10 cursor-pointer"
                 onClick={(e) => e.stopPropagation()}
               >
                 <Button
                   variant="outline"
                   size="icon-sm"
-                  className="rounded-full !bg-background shadow-md !border-2 !border-primary text-muted-foreground hover:!bg-primary hover:!text-primary-foreground cursor-pointer min-h-[44px] min-w-[44px]"
-                  onClick={() => setShowMenuBelow(true)}
+                  className="rounded-full !bg-background shadow-md !border !border-primary text-muted-foreground hover:!bg-primary hover:!text-primary-foreground cursor-pointer h-6 w-6 p-0"
+                  onClick={() => setOpenMenuId(menuBelowId)}
                 >
-                  <Plus className="size-4" />
+                  <Plus className="size-3" />
                 </Button>
               </div>
             )}
@@ -122,7 +124,7 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
         <div onClick={(e) => e.stopPropagation()}>
           <BlockTypeMenu
             onSelect={handleAddBelow}
-            onClose={() => setShowMenuBelow(false)}
+            onClose={() => setOpenMenuId(null)}
           />
         </div>
       )}

@@ -18,6 +18,7 @@ interface EditorContextType {
   previewMode: "desktop" | "mobile" | null;
   canUndo: boolean;
   canRedo: boolean;
+  openMenuId: string | null;
   selectBlock: (id: string | null) => void;
   addBlock: (index: number, type: EmailBlock["type"]) => void;
   moveBlock: (id: string, direction: "up" | "down") => void;
@@ -28,6 +29,7 @@ interface EditorContextType {
   updateBlockSettings: (id: string, settings: EmailBlock["settings"]) => void;
   setPreviewMode: (mode: "desktop" | "mobile" | null) => void;
   setBlocks: (blocks: EmailBlock[]) => void;
+  setOpenMenuId: (id: string | null) => void;
   undo: () => void;
   redo: () => void;
 }
@@ -58,6 +60,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
   const [previewMode, setPreviewMode] = useState<"desktop" | "mobile" | null>(
     null,
   );
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
   // History management
   const [history, setHistory] = useState<HistoryState[]>([
@@ -85,6 +88,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
   const selectBlock = useCallback(
     (id: string | null) => {
       setSelectedBlockId(id);
+      setOpenMenuId(null);
     },
     [setSelectedBlockId],
   );
@@ -233,6 +237,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         previewMode,
         canUndo,
         canRedo,
+        openMenuId,
         selectBlock,
         addBlock,
         moveBlock,
@@ -243,6 +248,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         updateBlockSettings,
         setPreviewMode,
         setBlocks: setBlocksWithHistory,
+        setOpenMenuId,
         undo,
         redo,
       }}
