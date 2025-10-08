@@ -98,13 +98,13 @@ export const StripeWelcomeEmail = () => (
 export default StripeWelcomeEmail;
 
 const main = {
-  backgroundColor: "#f6f9fc",
+  backgroundColor: "hsl(var(--muted))",
   fontFamily:
     '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 };
 
 const container = {
-  backgroundColor: "#ffffff",
+  backgroundColor: "hsl(var(--card))",
   margin: "0 auto",
   padding: "20px 0 48px",
   marginBottom: "64px",
@@ -115,12 +115,12 @@ const box = {
 };
 
 const hr = {
-  borderColor: "#e6ebf1",
+  borderColor: "hsl(var(--border))",
   margin: "20px 0",
 };
 
 const paragraph = {
-  color: "#525f7f",
+  color: "hsl(var(--muted-foreground))",
 
   fontSize: "16px",
   lineHeight: "24px",
@@ -134,7 +134,7 @@ const anchor = {
 const button = {
   backgroundColor: "#656ee8",
   borderRadius: "5px",
-  color: "#fff",
+  color: "hsl(var(--primary-foreground))",
   fontSize: "16px",
   fontWeight: "bold",
   textDecoration: "none",
@@ -145,7 +145,7 @@ const button = {
 };
 
 const footer = {
-  color: "#8898aa",
+  color: "hsl(var(--muted-foreground))",
   fontSize: "12px",
   lineHeight: "16px",
 };

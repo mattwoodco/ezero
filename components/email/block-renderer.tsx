@@ -25,13 +25,13 @@ export function BlockContent({ block }: BlockContentProps) {
       return (
         <div className={wrapperClass}>
           <Heading
-            className="mx-0 my-4 p-0 text-[24px] font-semibold text-black"
+            className="mx-0 my-4 p-0 text-[24px] font-semibold text-foreground"
             style={{
               margin: "16px 0",
               padding: 0,
               fontSize: "24px",
               fontWeight: 600,
-              color: "#000000",
+              color: "hsl(var(--foreground))",
               ...((settings.style as React.CSSProperties) || {}),
             }}
             {...settings}
@@ -45,11 +45,11 @@ export function BlockContent({ block }: BlockContentProps) {
       return (
         <div className={wrapperClass}>
           <Text
-            className="text-[14px] text-black leading-[24px]"
+            className="text-[14px] text-foreground leading-[24px]"
             style={{
               fontSize: "14px",
               lineHeight: "24px",
-              color: "#000000",
+              color: "hsl(var(--foreground))",
               margin: 0,
               ...((settings.style as React.CSSProperties) || {}),
             }}
@@ -65,11 +65,11 @@ export function BlockContent({ block }: BlockContentProps) {
         <div className={wrapperClass}>
           <Section className="my-4 text-center">
             <Button
-              className="rounded bg-black px-5 py-3 text-center font-semibold text-[12px] text-white no-underline"
+              className="rounded bg-primary px-5 py-3 text-center font-semibold text-[12px] text-primary-foreground no-underline"
               style={{
                 borderRadius: "6px",
-                backgroundColor: "#000000",
-                color: "#ffffff",
+                backgroundColor: "hsl(var(--primary))",
+                color: "hsl(var(--primary-foreground))",
                 fontSize: "12px",
                 fontWeight: 600,
                 textDecoration: "none",
@@ -106,15 +106,15 @@ export function BlockContent({ block }: BlockContentProps) {
               />
             ) : (
               <div
-                className="bg-muted h-32 flex items-center justify-center text-muted-foreground border border-dashed border-gray-300 rounded"
+                className="bg-muted h-32 flex items-center justify-center text-muted-foreground border border-dashed border-border rounded"
                 style={{
-                  backgroundColor: "#f5f5f5",
+                  backgroundColor: "hsl(var(--muted))",
                   height: "128px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#999999",
-                  border: "2px dashed #d1d1d1",
+                  color: "hsl(var(--muted-foreground))",
+                  border: "2px dashed hsl(var(--border))",
                   borderRadius: "4px",
                 }}
               >
@@ -129,11 +129,11 @@ export function BlockContent({ block }: BlockContentProps) {
       return (
         <div className={wrapperClass}>
           <Hr
-            className="mx-0 my-6 w-full border border-gray-300 border-solid"
+            className="mx-0 my-6 w-full border border-border border-solid"
             style={{
               width: "100%",
               border: "none",
-              borderTop: "1px solid #e5e5e5",
+              borderTop: "1px solid hsl(var(--border))",
               margin: "24px 0",
               ...((settings.style as React.CSSProperties) || {}),
             }}
@@ -159,7 +159,7 @@ export function BlockContent({ block }: BlockContentProps) {
     default:
       return (
         <div className={wrapperClass}>
-          <Text style={{ color: "#999999" }}>Unknown block type: {type}</Text>
+          <Text style={{ color: "hsl(var(--muted-foreground))" }}>Unknown block type: {type}</Text>
         </div>
       );
   }

@@ -85,12 +85,12 @@ export function PreviewDialog() {
             {/* Preview Content */}
             <div className="flex flex-1 items-start justify-center overflow-auto bg-background px-8 pb-8">
               {activeMode === "desktop" ? (
-                <div className="w-full max-w-[600px] bg-white">
+                <div className="w-full max-w-[600px] bg-card">
                   <EmailPreview blocks={blocks} />
                 </div>
               ) : (
-                <div className="rounded-[2.5rem] border-8 border-black bg-black p-2.5 shadow-2xl">
-                  <div className="h-[667px] w-[375px] overflow-auto rounded-[2rem] bg-white">
+                <div className="rounded-[2.5rem] border-8 border-primary bg-primary p-2.5 shadow-2xl">
+                  <div className="h-[667px] w-[375px] overflow-auto rounded-[2rem] bg-card">
                     <EmailPreview blocks={blocks} />
                   </div>
                 </div>

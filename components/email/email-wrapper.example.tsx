@@ -121,7 +121,7 @@ const styledBlocks: EmailBlock[] = [
     settings: {
       style: {
         fontSize: "12px",
-        color: "#6B7280",
+        color: "hsl(var(--muted-foreground))",
         textAlign: "center",
       },
     },
@@ -255,7 +255,7 @@ function generateVerificationEmail(user: UserData): EmailBlock[] {
       settings: {
         style: {
           fontSize: "12px",
-          color: "#6B7280",
+          color: "hsl(var(--muted-foreground))",
         },
       },
     },

@@ -45,7 +45,7 @@ export const NotionMagicLinkEmail = ({
         <Text
           style={{
             ...text,
-            color: "#ababab",
+            color: "hsl(var(--muted-foreground))",
             marginTop: "14px",
             marginBottom: "16px",
           }}
@@ -55,7 +55,7 @@ export const NotionMagicLinkEmail = ({
         <Text
           style={{
             ...text,
-            color: "#ababab",
+            color: "hsl(var(--muted-foreground))",
             marginTop: "12px",
             marginBottom: "38px",
           }}
@@ -73,7 +73,7 @@ export const NotionMagicLinkEmail = ({
           <Link
             href="https://notion.so"
             target="_blank"
-            style={{ ...link, color: "#898989" }}
+            style={{ ...link, color: "hsl(var(--muted-foreground))" }}
           >
             Notion.so
           </Link>
@@ -93,7 +93,7 @@ NotionMagicLinkEmail.PreviewProps = {
 export default NotionMagicLinkEmail;
 
 const main = {
-  backgroundColor: "#ffffff",
+  backgroundColor: "hsl(var(--background))",
 };
 
 const container = {
@@ -103,7 +103,7 @@ const container = {
 };
 
 const h1 = {
-  color: "#333",
+  color: "hsl(var(--foreground))",
   fontFamily:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
   fontSize: "24px",
@@ -121,7 +121,7 @@ const link = {
 };
 
 const text = {
-  color: "#333",
+  color: "hsl(var(--foreground))",
   fontFamily:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
   fontSize: "14px",
@@ -129,7 +129,7 @@ const text = {
 };
 
 const footer = {
-  color: "#898989",
+  color: "hsl(var(--muted-foreground))",
   fontFamily:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
   fontSize: "12px",
@@ -142,8 +142,8 @@ const code = {
   display: "inline-block",
   padding: "16px 4.5%",
   width: "90.5%",
-  backgroundColor: "#f4f4f4",
+  backgroundColor: "hsl(var(--muted))",
   borderRadius: "5px",
-  border: "1px solid #eee",
-  color: "#333",
+  border: "1px solid hsl(var(--border))",
+  color: "hsl(var(--foreground))",
 };

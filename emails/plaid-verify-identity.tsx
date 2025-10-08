@@ -60,13 +60,13 @@ PlaidVerifyIdentityEmail.PreviewProps = {
 export default PlaidVerifyIdentityEmail;
 
 const main = {
-  backgroundColor: "#ffffff",
+  backgroundColor: "hsl(var(--background))",
   fontFamily: "HelveticaNeue,Helvetica,Arial,sans-serif",
 };
 
 const container = {
-  backgroundColor: "#ffffff",
-  border: "1px solid #eee",
+  backgroundColor: "hsl(var(--card))",
+  border: "1px solid hsl(var(--border))",
   borderRadius: "5px",
   boxShadow: "0 5px 10px rgba(20,50,70,.2)",
   marginTop: "20px",
@@ -93,7 +93,7 @@ const tertiary = {
 };
 
 const secondary = {
-  color: "#000",
+  color: "hsl(var(--foreground))",
   display: "inline-block",
   fontFamily: "HelveticaNeue-Medium,Helvetica,Arial,sans-serif",
   fontSize: "20px",
@@ -105,7 +105,7 @@ const secondary = {
 };
 
 const codeContainer = {
-  background: "rgba(0,0,0,.05)",
+  background: "hsl(var(--muted) / 0.5)",
   borderRadius: "4px",
   margin: "16px auto 14px",
   verticalAlign: "middle",
@@ -113,7 +113,7 @@ const codeContainer = {
 };
 
 const code = {
-  color: "#000",
+  color: "hsl(var(--foreground))",
   display: "inline-block",
   fontFamily: "HelveticaNeue-Bold",
   fontSize: "32px",
@@ -128,7 +128,7 @@ const code = {
 };
 
 const paragraph = {
-  color: "#444",
+  color: "hsl(var(--foreground))",
   fontSize: "15px",
   fontFamily: "HelveticaNeue,Helvetica,Arial,sans-serif",
   letterSpacing: "0",
@@ -139,12 +139,12 @@ const paragraph = {
 };
 
 const link = {
-  color: "#444",
+  color: "hsl(var(--foreground))",
   textDecoration: "underline",
 };
 
 const footer = {
-  color: "#000",
+  color: "hsl(var(--foreground))",
   fontSize: "12px",
   fontWeight: 800,
   letterSpacing: "0",

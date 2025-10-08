@@ -36,7 +36,7 @@ function renderBlock(block: EmailBlock) {
             padding: 0,
             fontSize: "24px",
             fontWeight: 600,
-            color: "#000000",
+            color: "hsl(var(--foreground))",
             fontFamily:
               "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
             ...((settings.style as React.CSSProperties) || {}),
@@ -54,7 +54,7 @@ function renderBlock(block: EmailBlock) {
           style={{
             fontSize: "14px",
             lineHeight: "24px",
-            color: "#000000",
+            color: "hsl(var(--foreground))",
             margin: "0 0 16px 0",
             fontFamily:
               "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
@@ -75,8 +75,8 @@ function renderBlock(block: EmailBlock) {
           <Button
             style={{
               borderRadius: "6px",
-              backgroundColor: "#000000",
-              color: "#ffffff",
+              backgroundColor: "hsl(var(--primary))",
+              color: "hsl(var(--primary-foreground))",
               fontSize: "12px",
               fontWeight: 600,
               textDecoration: "none",
@@ -113,13 +113,13 @@ function renderBlock(block: EmailBlock) {
           ) : (
             <div
               style={{
-                backgroundColor: "#f5f5f5",
+                backgroundColor: "hsl(var(--muted))",
                 height: "128px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "#999999",
-                border: "2px dashed #d1d1d1",
+                color: "hsl(var(--muted-foreground))",
+                border: "2px dashed hsl(var(--border))",
                 borderRadius: "4px",
                 fontFamily:
                   "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
@@ -138,7 +138,7 @@ function renderBlock(block: EmailBlock) {
           style={{
             width: "100%",
             border: "none",
-            borderTop: "1px solid #e5e5e5",
+            borderTop: "1px solid hsl(var(--border))",
             margin: "24px 0",
             ...((settings.style as React.CSSProperties) || {}),
           }}
@@ -163,7 +163,7 @@ function renderBlock(block: EmailBlock) {
         <Text
           key={block.id}
           style={{
-            color: "#999999",
+            color: "hsl(var(--muted-foreground))",
             fontFamily:
               "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
           }}
@@ -210,7 +210,7 @@ export function EmailWrapper({
       {previewText && <Preview>{previewText}</Preview>}
       <Body
         style={{
-          backgroundColor: "#ffffff",
+          backgroundColor: "hsl(var(--background))",
           margin: 0,
           padding: 0,
           fontFamily:
