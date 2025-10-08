@@ -12,8 +12,19 @@ import {
   Text,
 } from "@react-email/components";
 import type * as React from "react";
-import { generateJsonLd } from "@/lib/gmail-actions-utils";
-import type { EmailBlock, GmailActionsSettings } from "@/types/email";
+import {
+  generateJsonLd,
+  generatePromotionJsonLd,
+} from "@/lib/gmail-actions-utils";
+import type {
+  EmailBlock,
+  GmailActionConfig,
+  GmailActionsSettings,
+  GmailActionType,
+  InvoiceSettings,
+  OrderSettings,
+  PromotionSettings,
+} from "@/types/email";
 
 interface EmailWrapperProps {
   blocks: EmailBlock[];
@@ -732,15 +743,18 @@ function renderBlock(block: EmailBlock) {
 
                   switch (action.type) {
                     case "ViewAction":
-                      buttonHref = action.target || "#";
+                      buttonHref = Array.isArray(action.target)
+                        ? action.target[0] || "#"
+                        : action.target || "#";
                       break;
                     case "ConfirmAction":
                     case "SaveAction":
                       buttonHref = action.handler?.url || "#";
                       break;
                     case "TrackAction":
-                      buttonHref =
-                        action.target || action.parcel?.trackingUrl || "#";
+                      buttonHref = Array.isArray(action.target)
+                        ? action.target[0] || action.parcel?.trackingUrl || "#"
+                        : action.target || action.parcel?.trackingUrl || "#";
                       break;
                     case "RsvpAction":
                       buttonHref = "#";
@@ -855,6 +869,121 @@ export function EmailWrapper({
             );
           });
         })}
+        {/* Inject JSON-LD for individual reservation and commerce blocks */}
+        {(() => {
+          const individualBlockSchemas: Array<{ schema: string; key: string }> =
+            [];
+
+          blocks.forEach((block, blockIndex) => {
+            // Handle reservation blocks
+            if (
+              block.type === "flight" ||
+              block.type === "hotel" ||
+              block.type === "train" ||
+              block.type === "bus" ||
+              block.type === "rental" ||
+              block.type === "restaurant"
+            ) {
+              // Map block type to GmailActionType
+              const typeMap: Record<string, GmailActionType> = {
+                flight: "FlightReservation",
+                hotel: "LodgingReservation",
+                train: "TrainReservation",
+                bus: "BusReservation",
+                rental: "RentalCarReservation",
+                restaurant: "FoodEstablishmentReservation",
+              };
+
+              // Map block type to property name in GmailActionConfig
+              const propertyMap: Record<string, string> = {
+                flight: "flight",
+                hotel: "lodging",
+                train: "train",
+                bus: "bus",
+                rental: "rentalCar",
+                restaurant: "restaurant",
+              };
+
+              const propertyName = propertyMap[block.type];
+              const reservationData = block.settings?.[propertyName];
+
+              if (reservationData) {
+                const config: GmailActionConfig = {
+                  type: typeMap[block.type],
+                  name: block.type,
+                  [propertyName]: reservationData,
+                } as GmailActionConfig;
+
+                individualBlockSchemas.push({
+                  schema: generateJsonLd(config),
+                  key: `individual-${block.type}-${blockIndex}`,
+                });
+              }
+            }
+
+            // Handle commerce blocks
+            if (block.type === "order") {
+              const orderData = block.settings?.order as
+                | OrderSettings
+                | undefined;
+              if (orderData) {
+                const config: GmailActionConfig = {
+                  type: "OrderAction",
+                  name: "Order",
+                  order: orderData,
+                };
+                individualBlockSchemas.push({
+                  schema: generateJsonLd(config),
+                  key: `individual-order-${blockIndex}`,
+                });
+              }
+            }
+
+            if (block.type === "invoice") {
+              const invoiceData = block.settings?.invoice as
+                | InvoiceSettings
+                | undefined;
+              if (invoiceData) {
+                const config: GmailActionConfig = {
+                  type: "Invoice",
+                  name: "Invoice",
+                  invoice: invoiceData,
+                };
+                individualBlockSchemas.push({
+                  schema: generateJsonLd(config),
+                  key: `individual-invoice-${blockIndex}`,
+                });
+              }
+            }
+
+            if (block.type === "promocode") {
+              const promotionData = block.settings?.promotion as
+                | PromotionSettings
+                | undefined;
+              if (promotionData) {
+                const config: GmailActionConfig = {
+                  type: "ViewAction",
+                  name: "Promotion",
+                  promotion: promotionData,
+                };
+                individualBlockSchemas.push({
+                  schema: generatePromotionJsonLd(config),
+                  key: `individual-promocode-${blockIndex}`,
+                });
+              }
+            }
+          });
+
+          // Render all individual schemas
+          return individualBlockSchemas.map(({ schema, key }) => (
+            <script
+              key={key}
+              type="application/ld+json"
+              // biome-ignore lint/security/noDangerouslySetInnerHtml: Safe use of JSON-LD structured data for Gmail Actions
+              dangerouslySetInnerHTML={{ __html: schema }}
+            />
+          ));
+        })()}
       </Head>
       {previewText && <Preview>{previewText}</Preview>}
       <Body

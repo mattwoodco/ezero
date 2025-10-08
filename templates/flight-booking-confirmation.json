@@ -1,0 +1,159 @@
+{
+  "metadata": {
+    "id": "flight-booking-confirmation",
+    "name": "Flight Booking Confirmation",
+    "description": "Flight reservation confirmation with boarding pass details and check-in information. Perfect for airlines and travel booking platforms.",
+    "category": "transactional",
+    "tags": ["travel", "booking", "reservation"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Your Flight is Confirmed",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Great news! Your flight reservation has been confirmed. Please review your booking details below.",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-2",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-3",
+      "type": "flight",
+      "settings": {
+        "flight": {
+          "reservationNumber": "ABC123XYZ",
+          "reservationStatus": "Confirmed",
+          "passengerName": "Jane Doe",
+          "flightNumber": "AA1234",
+          "airline": "American Airlines",
+          "airlineCode": "AA",
+          "departureAirport": "San Francisco International Airport",
+          "departureAirportCode": "SFO",
+          "departureTime": "2025-10-20T08:00:00Z",
+          "departureGate": "B12",
+          "boardingTime": "2025-10-20T07:30:00Z",
+          "arrivalAirport": "John F. Kennedy International Airport",
+          "arrivalAirportCode": "JFK",
+          "arrivalTime": "2025-10-20T16:30:00Z",
+          "seatNumber": "12A",
+          "ticketToken": "TKABCD1234567890",
+          "frequentFlyerNumber": "FF123456789",
+          "frequentFlyerProgram": "AAdvantage"
+        }
+      }
+    },
+    {
+      "id": "block-4",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-5",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "Important Information",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-7",
+      "type": "text",
+      "content": "• Check-in opens 24 hours before departure\n• Arrive at the airport at least 2 hours before your flight\n• Boarding begins 30 minutes before departure\n• Please have a valid photo ID ready\n• Carry-on baggage: 1 personal item + 1 carry-on allowed",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-9",
+      "type": "button",
+      "content": "Check In Online",
+      "settings": {
+        "url": "https://example.com/checkin/ABC123XYZ",
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-11",
+      "type": "button",
+      "content": "View Booking Details",
+      "settings": {
+        "url": "https://example.com/bookings/ABC123XYZ",
+        "align": "center",
+        "variant": "secondary"
+      }
+    },
+    {
+      "id": "block-12",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-13",
+      "type": "text",
+      "content": "Need to make changes?",
+      "settings": {
+        "bold": true
+      }
+    },
+    {
+      "id": "block-14",
+      "type": "text",
+      "content": "You can modify or cancel your reservation up to 24 hours before departure. Changes may incur fees depending on your fare class.",
+      "settings": {}
+    },
+    {
+      "id": "block-15",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-16",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-17",
+      "type": "footer",
+      "content": "Questions? Contact us at support@airline.com or call 1-800-FLY-WITH\n\nThank you for choosing American Airlines. Have a great flight!\n\n© 2025 American Airlines. All rights reserved.",
+      "settings": {}
+    }
+  ]
+}

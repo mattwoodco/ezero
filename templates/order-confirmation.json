@@ -4,7 +4,7 @@
     "name": "Order Confirmation",
     "description": "Immediate confirmation after purchase with order details. Critical trust-building email with all necessary transaction information.",
     "category": "transactional",
-    "tags": ["update"],
+    "tags": ["update", "order", "ecommerce"],
     "createdAt": "2025-01-15T00:00:00.000Z",
     "updatedAt": "2025-01-15T00:00:00.000Z"
   },
@@ -13,75 +13,227 @@
       "id": "block-0",
       "type": "heading",
       "content": "Thank You for Your Order!",
-      "settings": {}
+      "settings": {
+        "align": "center"
+      }
     },
     {
       "id": "block-1",
       "type": "text",
-      "content": "Hi {customerName},\n\nThank you for your purchase. Your order has been confirmed and is being processed.",
-      "settings": {}
+      "content": "Your order has been confirmed and is being processed. We'll send you another email when your order ships.",
+      "settings": {
+        "align": "center"
+      }
     },
     {
       "id": "block-2",
-      "type": "divider",
-      "settings": {}
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
     },
     {
       "id": "block-3",
-      "type": "text",
-      "content": "Order #{orderNumber}\nOrder Date: {orderDate}\nOrder Total: ${orderTotal}\nStatus: Processing",
-      "settings": {}
+      "type": "order",
+      "settings": {
+        "order": {
+          "orderNumber": "ORD-2025-5678",
+          "orderDate": "2025-10-15T14:30:00Z",
+          "orderStatus": "OrderProcessing",
+          "merchantName": "TechGear Store",
+          "customerName": "Sarah Johnson",
+          "customerEmail": "sarah.johnson@email.com",
+          "items": [
+            {
+              "name": "Wireless Bluetooth Headphones",
+              "quantity": 1,
+              "price": 149.99,
+              "sku": "WBH-2025-BLK",
+              "description": "Premium noise-canceling headphones with 30-hour battery"
+            },
+            {
+              "name": "USB-C Fast Charging Cable (2-Pack)",
+              "quantity": 2,
+              "price": 24.99,
+              "sku": "USBC-2PK",
+              "description": "6ft braided cable with 100W power delivery"
+            },
+            {
+              "name": "Smartphone Protective Case",
+              "quantity": 1,
+              "price": 39.99,
+              "sku": "SPC-CLR-15",
+              "description": "Clear case with military-grade drop protection"
+            }
+          ],
+          "subtotal": 239.96,
+          "tax": 21.6,
+          "shipping": 8.99,
+          "total": 270.55,
+          "currency": "USD",
+          "shippingAddress": {
+            "streetAddress": "456 Oak Street, Apt 3B",
+            "addressLocality": "Portland",
+            "addressRegion": "OR",
+            "postalCode": "97201",
+            "addressCountry": "USA"
+          },
+          "viewOrderUrl": "https://example.com/orders/ORD-2025-5678"
+        }
+      }
     },
     {
       "id": "block-4",
-      "type": "divider",
-      "settings": {}
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
     },
     {
       "id": "block-5",
-      "type": "text",
-      "content": "Items in your order:\n\n• {productName1} - Qty: {qty1} - ${itemPrice1}\n• {productName2} - Qty: {qty2} - ${itemPrice2}\n\nSubtotal: ${subtotal}\nShipping: ${shipping}\nTax: ${tax}\nTotal: ${orderTotal}",
+      "type": "divider",
       "settings": {}
     },
     {
       "id": "block-6",
-      "type": "divider",
-      "settings": {}
+      "type": "text",
+      "content": "Expected Timeline",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
     },
     {
       "id": "block-7",
       "type": "text",
-      "content": "Shipping Address:\n{shippingName}\n{shippingAddress}\n{shippingCity}, {shippingState} {shippingZip}",
+      "content": "✓ Order confirmed - Today\n• Processing - 1-2 business days\n• Shipped - You'll receive tracking info\n• Delivered - 3-5 business days after shipping",
       "settings": {}
     },
     {
       "id": "block-8",
-      "type": "text",
-      "content": "Expected Timeline:\n✓ Order confirmed\n• Processing (1-2 business days)\n• Shipped (you'll receive tracking)\n• Delivered (5-7 business days)",
-      "settings": {}
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
     },
     {
       "id": "block-9",
-      "type": "divider",
-      "settings": {}
-    },
-    {
-      "id": "block-10",
       "type": "button",
       "content": "View Order Details",
       "settings": {
-        "url": "https://example.com/orders/{orderNumber}"
+        "url": "https://example.com/orders/ORD-2025-5678",
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "spacer",
+      "settings": {
+        "height": "15"
       }
     },
     {
       "id": "block-11",
+      "type": "button",
+      "content": "Track Your Order",
+      "settings": {
+        "url": "https://example.com/track/ORD-2025-5678",
+        "align": "center",
+        "variant": "secondary"
+      }
+    },
+    {
+      "id": "block-12",
       "type": "divider",
       "settings": {}
     },
     {
-      "id": "block-12",
+      "id": "block-13",
       "type": "text",
-      "content": "Questions about your order?\nContact us at support@example.com or call 1-800-XXX-XXXX\n\nWe're here to help!\n\n{companyName}",
+      "content": "Payment Information",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-14",
+      "type": "text",
+      "content": "Payment Method: Visa ending in 4242\nBilling Address: Same as shipping address\n\nYou will see this charge as \"TECHGEAR STORE\" on your statement.",
+      "settings": {}
+    },
+    {
+      "id": "block-15",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-16",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-17",
+      "type": "text",
+      "content": "Need Help?",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-18",
+      "type": "text",
+      "content": "Our customer service team is here to help!\n\nEmail: support@techgearstore.com\nPhone: 1-800-TECH-GEAR (Mon-Fri, 9am-6pm EST)\nLive Chat: Available on our website 24/7",
+      "settings": {}
+    },
+    {
+      "id": "block-19",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-20",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-21",
+      "type": "text",
+      "content": "Return Policy",
+      "settings": {
+        "bold": true,
+        "fontSize": "16"
+      }
+    },
+    {
+      "id": "block-22",
+      "type": "text",
+      "content": "Not satisfied? We offer free returns within 30 days of delivery. Items must be unused and in original packaging.",
+      "settings": {
+        "fontSize": "14"
+      }
+    },
+    {
+      "id": "block-23",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-24",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-25",
+      "type": "footer",
+      "content": "Thank you for shopping with TechGear Store!\n\n© 2025 TechGear Store. All rights reserved.\n789 Tech Plaza, San Jose, CA 95110",
       "settings": {}
     }
   ]

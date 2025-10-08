@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "id": "promotional-offer",
+    "name": "Promotional Offer with Discount Code",
+    "description": "Eye-catching promotional email with discount code and limited-time offer. Perfect for marketing campaigns and seasonal sales.",
+    "category": "marketing",
+    "tags": ["promotion", "discount", "sale", "marketing"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Exclusive Offer Just For You!",
+      "settings": {
+        "align": "center",
+        "color": "#e91e63"
+      }
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Save Big on Your Next Purchase",
+      "settings": {
+        "align": "center",
+        "fontSize": "20",
+        "bold": true
+      }
+    },
+    {
+      "id": "block-2",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-3",
+      "type": "image",
+      "content": "https://placehold.co/600x300/e91e63/white?text=FALL+SALE+2025",
+      "settings": {
+        "alt": "Fall Sale Promotion",
+        "width": "100%"
+      }
+    },
+    {
+      "id": "block-4",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-5",
+      "type": "heading",
+      "content": "Get 30% OFF",
+      "settings": {
+        "level": 2,
+        "align": "center",
+        "color": "#4caf50"
+      }
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "Use code below at checkout",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-7",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-8",
+      "type": "promocode",
+      "settings": {
+        "promotion": {
+          "description": "Fall Collection Sale - 30% off everything",
+          "discountCode": "FALL30",
+          "availabilityStarts": "2025-10-15T00:00:00Z",
+          "availabilityEnds": "2025-10-31T23:59:59Z",
+          "discountPercent": 30,
+          "headline": "Limited Time Offer",
+          "promotionUrl": "https://example.com/shop?promo=FALL30"
+        }
+      }
+    },
+    {
+      "id": "block-9",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "button",
+      "content": "Shop Now & Save 30%",
+      "settings": {
+        "url": "https://example.com/shop?promo=FALL30",
+        "align": "center",
+        "backgroundColor": "#e91e63"
+      }
+    },
+    {
+      "id": "block-11",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-12",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-13",
+      "type": "text",
+      "content": "Why You'll Love This Sale",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-14",
+      "type": "text",
+      "content": "• 30% OFF everything in our Fall Collection\n• New arrivals included\n• Free shipping on orders over $75\n• Easy returns within 30 days\n• Exclusive early access for subscribers",
+      "settings": {}
+    },
+    {
+      "id": "block-15",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-16",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-17",
+      "type": "text",
+      "content": "Featured Products",
+      "settings": {
+        "bold": true,
+        "fontSize": "18",
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-18",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-19",
+      "type": "text",
+      "content": "Cozy Sweater Collection\nWas: $89.99 | Now: $62.99\n\nPremium Denim Jeans\nWas: $129.99 | Now: $90.99\n\nLeather Ankle Boots\nWas: $199.99 | Now: $139.99",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-20",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-21",
+      "type": "button",
+      "content": "Browse All Products",
+      "settings": {
+        "url": "https://example.com/shop",
+        "align": "center",
+        "variant": "secondary"
+      }
+    },
+    {
+      "id": "block-22",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-23",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-24",
+      "type": "text",
+      "content": "Offer Valid Until: October 31, 2025",
+      "settings": {
+        "bold": true,
+        "align": "center",
+        "color": "#d32f2f",
+        "fontSize": "16"
+      }
+    },
+    {
+      "id": "block-25",
+      "type": "spacer",
+      "settings": {
+        "height": "10"
+      }
+    },
+    {
+      "id": "block-26",
+      "type": "text",
+      "content": "Don't miss out on this incredible deal!",
+      "settings": {
+        "align": "center",
+        "italic": true
+      }
+    },
+    {
+      "id": "block-27",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-28",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-29",
+      "type": "text",
+      "content": "Terms & Conditions",
+      "settings": {
+        "bold": true,
+        "fontSize": "14"
+      }
+    },
+    {
+      "id": "block-30",
+      "type": "text",
+      "content": "Discount code FALL30 valid from October 15-31, 2025. Cannot be combined with other offers. Excludes gift cards and final sale items. Free shipping on orders over $75 within the continental US only.",
+      "settings": {
+        "fontSize": "12",
+        "color": "#666666"
+      }
+    },
+    {
+      "id": "block-31",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-32",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-33",
+      "type": "social",
+      "settings": {
+        "platforms": [
+          {
+            "name": "facebook",
+            "url": "https://facebook.com/example"
+          },
+          {
+            "name": "instagram",
+            "url": "https://instagram.com/example"
+          },
+          {
+            "name": "twitter",
+            "url": "https://twitter.com/example"
+          }
+        ]
+      }
+    },
+    {
+      "id": "block-34",
+      "type": "footer",
+      "content": "Questions? Contact us at support@example.com or call 1-800-SHOP-NOW\n\nYou're receiving this email because you subscribed to our newsletter.\nUnsubscribe | Update Preferences | View in Browser\n\n© 2025 Example Fashion. All rights reserved.\n123 Fashion Avenue, New York, NY 10001",
+      "settings": {}
+    }
+  ]
+}

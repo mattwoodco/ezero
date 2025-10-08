@@ -66,6 +66,7 @@ export function BlockToolbar({ blockId }: BlockToolbarProps) {
   return (
     <div
       ref={toolbarRef}
+      data-block-toolbar
       style={{ top: topPosition } as React.CSSProperties}
       className={`z-40 flex transition-all duration-200 @max-md/workspace:relative @max-md/workspace:flex-row @max-md/workspace:justify-center @max-md/workspace:gap-1 @max-md/workspace:py-2 @max-md/workspace:px-4 @md/workspace:absolute @md/workspace:flex-col @md/workspace:left-full @md/workspace:ml-3  ${shouldCenter ? "@md/workspace:-translate-y-1/2" : ""}`}
     >
@@ -75,7 +76,11 @@ export function BlockToolbar({ blockId }: BlockToolbarProps) {
             variant="ghost"
             size="icon"
             disabled={!canMoveUp}
-            onClick={() => moveBlock(blockId, "up")}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              moveBlock(blockId, "up");
+            }}
             className="@max-md/workspace:min-h-[44px] @max-md/workspace:min-w-[44px]"
           >
             <ArrowUp className="size-4" />
@@ -90,7 +95,11 @@ export function BlockToolbar({ blockId }: BlockToolbarProps) {
             variant="ghost"
             size="icon"
             disabled={!canMoveDown}
-            onClick={() => moveBlock(blockId, "down")}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              moveBlock(blockId, "down");
+            }}
             className="@max-md/workspace:min-h-[44px] @max-md/workspace:min-w-[44px]"
           >
             <ArrowDown className="size-4" />
@@ -117,7 +126,11 @@ export function BlockToolbar({ blockId }: BlockToolbarProps) {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => duplicateBlock(blockId)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              duplicateBlock(blockId);
+            }}
             className="@max-md/workspace:min-h-[44px] @max-md/workspace:min-w-[44px]"
           >
             <Copy className="size-4" />
@@ -131,7 +144,11 @@ export function BlockToolbar({ blockId }: BlockToolbarProps) {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => deleteBlock(blockId)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              deleteBlock(blockId);
+            }}
             className="@max-md/workspace:min-h-[44px] @max-md/workspace:min-w-[44px]"
           >
             <Trash2 className="size-4" />

@@ -8,6 +8,26 @@ import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { TemplateMetadata } from "@/lib/email-templates";
 
+// Desaturated gradient combinations
+const PASTEL_GRADIENTS = [
+  "bg-gradient-to-br from-[#d4d4d8] via-[#e4e4e7] to-[#f4f4f5]",
+  "bg-gradient-to-br from-[#e4e4e7] via-[#f4f4f5] to-[#fafafa]",
+  "bg-gradient-to-br from-[#e5e7eb] via-[#f3f4f6] to-[#f9fafb]",
+  "bg-gradient-to-br from-[#d1d5db] via-[#e5e7eb] to-[#f3f4f6]",
+  "bg-gradient-to-br from-[#e5e5e5] via-[#f5f5f5] to-[#fafafa]",
+  "bg-gradient-to-br from-[#d4d4d8] via-[#e4e4e7] via-[#f4f4f5] to-[#fafafa]",
+  "bg-gradient-to-br from-[#e4e4e7] via-[#f4f4f5] to-[#ffffff]",
+  "bg-gradient-to-br from-[#d1d5db] via-[#e5e7eb] to-[#f9fafb]",
+];
+
+// Generate consistent gradient index based on template ID
+function getGradientForTemplate(templateId: string) {
+  const hash = templateId.split("").reduce((acc, char) => {
+    return char.charCodeAt(0) + ((acc << 5) - acc);
+  }, 0);
+  return PASTEL_GRADIENTS[Math.abs(hash) % PASTEL_GRADIENTS.length];
+}
+
 export default function Home() {
   const [templates, setTemplates] = useState<TemplateMetadata[]>([]);
   const [loading, setLoading] = useState(true);
@@ -124,7 +144,10 @@ export default function Home() {
                 <Link key={template.id} href={`/template/${template.id}`}>
                   <div className="group relative bg-card overflow-hidden cursor-pointer">
                     {/* 3:4 aspect ratio container */}
-                    <div className="relative aspect-[3/4] bg-muted flex items-center justify-center rounded-lg overflow-hidden">
+                    <div
+                      className={`relative aspect-[3/4] flex items-center justify-center rounded-lg overflow-hidden ${getGradientForTemplate(template.id)}`}
+                      data-testid={`template-card-${template.id}`}
+                    >
                       <div className="text-center p-6">
                         <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-primary/10 flex items-center justify-center">
                           <svg

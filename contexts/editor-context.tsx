@@ -24,6 +24,7 @@ interface EditorContextType {
   canUndo: boolean;
   canRedo: boolean;
   openMenuId: string | null;
+  gmailActionsEnabled: boolean;
   selectBlock: (id: string | null) => void;
   addBlock: (index: number, type: EmailBlock["type"]) => void;
   moveBlock: (id: string, direction: "up" | "down") => void;
@@ -35,6 +36,7 @@ interface EditorContextType {
   setPreviewMode: (mode: "desktop" | "mobile" | null) => void;
   setBlocks: (blocks: EmailBlock[]) => void;
   setOpenMenuId: (id: string | null) => void;
+  setGmailActionsEnabled: (enabled: boolean) => void;
   undo: () => void;
   redo: () => void;
 }
@@ -69,6 +71,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     null,
   );
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+  const [gmailActionsEnabled, setGmailActionsEnabled] = useState<boolean>(true);
 
   // History management
   const [history, setHistory] = useState<HistoryState[]>([
@@ -248,6 +251,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
       canUndo,
       canRedo,
       openMenuId,
+      gmailActionsEnabled,
       selectBlock,
       addBlock,
       moveBlock,
@@ -259,6 +263,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
       setPreviewMode,
       setBlocks: setBlocksWithHistory,
       setOpenMenuId,
+      setGmailActionsEnabled,
       undo,
       redo,
     }),
@@ -269,6 +274,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
       canUndo,
       canRedo,
       openMenuId,
+      gmailActionsEnabled,
       selectBlock,
       addBlock,
       moveBlock,

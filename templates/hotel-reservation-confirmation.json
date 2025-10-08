@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "id": "hotel-reservation-confirmation",
+    "name": "Hotel Reservation Confirmation",
+    "description": "Hotel booking confirmation with check-in details, room information, and guest services. Ideal for hotels and booking platforms.",
+    "category": "transactional",
+    "tags": ["travel", "booking", "reservation", "hotel"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Your Stay is Confirmed",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "We're excited to welcome you! Your reservation at The Grand Palace Hotel has been confirmed.",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-2",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-3",
+      "type": "hotel",
+      "settings": {
+        "lodging": {
+          "reservationNumber": "HTL987654",
+          "reservationStatus": "Confirmed",
+          "guestName": "John Smith",
+          "hotelName": "The Grand Palace Hotel",
+          "hotelAddress": {
+            "streetAddress": "123 Luxury Avenue",
+            "addressLocality": "San Francisco",
+            "addressRegion": "CA",
+            "postalCode": "94102",
+            "addressCountry": "USA"
+          },
+          "hotelPhone": "+1-415-555-0123",
+          "checkinDate": "2025-10-25T15:00:00Z",
+          "checkoutDate": "2025-10-28T11:00:00Z",
+          "numGuests": 2,
+          "roomType": "Deluxe King Suite"
+        }
+      }
+    },
+    {
+      "id": "block-4",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-5",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "Your Room Features",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-7",
+      "type": "text",
+      "content": "• King-size bed with premium linens\n• City skyline view from private balcony\n• Marble bathroom with rain shower\n• Complimentary high-speed WiFi\n• 55\" Smart TV with streaming services\n• In-room safe and mini-bar\n• 24/7 room service available",
+      "settings": {}
+    },
+    {
+      "id": "block-8",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-9",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-10",
+      "type": "text",
+      "content": "Check-in & Check-out",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-11",
+      "type": "text",
+      "content": "Check-in: 3:00 PM onwards\nCheck-out: 11:00 AM\n\nEarly check-in and late check-out available upon request (subject to availability).",
+      "settings": {}
+    },
+    {
+      "id": "block-12",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-13",
+      "type": "button",
+      "content": "View Reservation Details",
+      "settings": {
+        "url": "https://example.com/reservations/HTL987654",
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-14",
+      "type": "spacer",
+      "settings": {
+        "height": "15"
+      }
+    },
+    {
+      "id": "block-15",
+      "type": "button",
+      "content": "Request Special Services",
+      "settings": {
+        "url": "https://example.com/services",
+        "align": "center",
+        "variant": "secondary"
+      }
+    },
+    {
+      "id": "block-16",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-17",
+      "type": "text",
+      "content": "Hotel Amenities",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-18",
+      "type": "text",
+      "content": "Fitness Center • Rooftop Pool • Full-Service Spa • Fine Dining Restaurant • Business Center • Valet Parking • Concierge Services",
+      "settings": {}
+    },
+    {
+      "id": "block-19",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-20",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-21",
+      "type": "footer",
+      "content": "Need assistance? Contact our concierge at concierge@grandpalace.com or call +1-415-555-0123\n\nWe look forward to making your stay memorable!\n\n© 2025 The Grand Palace Hotel. All rights reserved.",
+      "settings": {}
+    }
+  ]
+}

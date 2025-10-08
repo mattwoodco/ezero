@@ -1,0 +1,229 @@
+{
+  "metadata": {
+    "id": "restaurant-reservation",
+    "name": "Restaurant Reservation Confirmation",
+    "description": "Restaurant booking confirmation with table details, party size, and dining information. Perfect for restaurants and reservation platforms.",
+    "category": "transactional",
+    "tags": ["dining", "booking", "reservation", "restaurant"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Your Table is Reserved",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "We can't wait to serve you! Your reservation at Bella Vista Ristorante has been confirmed.",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-2",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-3",
+      "type": "restaurant",
+      "settings": {
+        "restaurant": {
+          "reservationNumber": "RES456789",
+          "reservationStatus": "Confirmed",
+          "guestName": "Michael Chen",
+          "restaurantName": "Bella Vista Ristorante",
+          "restaurantAddress": {
+            "streetAddress": "456 Culinary Lane",
+            "addressLocality": "San Francisco",
+            "addressRegion": "CA",
+            "postalCode": "94103",
+            "addressCountry": "USA"
+          },
+          "reservationTime": "2025-10-22T19:30:00Z",
+          "partySize": 4
+        }
+      }
+    },
+    {
+      "id": "block-4",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-5",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "Special Requests",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-7",
+      "type": "text",
+      "content": "Window table with city view\nCelebrating anniversary\nOne guest has vegetarian preference",
+      "settings": {
+        "italic": true
+      }
+    },
+    {
+      "id": "block-8",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-9",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-10",
+      "type": "text",
+      "content": "Important Information",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-11",
+      "type": "text",
+      "content": "• Please arrive 10 minutes before your reservation time\n• Reservations are held for 15 minutes after the scheduled time\n• Smart casual dress code\n• We accommodate dietary restrictions - please inform your server\n• Free valet parking available",
+      "settings": {}
+    },
+    {
+      "id": "block-12",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-13",
+      "type": "button",
+      "content": "View Reservation",
+      "settings": {
+        "url": "https://example.com/reservations/RES456789",
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-14",
+      "type": "spacer",
+      "settings": {
+        "height": "15"
+      }
+    },
+    {
+      "id": "block-15",
+      "type": "button",
+      "content": "Modify Reservation",
+      "settings": {
+        "url": "https://example.com/modify/RES456789",
+        "align": "center",
+        "variant": "secondary"
+      }
+    },
+    {
+      "id": "block-16",
+      "type": "spacer",
+      "settings": {
+        "height": "15"
+      }
+    },
+    {
+      "id": "block-17",
+      "type": "button",
+      "content": "Get Directions",
+      "settings": {
+        "url": "https://maps.google.com/?q=456+Culinary+Lane+San+Francisco+CA",
+        "align": "center",
+        "variant": "secondary"
+      }
+    },
+    {
+      "id": "block-18",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-19",
+      "type": "text",
+      "content": "Tonight's Specials",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-20",
+      "type": "text",
+      "content": "Pan-Seared Branzino with lemon caper butter\nOsso Buco alla Milanese with saffron risotto\nHomemade Tiramisu with espresso gelato",
+      "settings": {}
+    },
+    {
+      "id": "block-21",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-22",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-23",
+      "type": "text",
+      "content": "Cancellation Policy",
+      "settings": {
+        "bold": true
+      }
+    },
+    {
+      "id": "block-24",
+      "type": "text",
+      "content": "Please notify us at least 24 hours in advance if you need to cancel or modify your reservation.",
+      "settings": {
+        "fontSize": "14"
+      }
+    },
+    {
+      "id": "block-25",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-26",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-27",
+      "type": "footer",
+      "content": "Questions? Call us at (415) 555-0199 or email reservations@bellavista.com\n\nWe look forward to serving you!\n\n© 2025 Bella Vista Ristorante. All rights reserved.",
+      "settings": {}
+    }
+  ]
+}

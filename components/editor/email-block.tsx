@@ -16,8 +16,14 @@ interface EmailBlockProps {
 }
 
 export function EmailBlock({ block, index }: EmailBlockProps) {
-  const { selectedBlockId, selectBlock, addBlock, openMenuId, setOpenMenuId } =
-    useEditor();
+  const {
+    selectedBlockId,
+    selectBlock,
+    addBlock,
+    openMenuId,
+    setOpenMenuId,
+    gmailActionsEnabled,
+  } = useEditor();
   const [isHovered, setIsHovered] = useState(false);
   const isSelected = selectedBlockId === block.id;
 
@@ -54,6 +60,7 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
           <BlockTypeMenu
             onSelect={handleAddAbove}
             onClose={() => setOpenMenuId(null)}
+            gmailActionsEnabled={gmailActionsEnabled}
           />
         </div>
       )}
@@ -131,6 +138,7 @@ export function EmailBlock({ block, index }: EmailBlockProps) {
           <BlockTypeMenu
             onSelect={handleAddBelow}
             onClose={() => setOpenMenuId(null)}
+            gmailActionsEnabled={gmailActionsEnabled}
           />
         </div>
       )}

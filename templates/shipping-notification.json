@@ -4,7 +4,7 @@
     "name": "Shipping Notification",
     "description": "Notify customers when their order ships with tracking information. Reduces customer service inquiries and builds anticipation.",
     "category": "transactional",
-    "tags": ["update"],
+    "tags": ["update", "shipping", "tracking"],
     "createdAt": "2025-01-15T00:00:00.000Z",
     "updatedAt": "2025-01-15T00:00:00.000Z"
   },
@@ -28,16 +28,25 @@
     },
     {
       "id": "block-3",
+      "type": "track",
+      "settings": {
+        "trackingNumber": "1Z999AA10123456784",
+        "trackingUrl": "https://example.com/track/1Z999AA10123456784",
+        "carrier": "UPS Ground",
+        "estimatedDelivery": "2025-10-18T23:59:59Z"
+      }
+    },
+    {
+      "id": "block-3a",
       "type": "text",
-      "content": "Tracking Number: {trackingNumber}\nCarrier: {carrierName}\nShipping Method: {shippingMethod}\n\nEstimated Delivery: {deliveryDate}",
+      "content": "Carrier: UPS Ground\nShipping Method: Standard Ground\nEstimated Delivery: October 18, 2025",
       "settings": {}
     },
     {
       "id": "block-4",
-      "type": "button",
-      "content": "Track Your Package",
+      "type": "spacer",
       "settings": {
-        "url": "https://example.com/track/{trackingNumber}"
+        "height": "20"
       }
     },
     {

@@ -1,0 +1,234 @@
+{
+  "metadata": {
+    "id": "invoice-payment-due",
+    "name": "Invoice Payment Due",
+    "description": "Professional invoice with itemized charges and payment information. Ideal for service providers, freelancers, and businesses.",
+    "category": "transactional",
+    "tags": ["billing", "invoice", "payment"],
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-01-15T00:00:00.000Z"
+  },
+  "blocks": [
+    {
+      "id": "block-0",
+      "type": "heading",
+      "content": "Invoice #INV-2025-1234",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-1",
+      "type": "text",
+      "content": "Thank you for your business. Your invoice is ready for payment.",
+      "settings": {
+        "align": "center"
+      }
+    },
+    {
+      "id": "block-2",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-3",
+      "type": "invoice",
+      "settings": {
+        "invoice": {
+          "invoiceNumber": "INV-2025-1234",
+          "invoiceDate": "2025-10-15T00:00:00Z",
+          "dueDate": "2025-11-15T00:00:00Z",
+          "paymentStatus": "Unpaid",
+          "providerName": "Acme Professional Services",
+          "customerName": "TechStart Inc.",
+          "accountId": "ACCT-789456",
+          "items": [
+            {
+              "description": "Web Design & Development Services",
+              "quantity": 40,
+              "unitPrice": 125.0,
+              "total": 5000.0
+            },
+            {
+              "description": "UX/UI Consultation",
+              "quantity": 8,
+              "unitPrice": 150.0,
+              "total": 1200.0
+            },
+            {
+              "description": "Content Management System Setup",
+              "quantity": 1,
+              "unitPrice": 800.0,
+              "total": 800.0
+            },
+            {
+              "description": "Monthly Hosting & Maintenance",
+              "quantity": 1,
+              "unitPrice": 299.0,
+              "total": 299.0
+            }
+          ],
+          "subtotal": 7299.0,
+          "tax": 656.91,
+          "total": 7955.91,
+          "currency": "USD",
+          "paymentUrl": "https://example.com/pay/INV-2025-1234"
+        }
+      }
+    },
+    {
+      "id": "block-4",
+      "type": "spacer",
+      "settings": {
+        "height": "30"
+      }
+    },
+    {
+      "id": "block-5",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-6",
+      "type": "text",
+      "content": "Payment Due: November 15, 2025",
+      "settings": {
+        "bold": true,
+        "fontSize": "18",
+        "align": "center",
+        "color": "#d32f2f"
+      }
+    },
+    {
+      "id": "block-7",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-8",
+      "type": "button",
+      "content": "Pay Now - $7,955.91",
+      "settings": {
+        "url": "https://example.com/pay/INV-2025-1234",
+        "align": "center",
+        "backgroundColor": "#4caf50"
+      }
+    },
+    {
+      "id": "block-9",
+      "type": "spacer",
+      "settings": {
+        "height": "15"
+      }
+    },
+    {
+      "id": "block-10",
+      "type": "button",
+      "content": "View Invoice Details",
+      "settings": {
+        "url": "https://example.com/invoices/INV-2025-1234",
+        "align": "center",
+        "variant": "secondary"
+      }
+    },
+    {
+      "id": "block-11",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-12",
+      "type": "text",
+      "content": "Payment Methods Accepted",
+      "settings": {
+        "bold": true,
+        "fontSize": "18"
+      }
+    },
+    {
+      "id": "block-13",
+      "type": "text",
+      "content": "• Credit/Debit Cards (Visa, MasterCard, Amex)\n• Bank Transfer (ACH)\n• PayPal\n• Wire Transfer",
+      "settings": {}
+    },
+    {
+      "id": "block-14",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-15",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-16",
+      "type": "text",
+      "content": "Payment Terms & Conditions",
+      "settings": {
+        "bold": true,
+        "fontSize": "16"
+      }
+    },
+    {
+      "id": "block-17",
+      "type": "text",
+      "content": "Payment is due within 30 days of invoice date. A late fee of 1.5% per month will be applied to overdue balances. Please reference invoice number INV-2025-1234 with all payments.",
+      "settings": {
+        "fontSize": "14"
+      }
+    },
+    {
+      "id": "block-18",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-19",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-20",
+      "type": "text",
+      "content": "Wire Transfer Instructions",
+      "settings": {
+        "bold": true
+      }
+    },
+    {
+      "id": "block-21",
+      "type": "text",
+      "content": "Bank Name: First National Bank\nAccount Name: Acme Professional Services\nRouting Number: 123456789\nAccount Number: 9876543210\nSwift Code: FNBAUS33\n\nPlease include invoice number in the payment reference.",
+      "settings": {
+        "fontSize": "14"
+      }
+    },
+    {
+      "id": "block-22",
+      "type": "spacer",
+      "settings": {
+        "height": "20"
+      }
+    },
+    {
+      "id": "block-23",
+      "type": "divider",
+      "settings": {}
+    },
+    {
+      "id": "block-24",
+      "type": "footer",
+      "content": "Questions about this invoice? Contact our billing department:\nEmail: billing@acmepro.com\nPhone: 1-800-555-0100\n\nThank you for your business!\n\n© 2025 Acme Professional Services. All rights reserved.",
+      "settings": {}
+    }
+  ]
+}

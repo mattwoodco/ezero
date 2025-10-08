@@ -3,6 +3,19 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { ChevronDown, Redo, Undo, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import {
+  InvoiceSettingsComponent,
+  OrderSettingsComponent,
+  PromotionSettingsComponent,
+} from "@/components/editor/commerce-settings";
+import {
+  BusSettings,
+  FlightSettings,
+  HotelSettings,
+  RentalCarSettings,
+  RestaurantSettings,
+  TrainSettings,
+} from "@/components/editor/reservation-settings";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -11,7 +24,18 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
-import type { GmailActionsSettings } from "@/types/email";
+import type {
+  BusReservationSettings,
+  FlightReservationSettings,
+  FoodEstablishmentReservationSettings,
+  GmailActionsSettings,
+  InvoiceSettings,
+  LodgingReservationSettings,
+  OrderSettings,
+  PromotionSettings,
+  RentalCarReservationSettings,
+  TrainReservationSettings,
+} from "@/types/email";
 import { BlockTypeMenu } from "./block-type-menu";
 import { GmailActionsSettingsPanel } from "./gmail-actions-settings";
 
@@ -32,6 +56,7 @@ export function SettingsPanel({
     updateBlockSettings,
     updateBlockType,
     selectBlock,
+    gmailActionsEnabled,
   } = useEditor();
 
   const selectedBlock = blocks.find((b) => b.id === selectedBlockId);
@@ -164,6 +189,7 @@ export function SettingsPanel({
                 onSelect={(type) =>
                   selectedBlockId && updateBlockType(selectedBlockId, type)
                 }
+                gmailActionsEnabled={gmailActionsEnabled}
               >
                 <Button
                   variant="outline"
@@ -206,7 +232,7 @@ export function SettingsPanel({
 
         <TabsContent value="blockSettings">
           <div className="space-y-4">
-            {selectedBlock?.type === "gmailActions" ? (
+            {selectedBlock?.type === "gmailActions" && (
               <GmailActionsSettingsPanel
                 settings={
                   (selectedBlock.settings as
@@ -223,11 +249,276 @@ export function SettingsPanel({
                   )
                 }
               />
-            ) : (
-              <p className="text-sm text-muted-foreground">
-                Block settings coming soon...
-              </p>
             )}
+
+            {selectedBlock?.type === "flight" && (
+              <FlightSettings
+                settings={
+                  (selectedBlock.settings as
+                    | FlightReservationSettings
+                    | undefined) || {
+                    reservationNumber: "",
+                    reservationStatus: "Confirmed",
+                    passengerName: "",
+                    flightNumber: "",
+                    airline: "",
+                    airlineCode: "",
+                    departureAirport: "",
+                    departureAirportCode: "",
+                    departureTime: "",
+                    arrivalAirport: "",
+                    arrivalAirportCode: "",
+                    arrivalTime: "",
+                  }
+                }
+                onChange={(newSettings) =>
+                  selectedBlockId &&
+                  updateBlockSettings(
+                    selectedBlockId,
+                    newSettings as unknown as Record<string, unknown>,
+                  )
+                }
+              />
+            )}
+
+            {selectedBlock?.type === "hotel" && (
+              <HotelSettings
+                settings={
+                  (selectedBlock.settings as
+                    | LodgingReservationSettings
+                    | undefined) || {
+                    reservationNumber: "",
+                    reservationStatus: "Confirmed",
+                    guestName: "",
+                    hotelName: "",
+                    hotelAddress: {
+                      streetAddress: "",
+                      addressLocality: "",
+                      addressRegion: "",
+                      postalCode: "",
+                      addressCountry: "",
+                    },
+                    checkinDate: "",
+                    checkoutDate: "",
+                  }
+                }
+                onChange={(newSettings) =>
+                  selectedBlockId &&
+                  updateBlockSettings(
+                    selectedBlockId,
+                    newSettings as unknown as Record<string, unknown>,
+                  )
+                }
+              />
+            )}
+
+            {selectedBlock?.type === "train" && (
+              <TrainSettings
+                settings={
+                  (selectedBlock.settings as
+                    | TrainReservationSettings
+                    | undefined) || {
+                    reservationNumber: "",
+                    reservationStatus: "Confirmed",
+                    passengerName: "",
+                    departureStation: "",
+                    departureTime: "",
+                    arrivalStation: "",
+                    arrivalTime: "",
+                  }
+                }
+                onChange={(newSettings) =>
+                  selectedBlockId &&
+                  updateBlockSettings(
+                    selectedBlockId,
+                    newSettings as unknown as Record<string, unknown>,
+                  )
+                }
+              />
+            )}
+
+            {selectedBlock?.type === "bus" && (
+              <BusSettings
+                settings={
+                  (selectedBlock.settings as
+                    | BusReservationSettings
+                    | undefined) || {
+                    reservationNumber: "",
+                    reservationStatus: "Confirmed",
+                    passengerName: "",
+                    busCompany: "",
+                    departureStop: "",
+                    departureTime: "",
+                    arrivalStop: "",
+                    arrivalTime: "",
+                  }
+                }
+                onChange={(newSettings) =>
+                  selectedBlockId &&
+                  updateBlockSettings(
+                    selectedBlockId,
+                    newSettings as unknown as Record<string, unknown>,
+                  )
+                }
+              />
+            )}
+
+            {selectedBlock?.type === "rental" && (
+              <RentalCarSettings
+                settings={
+                  (selectedBlock.settings as
+                    | RentalCarReservationSettings
+                    | undefined) || {
+                    reservationNumber: "",
+                    reservationStatus: "Confirmed",
+                    renterName: "",
+                    pickupLocation: {
+                      streetAddress: "",
+                      addressLocality: "",
+                      addressRegion: "",
+                      postalCode: "",
+                      addressCountry: "",
+                    },
+                    pickupTime: "",
+                    dropoffLocation: {
+                      streetAddress: "",
+                      addressLocality: "",
+                      addressRegion: "",
+                      postalCode: "",
+                      addressCountry: "",
+                    },
+                    dropoffTime: "",
+                    carModel: "",
+                    carBrand: "",
+                  }
+                }
+                onChange={(newSettings) =>
+                  selectedBlockId &&
+                  updateBlockSettings(
+                    selectedBlockId,
+                    newSettings as unknown as Record<string, unknown>,
+                  )
+                }
+              />
+            )}
+
+            {selectedBlock?.type === "restaurant" && (
+              <RestaurantSettings
+                settings={
+                  (selectedBlock.settings as
+                    | FoodEstablishmentReservationSettings
+                    | undefined) || {
+                    reservationNumber: "",
+                    reservationStatus: "Confirmed",
+                    guestName: "",
+                    restaurantName: "",
+                    restaurantAddress: {
+                      streetAddress: "",
+                      addressLocality: "",
+                      addressRegion: "",
+                      postalCode: "",
+                      addressCountry: "",
+                    },
+                    reservationTime: "",
+                    partySize: 2,
+                  }
+                }
+                onChange={(newSettings) =>
+                  selectedBlockId &&
+                  updateBlockSettings(
+                    selectedBlockId,
+                    newSettings as unknown as Record<string, unknown>,
+                  )
+                }
+              />
+            )}
+
+            {selectedBlock?.type === "order" && (
+              <OrderSettingsComponent
+                settings={
+                  (selectedBlock.settings as OrderSettings | undefined) || {
+                    orderNumber: "",
+                    orderDate: "",
+                    orderStatus: "OrderProcessing",
+                    merchantName: "",
+                    customerName: "",
+                    items: [],
+                    subtotal: 0,
+                    total: 0,
+                    currency: "USD",
+                  }
+                }
+                onChange={(newSettings) =>
+                  selectedBlockId &&
+                  updateBlockSettings(
+                    selectedBlockId,
+                    newSettings as unknown as Record<string, unknown>,
+                  )
+                }
+              />
+            )}
+
+            {selectedBlock?.type === "invoice" && (
+              <InvoiceSettingsComponent
+                settings={
+                  (selectedBlock.settings as InvoiceSettings | undefined) || {
+                    invoiceNumber: "",
+                    invoiceDate: "",
+                    dueDate: "",
+                    paymentStatus: "Unpaid",
+                    providerName: "",
+                    customerName: "",
+                    accountId: "",
+                    items: [],
+                    subtotal: 0,
+                    total: 0,
+                    currency: "USD",
+                  }
+                }
+                onChange={(newSettings) =>
+                  selectedBlockId &&
+                  updateBlockSettings(
+                    selectedBlockId,
+                    newSettings as unknown as Record<string, unknown>,
+                  )
+                }
+              />
+            )}
+
+            {selectedBlock?.type === "promocode" && (
+              <PromotionSettingsComponent
+                settings={
+                  (selectedBlock.settings as PromotionSettings | undefined) || {
+                    description: "",
+                  }
+                }
+                onChange={(newSettings) =>
+                  selectedBlockId &&
+                  updateBlockSettings(
+                    selectedBlockId,
+                    newSettings as unknown as Record<string, unknown>,
+                  )
+                }
+              />
+            )}
+
+            {!selectedBlock?.type ||
+              (![
+                "gmailActions",
+                "flight",
+                "hotel",
+                "train",
+                "bus",
+                "rental",
+                "restaurant",
+                "order",
+                "invoice",
+                "promocode",
+              ].includes(selectedBlock.type) && (
+                <p className="text-sm text-muted-foreground">
+                  No settings available for this block type.
+                </p>
+              ))}
           </div>
         </TabsContent>
       </div>
@@ -311,15 +602,16 @@ export function SettingsPanel({
           onOpenAutoFocus={(e) => e.preventDefault()}
           onCloseAutoFocus={(e) => e.preventDefault()}
           onInteractOutside={(e) => {
-            // Check if the click target is within an email block
+            // Check if the click target is within an email block or block toolbar
             const target = e.target as HTMLElement;
             const isClickOnBlock = target.closest(
               '[role="button"][tabindex="0"]',
             );
+            const isClickOnToolbar = target.closest("[data-block-toolbar]");
 
-            // Prevent dialog from closing when clicking on blocks
+            // Prevent dialog from closing when clicking on blocks or toolbar
             // The block's click handler will manage selection
-            if (isClickOnBlock) {
+            if (isClickOnBlock || isClickOnToolbar) {
               e.preventDefault();
             }
           }}
