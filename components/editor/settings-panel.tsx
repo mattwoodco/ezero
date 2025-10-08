@@ -52,7 +52,7 @@ export function SettingsPanel() {
 
         {/* Panel Content - Sidebar for all breakpoints */}
         <Dialog.Content
-          key="settings-panel"
+          key={selectedBlockId || "settings-panel"}
           className="
             fixed top-0 bottom-0 right-0
             w-[360px] h-screen bg-background
