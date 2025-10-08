@@ -1,7 +1,15 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { ChevronDown, Redo, Undo, X } from "lucide-react";
+import {
+  Check,
+  ChevronDown,
+  Loader2,
+  Redo,
+  Undo,
+  X,
+  XCircle,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import {
   InvoiceSettingsComponent,
@@ -41,10 +49,12 @@ import { GmailActionsSettingsPanel } from "./gmail-actions-settings";
 
 interface SettingsPanelProps {
   isMobileScrollSnap?: boolean;
+  saveStatus?: "idle" | "saving" | "saved" | "error";
 }
 
 export function SettingsPanel({
   isMobileScrollSnap = false,
+  saveStatus = "idle",
 }: SettingsPanelProps) {
   const {
     selectedBlockId,
@@ -557,7 +567,31 @@ export function SettingsPanel({
           </Tooltip>
         </div>
 
-        <span className="text-xs text-muted-foreground">Saved</span>
+        <div className="flex items-center gap-1.5">
+          {saveStatus === "saving" && (
+            <>
+              <Loader2 className="h-3 w-3 animate-spin text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">Saving...</span>
+            </>
+          )}
+          {saveStatus === "saved" && (
+            <>
+              <Check className="h-3 w-3 text-green-600" />
+              <span className="text-xs text-green-600">Saved</span>
+            </>
+          )}
+          {saveStatus === "error" && (
+            <>
+              <XCircle className="h-3 w-3 text-red-600" />
+              <span className="text-xs text-red-600">Save failed</span>
+            </>
+          )}
+          {saveStatus === "idle" && (
+            <span className="text-xs text-muted-foreground">
+              Auto-save enabled
+            </span>
+          )}
+        </div>
       </div>
     </Tabs>
   );

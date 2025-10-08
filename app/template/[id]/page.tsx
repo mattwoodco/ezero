@@ -11,6 +11,7 @@ import { ToolbarLeft } from "@/components/editor/toolbar-left";
 import { ToolbarRight } from "@/components/editor/toolbar-right";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEditor } from "@/contexts/editor-context";
+import type { EmailTemplate } from "@/types/email";
 
 export default function TemplatePage({
   params,
@@ -21,8 +22,13 @@ export default function TemplatePage({
   const { blocks, selectedBlockId, setBlocks } = useEditor();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [saveStatus, setSaveStatus] = useState<
+    "idle" | "saving" | "saved" | "error"
+  >("idle");
+  const [template, setTemplate] = useState<EmailTemplate | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const loadedTemplateIdRef = useRef<string | null>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     // Prevent duplicate loads for the same template
@@ -38,6 +44,7 @@ export default function TemplatePage({
 
         if (data.success && data.template) {
           setBlocks(data.template.blocks);
+          setTemplate(data.template);
           loadedTemplateIdRef.current = templateId;
         } else {
           setError(data.error || "Template not found");
@@ -62,6 +69,46 @@ export default function TemplatePage({
       });
     }
   }, [selectedBlockId]);
+
+  // Auto-save effect
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (!template) {
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setSaveStatus("saving");
+      try {
+        const response = await fetch(`/api/templates/${templateId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: template.metadata.name,
+            blocks,
+            description: template.metadata.description,
+            category: template.metadata.category,
+          }),
+        });
+
+        if (response.ok) {
+          setSaveStatus("saved");
+          setTimeout(() => setSaveStatus("idle"), 2000);
+        } else {
+          setSaveStatus("error");
+        }
+      } catch (error) {
+        console.error("Error saving template:", error);
+        setSaveStatus("error");
+      }
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [blocks, templateId, template]);
 
   if (loading) {
     return (
@@ -132,7 +179,7 @@ export default function TemplatePage({
           </main>
 
           {/* Settings Panel - Desktop sidebar */}
-          <SettingsPanel />
+          <SettingsPanel saveStatus={saveStatus} />
         </div>
 
         {/* Mobile: Horizontal scroll-snap container */}
@@ -174,7 +221,10 @@ export default function TemplatePage({
             {/* Panel 2: Settings Panel */}
             {selectedBlockId && (
               <div className="flex-shrink-0 w-full h-full scroll-snap-start overflow-y-auto">
-                <SettingsPanel isMobileScrollSnap={true} />
+                <SettingsPanel
+                  isMobileScrollSnap={true}
+                  saveStatus={saveStatus}
+                />
               </div>
             )}
           </div>

@@ -206,12 +206,7 @@ export async function getStarterTemplates(): Promise<TemplateMetadata[]> {
   const existingIds = new Set(existingTemplates.map((t) => t.id));
 
   // Check for common React Email templates
-  const starterNames = [
-    "notion-magic-link",
-    "stripe-welcome",
-    "vercel-invite-user",
-    "plaid-verify-identity",
-  ];
+  const starterNames = ["notion-magic-link", "stripe-welcome"];
 
   const reactEmailTemplates = await listReactEmailTemplates();
   const availableStarters = starterNames.filter((name) =>

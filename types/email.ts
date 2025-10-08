@@ -313,3 +313,18 @@ export interface EmailBlock {
   content?: string;
   settings?: Record<string, unknown>;
 }
+
+export interface TemplateMetadata {
+  id: string;
+  name: string;
+  description?: string;
+  category?: string;
+  tags?: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EmailTemplate {
+  metadata: TemplateMetadata;
+  blocks: EmailBlock[];
+}

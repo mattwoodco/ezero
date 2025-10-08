@@ -622,7 +622,8 @@ export function generateJsonLd(action: GmailActionConfig): string {
  * Generates JSON-LD for Flight Reservation
  */
 function generateFlightReservationJsonLd(action: GmailActionConfig): string {
-  const flight = action.flight!;
+  if (!action.flight) throw new Error("Flight data is required");
+  const flight = action.flight;
 
   return JSON.stringify({
     "@context": "http://schema.org",
@@ -686,7 +687,8 @@ function generateFlightReservationJsonLd(action: GmailActionConfig): string {
  * Generates JSON-LD for Lodging Reservation
  */
 function generateLodgingReservationJsonLd(action: GmailActionConfig): string {
-  const lodging = action.lodging!;
+  if (!action.lodging) throw new Error("Lodging data is required");
+  const lodging = action.lodging;
 
   return JSON.stringify({
     "@context": "http://schema.org",
@@ -732,7 +734,8 @@ function generateLodgingReservationJsonLd(action: GmailActionConfig): string {
  * Generates JSON-LD for Train Reservation
  */
 function generateTrainReservationJsonLd(action: GmailActionConfig): string {
-  const train = action.train!;
+  if (!action.train) throw new Error("Train data is required");
+  const train = action.train;
 
   return JSON.stringify({
     "@context": "http://schema.org",
@@ -777,7 +780,8 @@ function generateTrainReservationJsonLd(action: GmailActionConfig): string {
  * Generates JSON-LD for Bus Reservation
  */
 function generateBusReservationJsonLd(action: GmailActionConfig): string {
-  const bus = action.bus!;
+  if (!action.bus) throw new Error("Bus data is required");
+  const bus = action.bus;
 
   return JSON.stringify({
     "@context": "http://schema.org",
@@ -822,7 +826,8 @@ function generateBusReservationJsonLd(action: GmailActionConfig): string {
  * Generates JSON-LD for Rental Car Reservation
  */
 function generateRentalCarReservationJsonLd(action: GmailActionConfig): string {
-  const rentalCar = action.rentalCar!;
+  if (!action.rentalCar) throw new Error("Rental car data is required");
+  const rentalCar = action.rentalCar;
 
   return JSON.stringify({
     "@context": "http://schema.org",
@@ -878,7 +883,8 @@ function generateRentalCarReservationJsonLd(action: GmailActionConfig): string {
 function generateFoodEstablishmentReservationJsonLd(
   action: GmailActionConfig,
 ): string {
-  const restaurant = action.restaurant!;
+  if (!action.restaurant) throw new Error("Restaurant data is required");
+  const restaurant = action.restaurant;
 
   return JSON.stringify({
     "@context": "http://schema.org",
@@ -911,7 +917,8 @@ function generateFoodEstablishmentReservationJsonLd(
  * Generates JSON-LD for Order
  */
 function generateOrderJsonLd(action: GmailActionConfig): string {
-  const order = action.order!;
+  if (!action.order) throw new Error("Order data is required");
+  const order = action.order;
 
   return JSON.stringify({
     "@context": "http://schema.org",
@@ -977,7 +984,8 @@ function generateOrderJsonLd(action: GmailActionConfig): string {
  * Generates JSON-LD for Invoice
  */
 function generateInvoiceJsonLd(action: GmailActionConfig): string {
-  const invoice = action.invoice!;
+  if (!action.invoice) throw new Error("Invoice data is required");
+  const invoice = action.invoice;
 
   return JSON.stringify({
     "@context": "http://schema.org",
@@ -1025,9 +1033,10 @@ function generateInvoiceJsonLd(action: GmailActionConfig): string {
  * Generates JSON-LD for Promotion
  */
 export function generatePromotionJsonLd(action: GmailActionConfig): string {
-  const promo = action.promotion!;
+  if (!action.promotion) throw new Error("Promotion data is required");
+  const promo = action.promotion;
 
-  const emailMessage: any = {
+  const emailMessage: Record<string, unknown> = {
     "@context": "http://schema.org",
     "@type": "EmailMessage",
   };

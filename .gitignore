@@ -40,3 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .playwright*
+
+# database
+sqlite.db
+sqlite.db-journal
+drizzle/

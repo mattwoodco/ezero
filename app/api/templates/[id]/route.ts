@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server";
 import {
   deleteTemplate,
-  loadTemplate,
-  saveTemplate,
-} from "@/lib/email-templates";
-import type { EmailBlock } from "@/types/email";
+  getTemplateById,
+  updateTemplate,
+} from "@/lib/db/queries";
+import { updateSchema } from "@/lib/db/schema";
 
 /**
  * GET /api/templates/[id]
@@ -16,7 +16,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const template = await loadTemplate(id);
+    const template = await getTemplateById(id);
 
     if (!template) {
       return NextResponse.json(
@@ -57,23 +57,38 @@ export async function PUT(
   try {
     const { id } = await params;
     const body = await request.json();
-    const { name, blocks, description, category } = body;
 
-    if (!name || !blocks || !Array.isArray(blocks)) {
+    // Validate input using Zod schema
+    const validation = updateSchema.safeParse(body);
+    if (!validation.success) {
       return NextResponse.json(
         {
           success: false,
-          error: "Name and blocks array are required",
+          error: "Invalid template data",
+          details: validation.error.issues,
         },
         { status: 400 },
       );
     }
 
-    const template = await saveTemplate(name, blocks as EmailBlock[], {
-      id,
-      description,
-      category,
+    const { name, blocks, description, category } = validation.data;
+
+    const template = await updateTemplate(id, {
+      name,
+      blocks,
+      description: description ?? undefined,
+      category: category ?? undefined,
     });
+
+    if (!template) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Template not found",
+        },
+        { status: 404 },
+      );
+    }
 
     return NextResponse.json({
       success: true,

@@ -1,25 +1,14 @@
 import { type NextRequest, NextResponse } from "next/server";
-import {
-  getStarterTemplates,
-  listTemplates,
-  saveTemplate,
-} from "@/lib/email-templates";
-import type { EmailBlock } from "@/types/email";
+import { createTemplate, listAllTemplates } from "@/lib/db/queries";
+import { insertSchema } from "@/lib/db/schema";
 
 /**
  * GET /api/templates
  * Lists all available templates
- * Query params:
- *   - starters: 'true' to include/initialize starter templates
  */
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url);
-    const includeStarters = searchParams.get("starters") === "true";
-
-    const templates = includeStarters
-      ? await getStarterTemplates()
-      : await listTemplates();
+    const templates = await listAllTemplates();
 
     return NextResponse.json({
       success: true,
@@ -45,21 +34,31 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, blocks, description, category } = body;
 
-    if (!name || !blocks || !Array.isArray(blocks)) {
+    // Validate input using Zod schema
+    const validation = insertSchema.safeParse(body);
+    if (!validation.success) {
       return NextResponse.json(
         {
           success: false,
-          error: "Name and blocks array are required",
+          error: "Invalid template data",
+          details: validation.error.issues,
         },
         { status: 400 },
       );
     }
 
-    const template = await saveTemplate(name, blocks as EmailBlock[], {
-      description,
-      category,
+    const { name, blocks, description, category } = validation.data;
+
+    // Generate ID from name
+    const id = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+    const template = await createTemplate({
+      id,
+      name,
+      blocks,
+      description: description ?? undefined,
+      category: category ?? undefined,
     });
 
     return NextResponse.json({
