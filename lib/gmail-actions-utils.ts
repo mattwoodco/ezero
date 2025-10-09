@@ -1,4 +1,15 @@
-import type { GmailActionConfig } from "@/types/email";
+import type {
+  BusReservationSettings,
+  FlightReservationSettings,
+  FoodEstablishmentReservationSettings,
+  GmailActionConfig,
+  InvoiceSettings,
+  LodgingReservationSettings,
+  OrderSettings,
+  PromotionSettings,
+  RentalCarReservationSettings,
+  TrainReservationSettings,
+} from "@/types/email";
 
 interface ValidationResult {
   valid: boolean;
@@ -114,7 +125,7 @@ export function validateGmailAction(
 /**
  * Validates a Flight Reservation configuration
  */
-function _validateFlightReservation(flight: any): {
+function _validateFlightReservation(flight: FlightReservationSettings): {
   errors: string[];
   warnings: string[];
 } {
@@ -156,7 +167,7 @@ function _validateFlightReservation(flight: any): {
 /**
  * Validates a Lodging Reservation configuration
  */
-function _validateLodgingReservation(lodging: any): {
+function _validateLodgingReservation(lodging: LodgingReservationSettings): {
   errors: string[];
   warnings: string[];
 } {
@@ -192,7 +203,7 @@ function _validateLodgingReservation(lodging: any): {
 /**
  * Validates a Train Reservation configuration
  */
-function _validateTrainReservation(train: any): {
+function _validateTrainReservation(train: TrainReservationSettings): {
   errors: string[];
   warnings: string[];
 } {
@@ -228,7 +239,7 @@ function _validateTrainReservation(train: any): {
 /**
  * Validates a Bus Reservation configuration
  */
-function _validateBusReservation(bus: any): {
+function _validateBusReservation(bus: BusReservationSettings): {
   errors: string[];
   warnings: string[];
 } {
@@ -267,7 +278,9 @@ function _validateBusReservation(bus: any): {
 /**
  * Validates a Rental Car Reservation configuration
  */
-function _validateRentalCarReservation(rentalCar: any): {
+function _validateRentalCarReservation(
+  rentalCar: RentalCarReservationSettings,
+): {
   errors: string[];
   warnings: string[];
 } {
@@ -306,7 +319,9 @@ function _validateRentalCarReservation(rentalCar: any): {
 /**
  * Validates a Food Establishment Reservation configuration
  */
-function _validateFoodEstablishmentReservation(restaurant: any): {
+function _validateFoodEstablishmentReservation(
+  restaurant: FoodEstablishmentReservationSettings,
+): {
   errors: string[];
   warnings: string[];
 } {
@@ -340,7 +355,10 @@ function _validateFoodEstablishmentReservation(restaurant: any): {
 /**
  * Validates an Order configuration
  */
-function _validateOrder(order: any): { errors: string[]; warnings: string[] } {
+function _validateOrder(order: OrderSettings): {
+  errors: string[];
+  warnings: string[];
+} {
   const errors: string[] = [];
   const warnings: string[] = [];
 
@@ -374,7 +392,7 @@ function _validateOrder(order: any): { errors: string[]; warnings: string[] } {
 /**
  * Validates an Invoice configuration
  */
-function _validateInvoice(invoice: any): {
+function _validateInvoice(invoice: InvoiceSettings): {
   errors: string[];
   warnings: string[];
 } {
@@ -416,7 +434,7 @@ function _validateInvoice(invoice: any): {
 /**
  * Validates a Promotion configuration
  */
-function _validatePromotion(promotion: any): {
+function _validatePromotion(promotion: PromotionSettings): {
   errors: string[];
   warnings: string[];
 } {
