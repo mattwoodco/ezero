@@ -205,16 +205,10 @@ export async function getStarterTemplates(): Promise<TemplateMetadata[]> {
   const existingTemplates = await listTemplates();
   const existingIds = new Set(existingTemplates.map((t) => t.id));
 
-  // Check for common React Email templates
-  const starterNames = ["notion-magic-link", "stripe-welcome"];
-
-  const reactEmailTemplates = await listReactEmailTemplates();
-  const availableStarters = starterNames.filter((name) =>
-    reactEmailTemplates.includes(name),
-  );
+  const availableTemplates = await listReactEmailTemplates();
 
   // Import any starter templates that aren't already saved
-  for (const name of availableStarters) {
+  for (const name of availableTemplates) {
     const id = slugify(name);
     if (!existingIds.has(id)) {
       try {
