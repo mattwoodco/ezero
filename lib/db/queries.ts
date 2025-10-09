@@ -15,6 +15,7 @@ function toAppTemplate(t: Template): EmailTemplate {
       name: t.name,
       description: t.description || undefined,
       category: t.category || undefined,
+      tags: (t.tags as string[] | null) || undefined,
       createdAt: t.createdAt.toISOString(),
       updatedAt: t.updatedAt.toISOString(),
     },
@@ -30,6 +31,7 @@ export async function listAllTemplates(): Promise<TemplateMetadata[]> {
       name: templates.name,
       description: templates.description,
       category: templates.category,
+      tags: templates.tags,
       createdAt: templates.createdAt,
       updatedAt: templates.updatedAt,
     })
@@ -41,6 +43,7 @@ export async function listAllTemplates(): Promise<TemplateMetadata[]> {
     name: t.name,
     description: t.description || undefined,
     category: t.category || undefined,
+    tags: (t.tags as string[] | null) || undefined,
     createdAt: t.createdAt.toISOString(),
     updatedAt: t.updatedAt.toISOString(),
   }));
@@ -66,6 +69,7 @@ export async function createTemplate(data: {
   blocks: EmailBlock[];
   description?: string;
   category?: string;
+  tags?: string[];
 }): Promise<EmailTemplate> {
   const result = await db
     .insert(templates)
@@ -74,6 +78,7 @@ export async function createTemplate(data: {
       name: data.name,
       description: data.description,
       category: data.category,
+      tags: data.tags ? JSON.parse(JSON.stringify(data.tags)) : null,
       blocks: JSON.parse(JSON.stringify(data.blocks)),
     })
     .returning();
@@ -89,6 +94,7 @@ export async function updateTemplate(
     blocks: EmailBlock[];
     description?: string;
     category?: string;
+    tags?: string[];
   },
 ): Promise<EmailTemplate | null> {
   const result = await db
@@ -97,6 +103,7 @@ export async function updateTemplate(
       name: data.name,
       description: data.description,
       category: data.category,
+      tags: data.tags ? JSON.parse(JSON.stringify(data.tags)) : null,
       blocks: JSON.parse(JSON.stringify(data.blocks)),
       updatedAt: new Date(),
     })

@@ -17,6 +17,7 @@ export const templates = sqliteTable("templates", {
   name: text("name").notNull(),
   description: text("description"),
   category: text("category"),
+  tags: text("tags", { mode: "json" }).$type<string[]>(),
   blocks: text("blocks", { mode: "json" }).$type<EmailBlock[]>().notNull(),
   ...timestamps,
 });
